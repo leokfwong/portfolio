@@ -1,0 +1,231 @@
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+}
+
+@media (min-height: 500px) and (max-height: 700px) and (min-width: 800px) {
+}
+
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+  //CSS
+
+}
+
+/*
+  ##Device = Tablets, Ipads (portrait)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  #nav-bar-wrapper {
+    width: 80%;
+  }
+  #header {
+    width: 80%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+  #wrapper {
+    align-items: center;
+    flex-direction: column;
+    padding-top: 75px;
+  }
+  #portrait {
+    width: 50%;
+  }
+  #portrait-image-container {
+    flex-direction: row;
+  }
+  #self-description {
+    width: 50%;
+  }
+  #social-container {
+    display: none;
+  }
+  #selfie-img img {
+    width: 75%;
+  }
+  #self-description-text {
+    font-size: 125%;
+  }
+  #content {
+    width: 80%;
+  }
+}
+
+/*
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+  //CSS
+
+}
+
+/*
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+  #nav-bar-wrapper {
+    width: 80%;
+  }
+  #header {
+    width: 80%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #wrapper {
+    align-items: center;
+    flex-direction: column;
+    padding-top: 75px;
+  }
+  #portrait {
+    width: 50%;
+  }
+  #portrait-image-container {
+    flex-direction: row;
+  }
+  #self-description {
+    width: 50%;
+  }
+  #social-container {
+    padding-top: 40px;
+  }
+  #social-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #social-location {
+    display: none;
+  }
+  #social-title {
+    display: none;
+  }
+  .social-item {
+    font-size: 150%;
+    padding-bottom: 0px;
+  }
+  .social-icon {
+    padding-right: 0px;
+    width: auto;
+  }
+  .social-text {
+    display: none;
+  }
+  #selfie-img img {
+    width: 100%;
+  }
+  #self-description-text {
+    font-size: 125%;
+  }
+  #content {
+    width: 80%;
+  }
+
+}
+
+/*
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 1px) and (max-width: 480px) {
+  #nav-bar-wrapper {
+    width: 90%;
+  }
+  .nav-bar-item {
+    padding-left: 10%;
+  }
+  #header {
+    width: 80%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  #wrapper {
+    align-items: center;
+    flex-direction: column;
+    padding-top: 60px;
+  }
+  #portrait {
+    width: 50%;
+  }
+  #portrait-image-container {
+    flex-direction: column;
+  }
+  #self-description {
+    width: 100%;
+  }
+  #social-container {
+    padding-top: 0px;
+    padding-bottom: 25px;
+    order: -1;
+  }
+  #social-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  #social-location {
+    display: none;
+  }
+  #social-title {
+    display: none;
+  }
+  .social-item {
+    font-size: 150%;
+    padding-bottom: 0px;
+  }
+  .social-icon {
+    padding-right: 0px;
+    width: auto;
+  }
+  .social-text {
+    display: none;
+  }
+  #selfie-img img {
+    width: 133%;
+  }
+  #self-description-text {
+    font-size: 110%;
+    width: 100%;
+  }
+  #content {
+    width: 80%;
+    text-align: left;
+  }
+  .project-container {
+    flex-direction: column;
+  }
+  .project-description {
+    padding-left: 0px;
+  }
+  .project-text {
+    padding-bottom: 25px;
+    border-bottom: solid 1px lightgrey;
+  }
+}
