@@ -220,6 +220,7 @@
   }
   .project-container {
     flex-direction: column;
+    border: none;
   }
   .project-description {
     padding-left: 0px;
