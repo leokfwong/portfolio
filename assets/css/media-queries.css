@@ -53,7 +53,7 @@
   #social-container {
     display: none;
   }
-  #selfie-img img {
+  #selfie-img {
     width: 75%;
   }
   #self-description-text {
@@ -133,7 +133,7 @@
   .social-text {
     display: none;
   }
-  #selfie-img img {
+  #selfie-img {
     width: 100%;
   }
   #self-description-text {
@@ -207,7 +207,7 @@
   .social-text {
     display: none;
   }
-  #selfie-img img {
+  #selfie-img {
     width: 133%;
   }
   #self-description-text {
