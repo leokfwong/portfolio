@@ -1,4 +1,27 @@
-/* MISC */
+/* FADE-IN ON LOAD */
+body {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from { opacity:0; }
+    to { opacity:1;}
+}
+@-moz-keyframes fadein { /* Firefox */
+    from { opacity:0; }
+    to { opacity:1; }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from { opacity:0; }
+    to { opacity:1; }
+}
+@-o-keyframes fadein { /* Opera */
+    from { opacity:0; }
+    to { opacity: 1; }
+}
+/* LINK TEXT STYLE */
 a:link {
   text-decoration: none;
   color: #0000EE;
@@ -8,6 +31,7 @@ a:visited {
     /*color: #551A8B;*/
     color: #0000EE;
 }
+/* UNIVERSITY COLOR */
 .udem-color {
     color: #0062b2;
 }
