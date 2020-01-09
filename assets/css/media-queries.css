@@ -249,9 +249,9 @@
   }
   .project-description {
     padding-left: 0px;
-  }
-  .project-text {
-    padding-bottom: 25px;
     border-bottom: solid 1px lightgrey;
+  }
+  .project-link {
+    margin-bottom: 25px;
   }
 }
