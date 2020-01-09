@@ -74,8 +74,11 @@ ul {
     width: 70%;
 }
 .nav-bar-item {
-    padding-left: 5%;
+    margin-left: 5%;
     text-align: right;
+}
+.nav-bar-active {
+    border-bottom: solid 2px white;
 }
 #nav-bar-hamburger {
     display: none; /* Hide for now */
@@ -181,6 +184,12 @@ ul {
     width: 70%;
     text-align: justify;
     padding-left: 25px;
+}
+#main-page {
+    width: 100%;
+}
+#side-page {
+    width: 100%;
 }
 #projects-content {
     display: flex;
@@ -297,6 +306,37 @@ ul {
 .publication-date {
     color: grey;
     font-weight: bold;
+}
+/* BLOG */
+#side-page {
+    display: none;
+}
+#blog-content {
+    
+}
+.blog-post {
+    border-top: solid 1px lightgrey;
+}
+.blog-reading-time {
+    font-style: italic;
+}
+.blog-date {
+    color: grey;
+    font-weight: bold;
+}
+/* CODE SNIPPET */
+pre {
+    text-align: left;
+    white-space: pre-line;
+}
+pre code {
+    display: block;
+    padding: 1.5em;
+    overflow: auto;
+    background: #242424;
+    box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.42);
+    border-radius: 5px;
+    color: white;
 }
 /* FOOTER */
 footer {

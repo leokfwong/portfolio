@@ -45,4 +45,21 @@ window.onload = function() {
 	};
 	// Call typing effect function
 	typingEffect();
+
+	// Alternate between about and blog
+	let about_button = document.getElementById("nav-bar-about");
+	let blog_button = document.getElementById("nav-bar-blog");
+
+	about_button.addEventListener("click", function() {
+		document.getElementById("side-page").style.display = "none";
+		document.getElementById("nav-bar-blog").className = "nav-bar-item";
+		document.getElementById("main-page").style.display = "block";
+		document.getElementById("nav-bar-about").className = "nav-bar-item nav-bar-active";
+	});
+	blog_button.addEventListener("click", function() {
+		document.getElementById("main-page").style.display = "none";
+		document.getElementById("nav-bar-blog").className = "nav-bar-item nav-bar-active";
+		document.getElementById("side-page").style.display = "block";
+		document.getElementById("nav-bar-about").className = "nav-bar-item";
+	});
 }
