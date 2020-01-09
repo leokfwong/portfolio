@@ -240,7 +240,6 @@
   }
   #content {
     width: 80%;
-    text-align: left;
     padding-left: 0px;
   }
   .project-container {
@@ -250,6 +249,7 @@
   .project-description {
     padding-left: 0px;
     border-bottom: solid 1px lightgrey;
+    width: 100%;
   }
   .project-link {
     margin-bottom: 25px;
