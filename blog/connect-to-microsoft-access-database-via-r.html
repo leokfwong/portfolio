@@ -66,9 +66,24 @@
 								<p>The first step is to load the package.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
-										<code class="code-lang-r"><span class="code-comment">// Import RODBC package</span>
+										<code class="code-lang-r"><span class="code-comment">## Import RODBC package</span>
 											<span class="code-function">library(RODBC)</span>
+
+											<span class="code-comment">## Set up driver info and database path</span>
 											<span>DRIVERINFO</span><span class="code-operator"> <- "</span><span class="code-string">Driver={Microsoft Access Driver (*.mdb, *.accdb)};</span><span class="code-operator">"</span>
+											<span>MDBPATH</span><span class="code-operator"> <- "</span><span class="code-string">C:/Users/leo/student-dummy.accdb</span><span class="code-operator">"</span>
+											<span>PATH</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">(</span><span class="code-function">DRIVERINFO</span><span class="code-operator">, "</span><span class="code-string">DBQ=</span><span class="code-operator">",</span><span class="code-function"> MDBPATH</span><span class="code-operator">)</span>
+
+											<span class="code-comment">## Establish connection</span>
+											<span>channel</span><span class="code-operator"> <- </span><span class="code-function">odbcDriverConnect</span><span class="code-operator">(</span><span class="code-function">PATH</span><span class="code-operator">)</span>
+
+											<span class="code-comment">## Load data into R dataframe</span>
+											<span>df</span><span class="code-operator"> <- </span><span class="code-function">sqlQuery</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">,</span>
+											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="code-operator">"</span><span class="code-string">SELECT [student_id], [first_name], [last_name],</span>
+											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="code-string">[date_enrolled]</span>
+											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;<span class="code-string">FROM [tbl-students]</span>
+											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;<span class="code-string">ORDER BY [first_name];</span><span class="code-operator">",</span>
+											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<span class="code-parameter">stringsAsFactors</span><span class="code-operator"> = </span><span class="code-keyword">FALSE</span><span class="code-operator">)</span>
 										</code>
 									</pre>
 								</div>
@@ -76,6 +91,7 @@
 									<h3>Resources</h3>
 									<ol>
 										<li><a href=https://cran.r-project.org/web/packages/RODBC/RODBC.pdf target="_blank">https://cran.r-project.org/web/packages/RODBC/RODBC.pdf</a></li>
+										<li><a href=https://www.microsoft.com/en-ca/download/details.aspx?id=13255 target="_blank">https://www.microsoft.com/en-ca/download/details.aspx?id=13255</a></li>
 									</ol>
 								</div>
 							</div>
