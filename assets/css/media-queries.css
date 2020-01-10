@@ -254,4 +254,7 @@
   .project-link {
     margin-bottom: 25px;
   }
+  .code-snippet {
+    font-size: 81%;
+  }
 }

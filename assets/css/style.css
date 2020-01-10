@@ -1,9 +1,5 @@
 /* FADE-IN ON LOAD */
 body {
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
 }
 @keyframes fadein {
     from { opacity:0; }
@@ -31,10 +27,18 @@ a:visited {
     /*color: #551A8B;*/
     color: #0000EE;
 }
+h2 a:link,
+h2 a:visited {
+    color: #2e3131;
+}
 ul {
     list-style-type: circle;
 }
-/* UNIVERSITY COLOR */
+/* SPECIFIC COLORS */
+.ms-access-color {
+    color: #a5373a;
+    font-weight: bold;
+}
 .udem-color {
     color: #0062b2;
 }
@@ -90,11 +94,16 @@ ul {
     align-items: flex-start;
     max-width: 980px;
     margin: 0 auto;
-    padding-top: 100px;
     font-family: 'Roboto', sans-serif;
     line-height: 140%;
     color: #2e3131;
     cursor: default;
+}
+.padding-top-100px {
+    padding-top: 100px;
+}
+.padding-top-75px {
+    padding-top: 75px;
 }
 /* HEADER */
 #header {
@@ -308,14 +317,20 @@ ul {
     font-weight: bold;
 }
 /* BLOG */
-#side-page {
+.hidden {
     display: none;
 }
+#side-page {
+}
 #blog-content {
-    
 }
 .blog-post {
+}
+.blog-post-separator {
     border-top: solid 1px lightgrey;
+}
+.blog-title {
+    text-align: left;
 }
 .blog-reading-time {
     font-style: italic;
@@ -323,6 +338,21 @@ ul {
 .blog-date {
     color: grey;
     font-weight: bold;
+}
+.blog-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 3px 9px 3px 9px;
+    background: #2e3131;
+    color: white;
+    border-radius: 5px;
+    width: 10%;
+    font-size: 81%;
+    margin-bottom: 25px;
+}
+.blog-link a {
+    color: white;
 }
 /* CODE SNIPPET */
 pre {
@@ -337,6 +367,36 @@ pre code {
     box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.42);
     border-radius: 5px;
     color: white;
+}
+.code-comment {
+    color: #616161;
+}
+.code-function {
+    color: #82aaff;
+}
+.code-keyword {
+    color: #c792ea;
+}
+.code-tag {
+    color: #f07178;
+}
+.code-string {
+    color: #c3e88d;
+}
+.code-operator {
+    color: #89ddff;
+}
+.code-attribute {
+    color: #ffcb6b;
+}
+.code-parameter {
+    color: #f78c6c;
+}
+.blog-resource > ol > li {
+    font-size: 90%;
+}
+.blog-resource > ol > li > a {
+    color: #2e3131;
 }
 /* FOOTER */
 footer {
@@ -367,4 +427,10 @@ footer {
 }
 #footer-copyright {
     text-align: center;
+}
+/* EXTERNAL BLOG */
+#content-blog {
+    width: 90%;
+    text-align: justify;
+    padding-left: 0px;
 }
