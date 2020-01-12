@@ -73,6 +73,7 @@ window.onload = function() {
 			document.getElementById("main-page").style.display = "block";
 			document.getElementById("nav-bar-about").className = "nav-bar-item nav-bar-active";
 			window.scrollTo(0, 0);
+			localStorage.setItem("view", "about");
 		} else {
 			localStorage.setItem("view", "about");
 			window.location.href = "../../index.html";
@@ -81,6 +82,7 @@ window.onload = function() {
 	blog_button.addEventListener("click", function() {
 		if (on_homepage) {
 			displayBlog();
+			localStorage.setItem("view", "blog");
 		} else {
 			localStorage.setItem("view", "blog");
 			window.location.href = "../../index.html";
