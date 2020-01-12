@@ -12,7 +12,7 @@
 	<script src="https://kit.fontawesome.com/a93733e62b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div id="nav-bar">
+	<div id="nav-bar" class="bottom-shadow">
 		<div id="nav-bar-wrapper">
 			<div id="nav-bar-name">
 				Leo Wong
@@ -62,10 +62,9 @@
 								<p>The first option is the simplest one. All we need to do is click a few buttons through the user-interfaces and we're done! That might be true if we only need to load data once. But what if the data has been updated the next day, and we are asked to repeat the analysis? What if we need to conduct the analysis on a weekly basis? On the long-run, this becomes time consuming and troublesome.</p>
 								<p>This is why the second option is better if we know that we will have to reload the data in the future. Once we set up the script that will connect to the MS Access database and load the data directly into R, we wouldn't have to go through the hassle of manually extracting the data. All we have to do is to write a script that loads the specific data from MS Access once, and we can repeatedly use it to load new data in the future as many times as we need. Even better, we can come up with a generic function that can be used in most cases. Trust me, not only is this a huge time saver, but it also avoids human mistakes that are inevitably introduced during manual processes.</p>
 								<h2>Install MS Access Drivers</h2>
-								Before we get into the code, we must first make sure that the proper drivers are installed. Essentially, we need a specific set of components that will allow the transfer of data between MS Office software and other data sources. Here's a <a href="https://www.microsoft.com/en-ca/download/details.aspx?id=13255" target="_blank">link</a> to the Microsoft Access Database Engine 2010 Redistributable<sup>2</sup> (older version). Once downloaded, simply go through the installation and it should be ready to go!
-								<h2>RODBC</h2>
+								Before we get down to the nitty-gritty of the code, we must first make sure that the proper drivers are installed. Essentially, we need a specific set of components that will allow the transfer of data between MS Office software and other data sources. Here's a <a href="https://www.microsoft.com/en-ca/download/details.aspx?id=13255" target="_blank">link</a> to the Microsoft Access Database Engine 2010 Redistributable<sup>2</sup> (older version). Once downloaded, simply go through the installation and it should be ready to go!
+								<h2>RODBC Library</h2>
 								<p>We will be using RODBC<sup>1</sup>, a package created to allow R to connect to ODBC APIs and access the database management systems. Given a specific set of arguments and settings, these R functions are able to directly talk to the ODBC interfaces, such as MS Access.</p>
-								<p>The first step is to load the package.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
 										<code class="code-lang-r"><span class="code-comment">## Import RODBC package</span>
@@ -83,10 +82,20 @@
 											<span class="code-comment">## Load data into R dataframe</span>
 											<span>df</span><span class="code-operator"> <- </span><span class="code-function">sqlQuery</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">,</span>
 											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="code-operator">"</span><span class="code-string">SELECT [student_id], [first_name], [last_name],</span>
-											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;<span class="code-string">[date_enrolled]</span>
 											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;<span class="code-string">FROM [tbl-students]</span>
 											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&ensp;&ensp;<span class="code-string">ORDER BY [first_name];</span><span class="code-operator">",</span>
 											&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;<span class="code-parameter">stringsAsFactors</span><span class="code-operator"> = </span><span class="code-keyword">FALSE</span><span class="code-operator">)</span>
+										</code>
+									</pre>
+								</div>
+								<p>The first step is to install the library and then load it in R. Then, we need to define some settings. <code>DRIVERINFO</code> contains the driver specifications. If we are working with older MS Access databases, then they usually end with the extension .mdb, whereas the newer versions end with .accdb. The variable <code>MDBPATH</code> specifies the absolute path where the database is found. <code>PATH</code> is essentially the concatenation of both into a single string. We will come back to the reason why we partition these elements with separate variables when we generalize our function. Once the configurations are defined, we use the <code>odbcDriverConnect</code> function to establish a connection between the MS Access database and R. Finally, the <code>sqlQuery</code> function takes as input the <code>channel</code> and SQL code in order to load the data into R. At this point, <code>df</code> should be a dataframe containing the columns <code>student_id</code>, <code>first_name</code> and <code>last_name</code> from the table <code>tbl-students</code>.</p>
+								<h2>Password Protected Database</h2>
+								<p>MS Access databases are equipped with password protection functionality. Basically, the software will prompt to enter a code before allowing access to the data. While interacting with a password protected database through R, the code shown above would fail since it is missing the password. In order to succesfully establish a connection with the MS Access database, we need to set the password in the configurations.</p>
+								<div class="code-snippet">
+									<pre class="code-lang-r">
+										<code class="code-lang-r"><span class="code-comment">## Specify password</span>
+											PWD<span class="code-operator"> <- "</span><span class="code-string">password</span><span class="code-operator">"</span>
+											<span>PATH</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">(</span><span class="code-function">DRIVERINFO</span><span class="code-operator">, "</span><span class="code-string">DBQ=</span><span class="code-operator">",</span><span class="code-function"> MDBPATH</span><span class="code-operator">, "</span><span class="code-string">;PWD=</span><span class="code-operator">", </span><span class="code-function"> PWD</span><span class="code-operator">)</span>
 										</code>
 									</pre>
 								</div>
