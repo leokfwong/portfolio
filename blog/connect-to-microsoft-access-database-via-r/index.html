@@ -42,7 +42,7 @@
 						<!--BLOG POST #2 -->
 						<div id="blog-post-2" class="blog-post">
 							<div id="blog-title-2" class="blog-title">
-								<h1>Connect to Microsoft Access Database via R</h1>
+								<h1>Connect to Microsoft Access Database in R using RODBC</h1>
 							</div>
 							<div id="blog-reading-time-2" class="blog-reading-time">
 								10 min read
@@ -90,7 +90,7 @@
 								</div>
 								<p>The first step is to install the library and then load it in R. Then, we need to define some settings. <code>DRIVERINFO</code> contains the driver specifications. If we are working with older MS Access databases, then they usually end with the extension .mdb, whereas the newer versions end with .accdb. The variable <code>MDBPATH</code> specifies the absolute path where the database is found. <code>PATH</code> is essentially the concatenation of both into a single string. We will come back to the reason why we partition these elements with separate variables when we generalize our function. Once the configurations are defined, we use the <code>odbcDriverConnect</code> function to establish a connection between the MS Access database and R. Finally, the <code>sqlQuery</code> function takes as input the <code>channel</code> and SQL code in order to load the data into R. At this point, <code>df</code> should be a dataframe containing the columns <code>student_id</code>, <code>first_name</code> and <code>last_name</code> from the table <code>tbl-students</code>.</p>
 								<h2>Password Protected Database</h2>
-								<p>MS Access databases are equipped with password protection functionality. Basically, the software will prompt to enter a code before allowing access to the data. While interacting with a password protected database through R, the code shown above would fail since it is missing the password. In order to succesfully establish a connection with the MS Access database, we need to set the password in the configurations.</p>
+								<p>MS Access databases are equipped with password protection functionality. Basically, the software will prompt to enter a passcode before allowing access to the data. While interacting with a password protected database through R, the code shown above would fail. In order to succesfully establish a connection with the MS Access database, we need to set the password in the configurations.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
 										<code class="code-lang-r"><span class="code-comment">## Specify password</span>
@@ -144,6 +144,11 @@
 		</div>
 		<div id="footer-copyright">
 			<small>&copy; Copyright 2020 Leo Wong</small>
+		</div>
+		<div id="back-to-top">
+			<div id="back-to-top-button">
+				Back to Top
+			</div>
 		</div>
 	</div>
 </footer>

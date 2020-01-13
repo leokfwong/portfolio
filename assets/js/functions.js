@@ -89,7 +89,12 @@ window.onload = function() {
 		}
 	});
 
-
+	// Set up back to top button
+	let back2top = document.getElementById("back-to-top");
+	back2top.addEventListener("click", function() {
+		console.log("clicked")
+		back2Top();
+	});
 }
 
 function displayBlog() {
@@ -106,4 +111,8 @@ function displayBlog() {
 		window.scrollTo(0, 0);
 	}
 
+}
+
+function back2Top() {
+	window.scrollTo(0, 0);
 }
