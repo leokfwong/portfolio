@@ -64,7 +64,8 @@
 								<h2>Install MS Access Drivers</h2>
 								Before we get down to the nitty-gritty of the code, we must first make sure that the proper drivers are installed. Essentially, we need a specific set of components that will allow the transfer of data between MS Office software and other data sources. Here's a <a href="https://www.microsoft.com/en-ca/download/details.aspx?id=13255" target="_blank">link</a> to the Microsoft Access Database Engine 2010 Redistributable<sup>2</sup> (older version). Once downloaded, simply go through the installation and it should be ready to go!
 								<h2>RODBC Library</h2>
-								<p>We will be using RODBC<sup>1</sup>, a package created to allow R to connect to ODBC APIs and access the database management systems. Given a specific set of arguments and settings, these R functions are able to directly talk to the ODBC interfaces, such as MS Access.</p>
+								<p>We will be using RODBC<sup>1</sup>, a package created to allow R to connect to ODBC APIs and access the database management systems. Given a specific set of arguments and settings, these R functions are able to directly talk to the ODBC interfaces, such as MS Access. </p>
+								<p><strong>NOTE:</strong> Depending on the configurations of the MS Access drivers, RODBC might only work with the 32-bit version of R.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
 										<code class="code-lang-r"><span class="code-comment">## Import RODBC package</span>
