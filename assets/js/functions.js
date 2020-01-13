@@ -89,10 +89,15 @@ window.onload = function() {
 		}
 	});
 
+	// Set up logo button
+	let homepage_logo = document.getElementById("nav-bar-name");
+	homepage_logo.addEventListener("click", function() {
+		window.location.href = "../../index.html";
+	});
+
 	// Set up back to top button
 	let back2top = document.getElementById("back-to-top");
 	back2top.addEventListener("click", function() {
-		console.log("clicked")
 		back2Top();
 	});
 }
