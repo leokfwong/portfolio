@@ -355,19 +355,14 @@ ul {
     font-weight: bold;
 }
 .blog-link {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 3px 9px 3px 9px;
-    background: #2e3131;
-    color: white;
-    border-radius: 5px;
-    width: 10%;
-    font-size: 81%;
     margin-bottom: 25px;
 }
 .blog-link a {
+    padding: 4px 10px 4px 10px;
+    background: #2e3131;
     color: white;
+    border-radius: 5px;
+    font-size: 81%;
     font-weight: normal;
 }
 /* CODE SNIPPET */
