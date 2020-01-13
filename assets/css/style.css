@@ -374,6 +374,7 @@ code {
     background: rgba(0,0,0,.1);
     padding: 1px 5px;
     border-radius: 5px;
+    color: #242424;
 }
 pre code {
     display: block;
@@ -383,6 +384,13 @@ pre code {
     box-shadow: 2px 4px 25px rgba(0, 0, 0, 0.42);
     border-radius: 5px;
     color: white;
+}
+.code-note {
+    padding: 15px;
+    color: #89714a;
+    background: #fdf8e4;
+    border: solid 2px #f7f3d2;
+    border-radius: 10px;
 }
 .code-comment {
     color: #616161;
