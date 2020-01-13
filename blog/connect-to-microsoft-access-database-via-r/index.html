@@ -95,7 +95,7 @@
 								</div>
 								<p>The first step is to install the library and then load it in R. Then, we need to define some settings. <code>DRIVERINFO</code> contains the driver specifications. If we are working with older MS Access databases, then they usually end with the extension .mdb, whereas the newer versions end with .accdb. The variable <code>MDBPATH</code> specifies the absolute path where the database is found. <code>PATH</code> is essentially the concatenation of both into a single string. We will come back to the reason why we partition these elements with separate variables when we generalize our function. Once the configurations are defined, we use the <code>odbcDriverConnect</code> function to establish a connection between the MS Access database and R. Finally, the <code>sqlQuery</code> function takes as input the <code>channel</code> and SQL code in order to load the data into R. At this point, <code>df</code> should be a dataframe containing the columns <code>student_id</code>, <code>first_name</code> and <code>last_name</code> from the table <code>tbl-students</code>.</p>
 								<h2>Password Protected Database</h2>
-								<p>MS Access databases are equipped with password protection functionality. Basically, the software will prompt to enter a passcode before allowing access to the data. While interacting with a password protected database through R, the code shown above would fail. In order to succesfully establish a connection with the MS Access database, we need to set the password in the configurations.</p>
+								<p>MS Access databases are equipped with password protection functionality. Basically, the software will prompt the user to enter a passcode before allowing access to the data. While interacting with a password protected database through R, the code shown above would fail. In order to succesfully establish a connection with the MS Access database, we need to set the password in the configurations.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
 										<code class="code-lang-r"><span class="code-comment">## Specify password</span>
@@ -105,8 +105,78 @@
 									</pre>
 								</div>
 								<h2>Generic Function to Load Data</h2>
-								<p>After implementing the script above, we have succesfully automated the process of loading data from a specific table in a given database. However, what if we want to load multiple tables from a database? Or data from different database? We would have to repeat every step in that script, which could become cumbersome.</p>
-								<p>One solution to avoid the need to rewrite the code every time we load a different table is to wrap the script inside a function to which we pass a specific set of parameters. Doing so will not only allows us to load data more efficiently, it will also keep the code centralized so that we don't need to modify many different scripts in the even that we want to update the code.</p>
+								<p>After implementing the script above, we have succesfully automated the process of loading data from a specific table in a given database. However, what if we want to load multiple tables from a database? Or data from different databases? We would have to repeat every step in that script, which could become cumbersome and error-prone.</p>
+								<p>One solution to avoid the need to rewrite the code every time we load a different table is to wrap the script inside a function to which we pass a specific set of parameters. Doing so will not only allows us to load data more efficiently, it will also keep the code centralized in such way that we only need to make updates in a single location.</p>
+								<div class="code-snippet">
+									<pre class="code-lang-r">
+										<code class="code-lang-r"><span class="code-comment">## Generic function for loading data</span>
+											<span class="code-function">fn.importData</span><span class="code-operator"> <- </span><span class="code-keyword">function</span><span class="code-operator">(</span><span class="code-parameter">MDBPATH</span><span class="code-operator">,</span><span class="code-parameter"> TABLES</span><span class="code-operator">,</span><span class="code-parameter"> DROP_VARS</span><span class="code-operator"> = </span><span class="code-function">c</span><span class="code-operator">(),</span><span class="code-parameter"> ORDER_BY</span><span class="code-operator">=</span><span class="code-function">c</span><span class="code-operator">(),</span><span class="code-parameter"> PWD</span><span class="code-operator">="") {</span>
+
+											<span class="code-tab-x1 code-comment">## Set up driver info and database path</span>
+											<span class="code-tab-x1 code-function">library(RODBC)</span>
+											<span class="code-tab-x1">DRIVERINFO</span><span class="code-operator"> <- "</span><span class="code-string">Driver={Microsoft Access Driver (*.mdb, *.accdb)};</span><span class="code-operator">"</span>
+											<span class="code-tab-x1">PATH</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">(</span><span class="code-function">DRIVERINFO</span><span class="code-operator">, "</span><span class="code-string">DBQ=</span><span class="code-operator">",</span><span class="code-function"> MDBPATH</span><span class="code-operator">, "</span><span class="code-string">;PWD=</span><span class="code-operator">", </span><span class="code-function"> PWD</span><span class="code-operator">)</span>
+
+											<span class="code-tab-x1 code-comment">## Establish connection</span>
+											<span class="code-tab-x1">channel</span><span class="code-operator"> <- </span><span class="code-function">odbcDriverConnect</span><span class="code-operator">(</span><span class="code-function">PATH</span><span class="code-operator">)</span>
+
+											<span class="code-tab-x1 code-comment">## Iterate through list of tables</span>
+											<span class="code-tab-x1 code-keyword">for</span><span class="code-operator"> (</span>tbl <span class="code-keyword">in</span> TABLES<span class="code-operator">) {</span>
+
+											<span class="code-tab-x2 code-comment">## Retrieve all variable names from table tbl</span>
+											<span class="code-tab-x2">tbl_vars</span><span class="code-operator"> <- </span><span class="code-function">sqlColumns</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">,</span><span class="code-function"> tbl</span><span class="code-operator">)["</span><span class="code-string">COLUMN_NAME</span><span class="code-operator">"]</span>
+											<span class="code-tab-x2 code-comment">## Exclude variables based on input parameters</span>
+											<span class="code-tab-x2">tbl_vars</span><span class="code-operator"> <- </span><span class="code-function">subset</span><span class="code-operator">(</span><span class="code-function">tbl_vars</span><span class="code-operator">, !(</span><span class="code-function">tbl_vars</span><span class="code-keyword">$</span><span class="code-function">COLUMN_NAME</span><span class="code-operator"> %in% </span><span class="code-function">DROP_VARS</span><span class="code-operator">))</span>
+											<span class="code-tab-x2 code-comment">## Add brackets to each variable (ie. [variable]) to maintain ACCESS syntax</span>
+											<span class="code-tab-x2">tbl_vars</span><span class="code-keyword">$</span><span class="code-function">COLUMN_NAME</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">("</span><span class="code-string">[</span><span class="code-operator">", </span><span class="code-function">tbl_vars</span><span class="code-keyword">$</span><span class="code-function">COLUMN_NAME</span><span class="code-operator">, "</span><span class="code-string">]</span><span class="code-operator">")</span>
+											<span class="code-tab-x2 code-comment">## Transform dataframe column into string separated by comma</span>
+											<span class="code-tab-x2">cols</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">(</span><span class="code-function">tbl_vars</span><span class="code-operator">[</span><span class="code-parameter">1</span><span class="code-operator">:</span><span class="code-function">nrow</span><span class="code-operator">(</span><span class="code-function">tbl_vars</span><span class="code-operator">), ],</span><span class="code-parameter"> collapse</span><span class="code-operator">="</span><span class="code-string">,</span><span class="code-operator">")</span>
+											<span class="code-tab-x2 code-comment">## Create ORDER BY string</span>
+											<span class="code-tab-x2 code-keyword">if</span><span class="code-operator"> (</span><span class="code-function">length</span><span class="code-operator">(</span><span class="code-function">ORDER_BY</span><span class="code-operator">) > </span><span class="code-parameter">0</span><span class="code-operator">) {</span>
+											<span class="code-tab-x3">order</span><span class="code-operator"> <- </span><span class="code-function">paste0</span><span class="code-operator">("</span><span class="code-string">ORDER BY</span><span class="code-operator">",</span><span class="code-function"> paste0</span><span class="code-operator">(</span><span class="code-function">paste0</span><span class="code-operator">("</span><span class="code-string">[</span><span class="code-operator">",</span><span class="code-function"> ORDER_BY</span><span class="code-operator">, "</span><span class="code-string">]</span><span class="code-operator">"),</span><span class="code-parameter"> collapse</span><span class="code-operator">="</span><span class="code-string">, </span><span class="code-operator">"))</span>
+											<span class="code-tab-x2 code-operator">}</span>
+											<span class="code-tab-x3">order</span><span class="code-operator"> <- ""</span>
+											<span class="code-tab-x2 code-operator">}</span>
+
+											<span class="code-tab-x2 code-comment">## Extract table of interest as dataframe</span>
+											<span class="code-tab-x2">df</span><span class="code-operator"> <- </span><span class="code-function">sqlQuery</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">,</span>
+											<span class="code-tab-x2 code-function">paste0</span><span class="code-operator">("</span><span class="code-string">SELECT </span><span class="code-operator">",</span><span class="code-function"> cols</span><span class="code-operator">, " </span><span class="code-string">FROM [</span><span class="code-operator">",</span><span class="code-function"> tbl</span><span class="code-operator">, "</span><span class="code-string">]</span><span class="code-operator">",</span><span class="code-function"> order</span><span class="code-operator">, "</span><span class="code-string">;</span><span class="code-operator">"),</span>
+											<span class="code-tab-x3 code-parameter">stringsAsFactors</span><span class="code-operator"> = </span><span class="code-parameter">FALSE</span><span class="code-operator">)</span>
+
+											<span class="code-tab-x2 code-comment">## Replace dash with underscore</span>
+											<span class="code-tab-x2 code-function">new_tbl_name</span><span class="code-operator"> <- </span><span class="code-function">gsub</span><span class="code-operator">("</span><span class="code-string">-</span><span class="code-operator">", "</span><span class="code-string">_</span><span class="code-operator">",</span><span class="code-function"> tbl</span><span class="code-operator">)</span>
+
+											<span class="code-tab-x2 code-comment">## Assign dataframe to environment</span>
+											<span class="code-tab-x2 code-function">assign</span><span class="code-operator">(</span><span class="code-function">new_tbl_name</span><span class="code-operator">,</span><span class="code-function"> df</span><span class="code-operator">,</span><span class="code-parameter"> envir </span><span class="code-operator">=</span><span class="code-function"> .GlobalEnv</span><span class="code-operator">)</span>
+											<span class="code-tab-x1 code-operator">}</span>
+
+											<span class="code-tab-x1 code-comment">## Close and remove channel</span>
+											<span class="code-tab-x1 code-function">close</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">)</span>
+											<span class="code-tab-x1 code-function">rm</span><span class="code-operator">(</span><span class="code-function">channel</span><span class="code-operator">)</span>
+											<span class="code-operator">}</span>
+										</code>
+									</pre>
+								</div>
+								<p>The function takes as input 5 arguments:</p>
+								<p><ul>
+									<li><code>MDBPATH</code>: absolute path specifying location of database.</li>
+									<li><code>TABLES</code>: vector of table names to be loaded from Access.</li>
+									<li><code>DROP_VARS</code>: vector of variables to exclude. Empty vector by default.</li>
+									<li><code>ORDER_BY</code>: vector of variables determinining how to sort table. Empty vector by default.</li>
+									<li><code>PWD</code>: password string required to access protected database. Empty string by default.</li>
+								</ul></p>
+								<p>Here is an example of how to call the function:</p>
+								<div class="code-snippet">
+									<pre class="code-lang-r">
+										<code class="code-lang-r"><span class="code-comment">## Function call to load data</span>
+											<span class="code-function">fn.importData</span><span class="code-operator">(</span><span class="code-function">MDBPATH</span><span class="code-operator">="</span><span class="code-string">C:/Users/leowo/OneDrive/Desktop/student-dummy.accdb</span><span class="code-operator">",</span>
+											<span class="code-tab-x1 code-function">TABLES</span><span class="code-operator">=</span><span class="code-function">c</span><span class="code-operator">("</span><span class="code-string">tbl-schools</span><span class="code-operator">", "</span><span class="code-string">tbl-students</span><span class="code-operator">"),</span>
+											<span class="code-tab-x1 code-function">DROP_VARS</span><span class="code-operator">=</span><span class="code-function">c</span><span class="code-operator">("</span><span class="code-string">timestamp</span><span class="code-operator">"),</span>
+											<span class="code-tab-x1 code-function">ORDER_BY</span><span class="code-operator">=</span><span class="code-function">c</span><span class="code-operator">("</span><span class="code-string">ID</span><span class="code-operator">"),</span>
+											<span class="code-tab-x1 code-function">PWD</span><span class="code-operator">="<span><span class="code-string">admin</span><span class="code-operator">")</span>
+										</code>
+									</pre>
+								</div>
 								<div class="blog-resource">
 									<h3>Resources</h3>
 									<ol>

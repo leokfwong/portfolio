@@ -392,6 +392,15 @@ pre code {
     border: solid 2px #f7f3d2;
     border-radius: 10px;
 }
+.code-tab-x1 {
+    padding-left: 20px;
+}
+.code-tab-x2 {
+    padding-left: 40px;
+}
+.code-tab-x3 {
+    padding-left: 60px;
+}
 .code-comment {
     color: #616161;
 }
