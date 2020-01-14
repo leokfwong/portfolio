@@ -60,32 +60,32 @@ window.onload = function() {
 		};
 		// Call typing effect function
 		typingEffect();
-	}
 
-	// Display projects
-	let proj_featured = document.getElementById("projects-menu-featured");
-	let proj_data = document.getElementById("projects-menu-data");
-	let proj_web = document.getElementById("projects-menu-web");
-	proj_featured.addEventListener("click", function() {
-		proj_featured.className = "projects-menu-item projects-menu-active";
-		proj_data.className = "projects-menu-item";
-		proj_web.className = "projects-menu-item";
+		// Display projects
+		let proj_featured = document.getElementById("projects-menu-featured");
+		let proj_data = document.getElementById("projects-menu-data");
+		let proj_web = document.getElementById("projects-menu-web");
+		proj_featured.addEventListener("click", function() {
+			proj_featured.className = "projects-menu-item projects-menu-active";
+			proj_data.className = "projects-menu-item";
+			proj_web.className = "projects-menu-item";
+			displayProjects("featured");
+		});
+		proj_data.addEventListener("click", function() {
+			proj_featured.className = "projects-menu-item";
+			proj_data.className = "projects-menu-item projects-menu-active";
+			proj_web.className = "projects-menu-item";
+			displayProjects("data");
+		});
+		proj_web.addEventListener("click", function() {
+			proj_featured.className = "projects-menu-item";
+			proj_data.className = "projects-menu-item";
+			proj_web.className = "projects-menu-item projects-menu-active";
+			displayProjects("web");
+		});
+
 		displayProjects("featured");
-	});
-	proj_data.addEventListener("click", function() {
-		proj_featured.className = "projects-menu-item";
-		proj_data.className = "projects-menu-item projects-menu-active";
-		proj_web.className = "projects-menu-item";
-		displayProjects("data");
-	});
-	proj_web.addEventListener("click", function() {
-		proj_featured.className = "projects-menu-item";
-		proj_data.className = "projects-menu-item";
-		proj_web.className = "projects-menu-item projects-menu-active";
-		displayProjects("web");
-	});
-
-	displayProjects("featured");
+	}
 
 	// Alternate between about and blog
 	let about_button = document.getElementById("nav-bar-about");
