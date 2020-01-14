@@ -257,4 +257,7 @@
   .code-snippet {
     font-size: 81%;
   }
+  #back-to-top-button {
+    display: none;
+  }
 }
