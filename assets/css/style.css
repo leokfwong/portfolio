@@ -34,11 +34,13 @@ a:link {
     color: #2e3131;
     font-weight: bold;
     font-style: normal;
+    word-wrap: break-word;
 }
 a:visited {
     /*color: #551A8B;*/
     color: #2e3131;
     font-weight: bold;
+    word-wrap: break-word;
 }
 h2 a:link,
 h2 a:visited {
@@ -367,8 +369,7 @@ ul {
 }
 /* CODE SNIPPET */
 pre {
-    text-align: left;
-    white-space: pre-line;
+    white-space: normal;
 }
 code {
     background: rgba(0,0,0,.1);
@@ -391,6 +392,9 @@ pre code {
     background: #fdf8e4;
     border: solid 2px #f7f3d2;
     border-radius: 10px;
+}
+.code-line {
+    width: 850px;
 }
 .code-tab-x1 {
     padding-left: 20px;
