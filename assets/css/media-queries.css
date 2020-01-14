@@ -182,7 +182,7 @@
     margin-left: 10%;
   }
   #header {
-    width: 80%;
+    width: 85%;
     padding-top: 25px;
     padding-bottom: 25px;
     display: flex;
@@ -237,10 +237,15 @@
   #self-description-text {
     font-size: 110%;
     width: 100%;
+    text-align: center;
   }
   #content {
-    width: 80%;
+    width: 90%;
     padding-left: 0px;
+  }
+  .projects-menu-item {
+    width: 25%;
+    font-size: 90%;
   }
   .project-container {
     flex-direction: column;

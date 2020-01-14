@@ -216,6 +216,26 @@ ul {
 #side-page {
     width: 100%;
 }
+#projects-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.projects-menu-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    padding: 5px;
+    font-size: 125%;
+    outline: solid 2px #2e3131;
+}
+.projects-menu-active {
+    background: #2e3131;
+    color: white;
+}
 #projects-content {
     display: flex;
     justify-content: center;
@@ -223,12 +243,17 @@ ul {
     flex-direction: column;
 }
 .project-container {
-    display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
     padding-bottom: 25px;
     border-top: solid 1px lightgrey;
+}
+.project-container-show {
+    display: flex;
+}
+.project-container-hide {
+    display: none;
 }
 .project-icon {
     display: flex;

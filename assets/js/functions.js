@@ -62,6 +62,31 @@ window.onload = function() {
 		typingEffect();
 	}
 
+	// Display projects
+	let proj_featured = document.getElementById("projects-menu-featured");
+	let proj_data = document.getElementById("projects-menu-data");
+	let proj_web = document.getElementById("projects-menu-web");
+	proj_featured.addEventListener("click", function() {
+		proj_featured.className = "projects-menu-item projects-menu-active";
+		proj_data.className = "projects-menu-item";
+		proj_web.className = "projects-menu-item";
+		displayProjects("featured");
+	});
+	proj_data.addEventListener("click", function() {
+		proj_featured.className = "projects-menu-item";
+		proj_data.className = "projects-menu-item projects-menu-active";
+		proj_web.className = "projects-menu-item";
+		displayProjects("data");
+	});
+	proj_web.addEventListener("click", function() {
+		proj_featured.className = "projects-menu-item";
+		proj_data.className = "projects-menu-item";
+		proj_web.className = "projects-menu-item projects-menu-active";
+		displayProjects("web");
+	});
+
+	displayProjects("featured");
+
 	// Alternate between about and blog
 	let about_button = document.getElementById("nav-bar-about");
 	let blog_button = document.getElementById("nav-bar-blog");
@@ -100,6 +125,21 @@ window.onload = function() {
 	back2top.addEventListener("click", function() {
 		back2Top();
 	});
+}
+
+function displayProjects(category) {
+	let project_container = document.getElementById("projects-content");
+	let projects = project_container.childNodes;
+	for (let i = 0; i < projects.length; i++) {
+		if (projects[i].tagName == "DIV") {
+			let project_category = projects[i].getAttribute("data-project-category");
+			if (project_category.indexOf(category) > -1) {
+				projects[i].className = "project-container project-container-show";
+			} else {
+				projects[i].className = "project-container project-container-hide";
+			}
+		}
+	}
 }
 
 function displayBlog() {
