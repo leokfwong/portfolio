@@ -168,6 +168,7 @@
 									<li><code>ORDER_BY</code>: vector of variables determinining how to sort table. Empty vector by default.</li>
 									<li><code>PWD</code>: password string required to access protected database. Empty string by default.</li>
 								</ul></p>
+								<p>Some might be wondering why we need to extract the names of each column instead of simply doing <code>SELECT *</code>. However, from my past experiences using RODBC, it doesn't like it and can sometimes lead to strange results. Also, some might have noticed that the function does not return anything. Instead, the dataframes are directly assigned to the global environment. In some situations, this might not be practical, since we might want to contain the objects within a certain scope and not let them leak out. The function shown above is just an example of what type of customization can be included (ie. dropping columns, ordering by multiple variables, etc.) in the generalization process. Much more can be added or modified, depending on the specific needs!</p>
 								<p>Here is an example of how to call the function:</p>
 								<div class="code-snippet">
 									<pre class="code-lang-r">
@@ -181,6 +182,8 @@
 										</code>
 									</pre>
 								</div>
+								<h2>Conclusion</h2>
+								We end up with a generic function which, given the path and the table name(s) of interest, can extract data seamlessly from any MS Access database. The RODBC library offers an array of functions allowing R to talk with any ODBC APIs. Writing our own customized function can not only help us automate the data loading process, but also limit human errors. There are so much more than can be done with RODBC, this is only an example of its applications.
 								<div class="blog-resource">
 									<h3>Resources</h3>
 									<ol>
