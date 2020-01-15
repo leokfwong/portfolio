@@ -179,7 +179,27 @@
     width: 90%;
   }
   .nav-bar-item {
-    margin-left: 10%;
+    margin: 15px 30px 15px 30px;
+  }
+  .nav-bar-menu-desktop {
+    display: none;
+  }
+  .nav-bar-menu-mobile {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    height: 100%;
+    background: #242424;
+    opacity: 92%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start !important;
+    align-items: flex-end !important;
+    margin-top: 50px;
+  }
+  #nav-bar-hamburger {
+    display: block;
+    margin: 0px;
   }
   #header {
     width: 85%;
