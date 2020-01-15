@@ -1,14 +1,14 @@
 window.onload = function() {
 	console.log("Javascript working, website loaded.");
 	// Initialize or fetch current view
-	let view = localStorage.getItem("view");
+	let view = sessionStorage.getItem("view");
 	if (view == undefined) {
-		localStorage.setItem("view", "about");
+		sessionStorage.setItem("view", "about");
 	}
 
 	let url = window.location.href;
 	let on_homepage = true;
-	if (url.search("/blog/") > -1) {
+	if ((url.search("/blog/") > -1) | (url.search("/projects/") > -1)) {
 		on_homepage = false
 	};
 
@@ -110,35 +110,35 @@ window.onload = function() {
 			document.getElementById("publications-section").style.display = "block";
 			document.getElementById("nav-bar-about").className = "nav-bar-item nav-bar-active";
 			window.scrollTo(0, 0);
-			localStorage.setItem("view", "about");
+			sessionStorage.setItem("view", "about");
 		} else {
-			localStorage.setItem("view", "about");
-			window.location.href = "../../index.html";
+			sessionStorage.setItem("view", "about");
+			window.location.href = "/index.html";
 		}
 	});
 	projects_button.addEventListener("click", function() {
 		if (on_homepage) {
 			displayProject();
-			localStorage.setItem("view", "projects");
+			sessionStorage.setItem("view", "projects");
 		} else {
-			localStorage.setItem("view", "projects");
-			window.location.href = "../../index.html";
+			sessionStorage.setItem("view", "projects");
+			window.location.href = "/index.html";
 		}
 	});
 	blog_button.addEventListener("click", function() {
 		if (on_homepage) {
 			displayBlog();
-			localStorage.setItem("view", "blog");
+			sessionStorage.setItem("view", "blog");
 		} else {
-			localStorage.setItem("view", "blog");
-			window.location.href = "../../index.html";
+			sessionStorage.setItem("view", "blog");
+			window.location.href = "/index.html";
 		}
 	});
 
 	// Set up logo button
 	let homepage_logo = document.getElementById("nav-bar-name");
 	homepage_logo.addEventListener("click", function() {
-		window.location.href = "../../index.html";
+		window.location.href = "/index.html";
 	});
 
 	// Set up back to top button
