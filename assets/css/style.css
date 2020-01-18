@@ -534,3 +534,29 @@ footer {
     text-align: left;
     padding-left: 0px;
 }
+/* BLOG: CRYPTOGRAPHY - CLASSICAL CIPHERS */
+#crypt-shift-demo-1 {
+    max-width: 880px;
+    margin: 0 auto;
+    border: solid 1px #242424;
+}
+.cryp-shift-row {
+    font-size: 81%;
+    white-space: nowrap; /* makes all your inner divs stay on the same line */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.cryp-shift-row-title {
+    text-align: center;
+    outline: solid 1px #242424;
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+}
+.cryp-shift-row-plain-letter, .cryp-shift-row-encrypt-letter {
+    text-align: center;
+    outline: solid 1px #242424;
+    display: inline-block;
+    width: 28px;
+    height: 25px;
+}
