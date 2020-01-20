@@ -73,36 +73,117 @@
 								<h2>Monoalphabetic ciphers</h2>
 								<p>Monoalphabetic ciphers are a type of cipher in which each alphabet character mapping is fixed and unique. For example, if "A" is encrypted as "Z", <strong>all</strong> letters "A" in the message are encrypted as "Z".</p>
 								<h3>Shift cipher</h3>
-								<p>The shift cipher creates the mapping between the raw and encrypted characters by shifting the alphabet by \(k\) positions. For example, if \(k=-3\), we get the following encryption:</p>
+								<p>The shift cipher creates the mapping between the raw and encrypted characters by shifting the alphabet by \(k\) positions. For example, if \(k=3\), we get the following encryption:</p>
 								<div id="crypt-shift-demo-1">
-									<div id="cryp-shift-row-plain" class="cryp-shift-row">
-										<div id="cryp-shift-row-plain-title" class="cryp-shift-row-title">Plain</div><!--
-										--><div id="cryp-shift-row-plain-0" class="cryp-shift-row-plain-letter">A</div><!--
-										--><div id="cryp-shift-row-plain-1" class="cryp-shift-row-plain-letter">B</div><!--
-										--><div id="cryp-shift-row-plain-2" class="cryp-shift-row-plain-letter">C</div><!--
-										--><div id="cryp-shift-row-plain-3" class="cryp-shift-row-plain-letter">D</div><!--
-										--><div id="cryp-shift-row-plain-4" class="cryp-shift-row-plain-letter">E</div><!--
-										--><div id="cryp-shift-row-plain-5" class="cryp-shift-row-plain-letter">F</div><!--
-										--><div id="cryp-shift-row-plain-6" class="cryp-shift-row-plain-letter">G</div><!--
-										--><div id="cryp-shift-row-plain-7" class="cryp-shift-row-plain-letter">H</div><!--
-										--><div id="cryp-shift-row-plain-8" class="cryp-shift-row-plain-letter">I</div><!--
-										--><div id="cryp-shift-row-plain-9" class="cryp-shift-row-plain-letter">J</div><!--
-										--><div id="cryp-shift-row-plain-10" class="cryp-shift-row-plain-letter">K</div><!--
-										--><div id="cryp-shift-row-plain-11" class="cryp-shift-row-plain-letter">L</div><!--
-										--><div id="cryp-shift-row-plain-12" class="cryp-shift-row-plain-letter">M</div><!--
-										--><div id="cryp-shift-row-plain-13" class="cryp-shift-row-plain-letter">N</div><!--
-										--><div id="cryp-shift-row-plain-14" class="cryp-shift-row-plain-letter">O</div><!--
-										--><div id="cryp-shift-row-plain-15" class="cryp-shift-row-plain-letter">P</div><!--
-										--><div id="cryp-shift-row-plain-16" class="cryp-shift-row-plain-letter">Q</div><!--
-										--><div id="cryp-shift-row-plain-17" class="cryp-shift-row-plain-letter">R</div><!--
-										--><div id="cryp-shift-row-plain-18" class="cryp-shift-row-plain-letter">S</div><!--
-										--><div id="cryp-shift-row-plain-19" class="cryp-shift-row-plain-letter">T</div><!--
-										--><div id="cryp-shift-row-plain-20" class="cryp-shift-row-plain-letter">U</div><!--
-										--><div id="cryp-shift-row-plain-21" class="cryp-shift-row-plain-letter">V</div><!--
-										--><div id="cryp-shift-row-plain-22" class="cryp-shift-row-plain-letter">W</div><!--
-										--><div id="cryp-shift-row-plain-23" class="cryp-shift-row-plain-letter">X</div><!--
-										--><div id="cryp-shift-row-plain-24" class="cryp-shift-row-plain-letter">Y</div><!--
-										--><div id="cryp-shift-row-plain-25" class="cryp-shift-row-plain-letter">Z</div>
+									<div id="cryp-shift-row" class="cryp-shift-row">
+										<div id="cryp-shift-row-title" class="cryp-shift-row-title">
+											<div id="cryp-shift-demo-1-plain-title" class="cryp-shift-demo-1-plain">Plain</div>
+											<div id="cryp-shift-demo-1-encrypt-title" class="cryp-shift-demo-1-encrypt">Encrypted</div>
+										</div><!--
+										--><div id="cryp-shift-row-0" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-0" class="cryp-shift-demo-1-plain">A</div>
+											<div id="cryp-shift-demo-1-encrypt-0" class="cryp-shift-demo-1-encrypt">D</div>
+										</div><!--
+										--><div id="cryp-shift-row-1" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-1" class="cryp-shift-demo-1-plain">B</div>
+											<div id="cryp-shift-demo-1-encrypt-1" class="cryp-shift-demo-1-encrypt">E</div>
+											</div><!--
+										--><div id="cryp-shift-row-2" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-2" class="cryp-shift-demo-1-plain">C</div>
+											<div id="cryp-shift-demo-1-encrypt-2" class="cryp-shift-demo-1-encrypt">F</div>
+											</div><!--
+										--><div id="cryp-shift-row-3" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-3" class="cryp-shift-demo-1-plain">D</div>
+											<div id="cryp-shift-demo-1-encrypt-3" class="cryp-shift-demo-1-encrypt">G</div>
+											</div><!--
+										--><div id="cryp-shift-row-4" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-4" class="cryp-shift-demo-1-plain">E</div>
+											<div id="cryp-shift-demo-1-encrypt-4" class="cryp-shift-demo-1-encrypt">H</div>
+											</div><!--
+										--><div id="cryp-shift-row-5" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-5" class="cryp-shift-demo-1-plain">F</div>
+											<div id="cryp-shift-demo-1-encrypt-5" class="cryp-shift-demo-1-encrypt">I</div>
+											</div><!--
+										--><div id="cryp-shift-row-6" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-6" class="cryp-shift-demo-1-plain">G</div>
+											<div id="cryp-shift-demo-1-encrypt-6" class="cryp-shift-demo-1-encrypt">J</div>
+											</div><!--
+										--><div id="cryp-shift-row-7" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-7" class="cryp-shift-demo-1-plain">H</div>
+											<div id="cryp-shift-demo-1-encrypt-7" class="cryp-shift-demo-1-encrypt">K</div>
+											</div><!--
+										--><div id="cryp-shift-row-8" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-8" class="cryp-shift-demo-1-plain">I</div>
+											<div id="cryp-shift-demo-1-encrypt-8" class="cryp-shift-demo-1-encrypt">L</div>
+											</div><!--
+										--><div id="cryp-shift-row-9" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-9" class="cryp-shift-demo-1-plain">J</div>
+											<div id="cryp-shift-demo-1-encrypt-9" class="cryp-shift-demo-1-encrypt">M</div>
+											</div><!--
+										--><div id="cryp-shift-row-10" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-10" class="cryp-shift-demo-1-plain">K</div>
+											<div id="cryp-shift-demo-1-encrypt-10" class="cryp-shift-demo-1-encrypt">N</div>
+											</div><!--
+										--><div id="cryp-shift-row-11" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-11" class="cryp-shift-demo-1-plain">L</div>
+											<div id="cryp-shift-demo-1-encrypt-11" class="cryp-shift-demo-1-encrypt">O</div>
+											</div><!--
+										--><div id="cryp-shift-row-12" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-12" class="cryp-shift-demo-1-plain">M</div>
+											<div id="cryp-shift-demo-1-encrypt-12" class="cryp-shift-demo-1-encrypt">P</div>
+											</div><!--
+										--><div id="cryp-shift-row-13" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-13" class="cryp-shift-demo-1-plain">N</div>
+											<div id="cryp-shift-demo-1-encrypt-13" class="cryp-shift-demo-1-encrypt">Q</div>
+											</div><!--
+										--><div id="cryp-shift-row-14" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-14" class="cryp-shift-demo-1-plain">O</div>
+											<div id="cryp-shift-demo-1-encrypt-14" class="cryp-shift-demo-1-encrypt">R</div>
+											</div><!--
+										--><div id="cryp-shift-row-15" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-15" class="cryp-shift-demo-1-plain">P</div>
+											<div id="cryp-shift-demo-1-encrypt-15" class="cryp-shift-demo-1-encrypt">S</div>
+											</div><!--
+										--><div id="cryp-shift-row-16" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-16" class="cryp-shift-demo-1-plain">Q</div>
+											<div id="cryp-shift-demo-1-encrypt-16" class="cryp-shift-demo-1-encrypt">T</div>
+											</div><!--
+										--><div id="cryp-shift-row-17" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-17" class="cryp-shift-demo-1-plain">R</div>
+											<div id="cryp-shift-demo-1-encrypt-17" class="cryp-shift-demo-1-encrypt">U</div>
+											</div><!--
+										--><div id="cryp-shift-row-18" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-18" class="cryp-shift-demo-1-plain">S</div>
+											<div id="cryp-shift-demo-1-encrypt-18" class="cryp-shift-demo-1-encrypt">V</div>
+											</div><!--
+										--><div id="cryp-shift-row-19" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-19" class="cryp-shift-demo-1-plain">T</div>
+											<div id="cryp-shift-demo-1-encrypt-19" class="cryp-shift-demo-1-encrypt">W</div>
+											</div><!--
+										--><div id="cryp-shift-row-20" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-20" class="cryp-shift-demo-1-plain">U</div>
+											<div id="cryp-shift-demo-1-encrypt-20" class="cryp-shift-demo-1-encrypt">X</div>
+											</div><!--
+										--><div id="cryp-shift-row-21" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-21" class="cryp-shift-demo-1-plain">V</div>
+											<div id="cryp-shift-demo-1-encrypt-21" class="cryp-shift-demo-1-encrypt">Y</div>
+											</div><!--
+										--><div id="cryp-shift-row-22" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-22" class="cryp-shift-demo-1-plain">W</div>
+											<div id="cryp-shift-demo-1-encrypt-22" class="cryp-shift-demo-1-encrypt">Z</div>
+											</div><!--
+										--><div id="cryp-shift-row-23" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-23" class="cryp-shift-demo-1-plain">X</div>
+											<div id="cryp-shift-demo-1-encrypt-23" class="cryp-shift-demo-1-encrypt">A</div>
+											</div><!--
+										--><div id="cryp-shift-row-24" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-24" class="cryp-shift-demo-1-plain">Y</div>
+											<div id="cryp-shift-demo-1-encrypt-24" class="cryp-shift-demo-1-encrypt">B</div>
+											</div><!--
+										--><div id="cryp-shift-row-25" class="cryp-shift-row-letter">
+											<div id="cryp-shift-demo-1-plain-25" class="cryp-shift-demo-1-plain">Z</div>
+											<div id="cryp-shift-demo-1-encrypt-25" class="cryp-shift-demo-1-encrypt">C</div>
+											</div>
 									</div>
 								</div>
 								<h3>Substitution cipher</h3>

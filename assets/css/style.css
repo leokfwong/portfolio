@@ -538,7 +538,7 @@ footer {
 #crypt-shift-demo-1 {
     max-width: 880px;
     margin: 0 auto;
-    border: solid 1px #242424;
+    border: solid 2px #242424;
 }
 .cryp-shift-row {
     font-size: 81%;
@@ -548,15 +548,16 @@ footer {
 }
 .cryp-shift-row-title {
     text-align: center;
-    outline: solid 1px #242424;
     display: inline-block;
     width: 150px;
     height: 25px;
 }
-.cryp-shift-row-plain-letter, .cryp-shift-row-encrypt-letter {
+.cryp-shift-row-letter {
     text-align: center;
-    outline: solid 1px #242424;
     display: inline-block;
     width: 28px;
     height: 25px;
+}
+.cryp-shift-demo-1-plain, .cryp-shift-demo-1-encrypt {
+    outline: solid 1px #242424;
 }
