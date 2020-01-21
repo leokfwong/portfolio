@@ -69,11 +69,11 @@
 								16 January 2020
 							</div>
 							<div id="blog-content" class="blog-content">
-								<p>When we think about cybersecurity, the terms DES, RSA, AES and so on come to mind. These are all common encryption algorithms used in today's digital world. However, there exists many other cryptography techniques that have been used in the past. If we go not too far back in time, we might've heard of ENIGMA, an encryption device used during World War II. Or perhaps we remember the Babington Plot and the Vigenère Cipher dating back to the 15th and 16th century. The Caesar Cipher is a well-known example from the Roman Age. Although all of these techniques have become obsolete with time, it could still be interesting to understand how they worked and how they were eventually broken. Without further ado, we will explore several classical cryptography concepts and mechanisms.</p>
+								<p>When we talk about cybersecurity, the terms DES, RSA, AES and so on come to mind. In fact, these are all common encryption algorithms used in today's digital world. However, there exists many other techniques in the history of cryptography. Dating back from World War II, ENIGMA was an encryption device used for protected communication purposes. Going a bit further back in time, the Babington Plot and the Vigenère Cipher were ciphers used in the 15th and 16th century. Another classic example is the Caesar Cipher from the Roman Age. Although the majority of these techniques have become obsolete with time, it could still be interesting to understand how they worked and how they were eventually broken. We will explore several classical cryptography concepts and mechanisms, along with some concrete examples to illustrate their applications.</p>
 								<h2>Monoalphabetic ciphers</h2>
-								<p>Monoalphabetic ciphers are a type of cipher in which each alphabet character mapping is fixed and unique. For example, if "A" is encrypted as "Z", <strong>all</strong> letters "A" in the message are encrypted as "Z".</p>
+								<p>Monoalphabetic cipher is a type of cipher in which each alphabet character mapping is fixed and unique. For example, if "A" is encrypted as "Z", <strong>all</strong> letters "A" in the message are encrypted as "Z".</p>
 								<h3>Shift cipher</h3>
-								<p>The shift cipher creates the mapping between the raw and encrypted characters by shifting the alphabet by \(k\) positions. For example, if \(k=3\), we get the following encryption:</p>
+								<p>The shift cipher creates the mapping between the raw and encrypted characters by shifting the alphabet by \(k\) positions. The main idea revolves around the concept of modulo, where we rotate the positions of the alphabet in order to create an encrypted message. The well-known Caesar Cipher utilized a shift of \(k=3\), illustrated by the encryption below:</p>
 								<div id="crypt-shift-demo-1">
 									<div id="cryp-shift-row" class="cryp-shift-row">
 										<div id="cryp-shift-row-title" class="cryp-shift-row-title">
@@ -185,6 +185,17 @@
 											<div id="cryp-shift-demo-1-encrypt-25" class="cryp-shift-demo-1-encrypt">C</div>
 											</div>
 									</div>
+								</div>
+								<p>Essentially, there exists 26 different ways of shifting the original positions of the raw message in such a way that it becomes encrypted. We can represent mathematically the encryption process of the shift cipher as follows:</p>
+								$$ ENC_{k}(m_1, m_2, ..., m_l) = c_1, c_2, ..., c_l$$ where  $$c_i = (m_i + k) mod 26 $$
+								<p>How do we <strong>break</strong> the shift cipher? Since there are only 26 possibilities, we can use a brute-force approach. If we had a pen, paper, and enough free time, we could write out all possible shifts of a given encrypted message and manually identify which decrypted message makes the most sense. If we are a bit more clever, we could write some code that would compute all the possible shifts for us to verify. However, is there a way to automate the entire process? For instance, is there a way to program a computer to find the correct decrypted message on its own? The answer to this problem is to leverage statistical frequencies of letters to break the cipher.</p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span class="code-keyword">import</span> string</span></div>
+											<div class="code-line"><span class="code-keyword">from</span> collections</span><span class="code-keyword"> import </span> Counter</div>
+										</code>
+									</pre>
 								</div>
 								<h3>Substitution cipher</h3>
 								<h2>Polyalphabetic ciphers</h2>
