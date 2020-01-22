@@ -187,7 +187,7 @@
 									</div>
 								</div>
 								<p>Essentially, there exists 26 different ways of shifting the original positions of the raw message in such a way that it becomes encrypted. We can represent mathematically the encryption process of the shift cipher as follows:</p>
-								$$ ENC_{k}(m_1, m_2, ..., m_l) = c_1, c_2, ..., c_l$$ where  $$c_i = (m_i + k) mod 26 $$
+								$$ ENC_{k}(m_1, m_2, ..., m_l) = c_1, c_2, ..., c_l$$ where  $$c_i = (m_i + k) \ mod \ 26 $$
 								<p>How do we <strong>break</strong> the shift cipher? Since there are only 26 possibilities, we can use a brute-force approach. If we had a pen, paper, and enough free time, we could write out all possible shifts of a given encrypted message and manually identify which decrypted message makes the most sense. If we are a bit more clever, we could write some code that would compute all the possible shifts for us to verify. However, is there a way to automate the entire process? For instance, is there a way to program a computer to find the correct decrypted message on its own? The answer to this problem is to leverage statistical frequencies of letters to break the cipher.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
@@ -196,9 +196,11 @@
 										</code>
 									</pre>
 								</div>
+								<p>Let \(f_i\) be the frequency of the \(i^{th}\) letter in the alphabet for any given text in English, which can be obtained from different sources. Let \(h_i\) be the frequency of \(i^{th}\) letter in the text to decipher, which can be obtained by simply counting the number of occurrences. Given that the plaintext is encoded with the shift method, there exists a \(k\) for which \(f_i = h_i((i + k) \ mod \ 26)\), as the size of the corpus tends to infinity. If we take the sum of squares of all \(f_i\), it should be close to 0.065 for the English language. Therefore, in order to automate the process of breaking the shift cipher, we only have to calculate the sum of squares for each shift \(k\) and the result closest to 0.065 will be the correct value. However, the encrypted message we are given must be long enough for this to work.</p>
 								<h3>Substitution cipher</h3>
+								<p>Under construction.</p>
 								<h2>Polyalphabetic ciphers</h2>
-								<h2></h2>
+								<p>Under construction.</p>
 							</div>
 						</div>
 					</div>
