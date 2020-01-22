@@ -382,6 +382,20 @@ ul {
     color: grey;
     font-weight: bold;
 }
+#publication-4-hidden {
+    display: none;
+}
+#publications-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 81%;
+}
+#publications-toggle-button {
+    border: solid 1px #242424;
+    padding: 0px 10px 0 10px;
+}
 /* BLOG */
 .hidden {
     display: none;

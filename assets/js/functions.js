@@ -135,6 +135,22 @@ window.onload = function() {
 		}
 	});
 
+	// Publications toggle
+	let publications_toggle = document.getElementById("publications-toggle-button");
+	publications_toggle.addEventListener("click", function() {
+		publications_toggle = document.getElementById("publications-toggle-button");
+		console.log(publications_toggle.className);
+		if (publications_toggle.className == "publications-hidden") {
+			publications_toggle.className = "publications-shown";
+			publications_toggle.innerHTML = "Show less";
+			document.getElementById("publication-4-hidden").style.display = "block";
+		} else {
+			publications_toggle.className = "publications-hidden";
+			publications_toggle.innerHTML = "Show more";
+			document.getElementById("publication-4-hidden").style.display = "none";
+		}
+	});
+
 	// Set up logo button
 	let homepage_logo = document.getElementById("nav-bar-name");
 	homepage_logo.addEventListener("click", function() {
