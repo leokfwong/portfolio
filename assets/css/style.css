@@ -91,6 +91,10 @@ ul {
     font-weight: bold;
     font-size: 111%;
 }
+#nav-bar-cv a {
+    cursor: default;
+    color: white;
+}
 #nav-bar-menu {
     justify-content: flex-end;
     align-items: center;
