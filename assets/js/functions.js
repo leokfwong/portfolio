@@ -17,7 +17,7 @@ window.onload = function() {
 	hamburger_button.addEventListener("click", function() {
 		let mobile_menu = document.getElementById("nav-bar-menu");
 		if (mobile_menu.className == "nav-bar-menu-desktop") {
-			mobile_menu.className = "nav-bar-menu-mobile";	
+			mobile_menu.className = "nav-bar-menu-mobile";
 		} else {
 			mobile_menu.className = "nav-bar-menu-desktop";
 		}
@@ -92,6 +92,22 @@ window.onload = function() {
 		});
 
 		displayProjects("featured");
+
+		// Publications toggle
+		let publications_toggle = document.getElementById("publications-toggle-button");
+		publications_toggle.addEventListener("click", function() {
+			publications_toggle = document.getElementById("publications-toggle-button");
+			console.log(publications_toggle.className);
+			if (publications_toggle.className == "publications-hidden") {
+				publications_toggle.className = "publications-shown";
+				publications_toggle.innerHTML = "Show less";
+				document.getElementById("publication-4-hidden").style.display = "block";
+			} else {
+				publications_toggle.className = "publications-hidden";
+				publications_toggle.innerHTML = "Show more";
+				document.getElementById("publication-4-hidden").style.display = "none";
+			}
+		});
 	}
 
 	// Alternate between about and blog
@@ -132,22 +148,6 @@ window.onload = function() {
 		} else {
 			sessionStorage.setItem("view", "blog");
 			window.location.href = "/index.html";
-		}
-	});
-
-	// Publications toggle
-	let publications_toggle = document.getElementById("publications-toggle-button");
-	publications_toggle.addEventListener("click", function() {
-		publications_toggle = document.getElementById("publications-toggle-button");
-		console.log(publications_toggle.className);
-		if (publications_toggle.className == "publications-hidden") {
-			publications_toggle.className = "publications-shown";
-			publications_toggle.innerHTML = "Show less";
-			document.getElementById("publication-4-hidden").style.display = "block";
-		} else {
-			publications_toggle.className = "publications-hidden";
-			publications_toggle.innerHTML = "Show more";
-			document.getElementById("publication-4-hidden").style.display = "none";
 		}
 	});
 
