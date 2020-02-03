@@ -188,6 +188,30 @@
 								</div>
 								<p>Essentially, there exists 26 different ways of shifting the original positions of the raw message in such a way that it becomes encrypted. We can represent mathematically the encryption process of the shift cipher as follows:</p>
 								$$ ENC_{k}(m_1, m_2, ..., m_l) = c_1, c_2, ..., c_l$$ where  $$c_i = (m_i + k) \ mod \ 26 $$
+								<p>In python, we could write a simple function to encrypt a plaintext message using the shift method as follows: </p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span class="code-comment"># Encrypt message by shifting k positions</span></div>
+											<div class="code-line"><span class="code-keyword">def</span> <span class="code-function">encrypt</span><span class="code-operator">(<span class="code-parameter">self</span><span class="code-operator">,</span><span class="code-parameter"> message</span><span class="code-operator">,</span><span class="code-parameter"> k</span><span class="code-operator">):</span></div>
+											<div class="code-line"><span class="code-tab-x2">k</span><span class="code-operator"> %= </span><span class="code-parameter">26</span></div>
+											<div class="code-line"><span class="code-tab-x2">trans</span><span class="code-operator"> = </span><span class="code-attribute">str</span><span class="code-operator">.</span><span class="code-function">maketrans</span><span class="code-operator">(</span><span>ALPHABET</span><span class="code-operator">, </span><span>ALPHABET</span><span class="code-operator">[</span><span class="code-function">k</span><span class="code-operator">:] + </span><span>ALPHABET</span><span class="code-operator">[:</span><span class="code-function">k</span><span class="code-operator">])</span></div>
+											<div class="code-line"><span class="code-tab-x2 code-keyword">return</span> <span class="code-function">message</span><span class="code-operator">.</span><span class="code-function">upper</span><span class="code-operator">().</span><span class="code-function">translate</span><span class="code-operator">(</span><span class="code-function">trans</span><span class="code-operator">)</span></div>
+										</code>
+									</pre>
+								</div>
+								<p>The decryption process is almost identical, only difference is the direction of \(k\):</p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span class="code-comment"># Decrypt message by shifting -k positions</span></div>
+											<div class="code-line"><span class="code-keyword">def</span> <span class="code-function">decrypt</span><span class="code-operator">(<span class="code-parameter">self</span><span class="code-operator">,</span><span class="code-parameter"> message</span><span class="code-operator">,</span><span class="code-parameter"> k</span><span class="code-operator">):</span></div>
+											<div class="code-line"><span class="code-tab-x2">k</span><span class="code-operator"> %= </span><span class="code-parameter">26</span></div>
+											<div class="code-line"><span class="code-tab-x2">trans</span><span class="code-operator"> = </span><span class="code-attribute">str</span><span class="code-operator">.</span><span class="code-function">maketrans</span><span class="code-operator">(</span><span>ALPHABET</span><span class="code-operator">, </span><span>ALPHABET</span><span class="code-operator">[-</span><span class="code-function">k</span><span class="code-operator">:] + </span><span>ALPHABET</span><span class="code-operator">[:-</span><span class="code-function">k</span><span class="code-operator">])</span></div>
+											<div class="code-line"><span class="code-tab-x2 code-keyword">return</span> <span class="code-function">message</span><span class="code-operator">.</span><span class="code-function">upper</span><span class="code-operator">().</span><span class="code-function">translate</span><span class="code-operator">(</span><span class="code-function">trans</span><span class="code-operator">)</span></div>
+										</code>
+									</pre>
+								</div>
 								<p>How do we <strong>break</strong> the shift cipher? Since there are only 26 possibilities, we can use a brute-force approach. If we had a pen, paper, and enough free time, we could write out all possible shifts of a given encrypted message and manually identify which decrypted message makes the most sense. If we are a bit more clever, we could write some code that would compute all the possible shifts for us to verify. However, is there a way to automate the entire process? For instance, is there a way to program a computer to find the correct decrypted message on its own? The answer to this problem is to leverage relative frequencies of letters to break the cipher.</p>
 								<p>It is possible to obtain a good representation of the frequencies of each letter in the alphabet by actually counting the occurrences from a source. For instance, there was an analysis where the Concise Oxford dictionary was used to obtain the numbers. Another analysis involved counting letters from plain text containing a large number of words, for which the results are openly available and will be used for our demonstration.</p>
 								<p>Now that we know the average distribution of each letter in English, we have a way to statistically identify whether a given chain of characters belongs to the language or not. Let \(f_i\) be the frequency of the \(i^{th}\) letter in the alphabet and \( \sum f_{i}^{2} \) be the sum of squares, which is equal to \(0.065\) in English. What this means is that given a text in English that is large enough, computing the sum of squares of each letter's frequency would be close to that number. This is essential and will allow us to automate the process of breaking the code!</p>
