@@ -257,6 +257,37 @@
 										</code>
 									</pre>
 								</div>
+								<!-- FIND SUBSTRING INDEX -->
+								<h2>Find Substring Index</h2>
+								<p>To find the first occurrence (lowest index) of a specific substring in a given string, we can use the functions <code>find()</code> / <code>index()</code>. To find the last occurrence (highest index), we can use <code>rfind()</code> / <code>rindex()</code>. The main difference between these two functions is that when a substring is not found, <code>find()</code> returns <code>-1</code> while <code>index()</code> raises an exception.</p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">The Toronto Raptors won the Championship last year</span><span class="code-operator">'</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find lowest index of character o, prints 5</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find highest index of character o, prints 34</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find lowest index of character o between index 12 and 23 (Raptors won), prints 16</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find highest index of character o between index 12 and 23 (Raptors won), prints 21</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find lowest index of first character of substring Champion, returns 28</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">Champion</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find character not found using find(), returns -1</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Find character not found using index(), raises exception</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">index</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
+										</code>
+									</pre>
+								</div>
 							</div>
 						</div>
 					</div>
