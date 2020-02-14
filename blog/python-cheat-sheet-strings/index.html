@@ -104,7 +104,7 @@
 								</div>
 								<!-- String Length -->
 								<h2>String Length</h2>
-								<p>This built-in function is pretty straight-forward when using it with strings: it returns its length. It includes any characters (alphanumeric, symbols, spaces, any character).</p>
+								<p>This built-in function is pretty straight-forward when using it with strings: it returns the length, or in other words the number of characters (alpha-numerical, symbols, spaces, any character) in the string.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
@@ -121,7 +121,7 @@
 								</div>
 								<!-- String Slicing -->
 								<h2>String Slicing</h2>
-								<p>Just like lists in python, strings can also be sliced using the square brackets <code>[]</code> notation. Each character in the string can be accessed through an index. The first character is assigned index 0 and the last index 14. Note that we can also access the first character at index -15, and the last character at index -1, as shown in the following table: </p>
+								<p>Just like lists in python, strings can also be sliced using the square brackets <code>[]</code> notation. Taking the string <code>'New York Knicks'</code> as an example, each character in the string can be accessed through a corresponding index. The first character <code>N</code> can be retrieved at index 0 and the last character <code>s</code> at index 14. Note that we can also access each character at negative indices, as shown in the following table: </p>
 								<div id="python-string-slicing">
 									<div id="python-string-slicing-row" class="python-string-slicing-row">
 										<div id="python-string-slicing-row-title" class="python-string-slicing-row-title">
@@ -223,8 +223,33 @@
 											<div class="code-line"><span class="code-comment"># Get characters from 9th to last index, prints Knicks</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">9:</span><span class="code-operator">])</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from 4th to 9th index, prints York</span></div>
+											<div class="code-line"><span class="code-comment"># Get characters from 4th to 7th index, prints York</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">4:8</span><span class="code-operator">])</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Get characters from -11th to 7th index, also prints York</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-11:8</span><span class="code-operator">])</span></div>
+										</code>
+									</pre>
+								</div>
+								<!-- SUBSTRING COUNTS -->
+								<h2>Substring Counts</h2>
+								<p>It is possible to count the number of occurrences of a given sub-string within a string with the <code>count()</code> function. One thing to remember is that it's case sensitive, meaning that uppercase <code>L</code> and lowercase <code>l</code> are not equivalent and will not be considered as being the same character. Additionally, we can also specify a range in which we want to conduct the counting.</p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Los Angeles Lakers</span><span class="code-operator">'</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Count number of occurrences of L, prints 2</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">L</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Count number of occurrences of Los, prints 1</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Los</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Count number of occurrences of Z, prints 0</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Z</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Count number of occurrences of e between indices 4 and 11 (Angeles), prints 2</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">e</span><span class="code-operator">',</span><span class="code-parameter"> 4</span><span class="code-operator">,</span><span class="code-parameter"> 11</span><span class="code-operator">))</span></div>
 										</code>
 									</pre>
 								</div>

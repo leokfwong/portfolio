@@ -556,7 +556,7 @@ footer {
 /* BLOG: CRYPTOGRAPHY - CLASSICAL CIPHERS */
 #python-string-slicing {
     max-width: 880px;
-    margin: 0 auto;
+    margin: 1.5em 0px;
     border: solid 2px #242424;
 }
 .python-string-slicing-row {
