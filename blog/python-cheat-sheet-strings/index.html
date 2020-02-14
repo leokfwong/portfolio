@@ -72,7 +72,7 @@
 								<p>Below is a compilation of useful python commands when working with string variables.</p>
 								<!-- PRINT NEW LINE -->
 								<h2>Print New Line</h2>
-								<p>Printing output to the console is definitely quite easy, we simply need to use the <code>print()</code> function. Sometimes, we might want to print the output on multiple lines. We can either use the <code>\n</code> special escape character or the <code>''' '''</code> multi-line strings.</p>
+								<p>Printing output to the console is definitely quite easy, we simply need to use the <code>print()</code> function. Sometimes, we might want to print the output on multiple lines. We can either use the <code>\n</code> special escape character or the <code>''' '''</code> multi-line strings method.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
@@ -87,17 +87,20 @@
 								</div>
 								<!-- ESCAPE SPECIAL CHARACTERS https://python-reference.readthedocs.io/en/latest/docs/str/escapes.html -->
 								<h2>Escape Special Characters</h2>
-								<p>There exists a list of special characters that need to be <em>escaped</em> when included in strings. For instance, if we use single quotes to denote our string, we need to escape any single quote used inside. In other scenarios, we might also need to watch out for special instances such as <code>\n</code> for new lines, as previously mentionned. A neat alternative to avoid having to escape special characters is to use raw strings where characters including <code>\</code> are treated as a literal characters.</p>
+								<p>There exists a list of special characters that need to be <em>escaped</em> when included in strings. For instance, if we use single quotes to denote our string, we need to escape any single quote used inside. In other scenarios, we might also need to watch out for special instances such as <code>\n</code> for new lines, as previously mentioned. A neat alternative to avoid having to escape special characters is to use raw strings where characters including <code>\</code> are treated as a literal characters.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Escape single quote, another workaround is to use double quotes on the outside</span></div>
+											<div class="code-line"><span class="code-comment"># Escape single quote, prints You're amazing</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">You</span><span class="code-operator">\'</span><span class="code-string">re amazing</span><span class="code-operator">')</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Escape the \, where we want to print the actual \n characters (brooklyn\nets)</span></div>
+											<div class="code-line"><span class="code-comment"># Use double quotes on the outside, no need to escape, prints You're amazing</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">("</span><span class="code-string">You</span><span class="code-operator">'</span><span class="code-string">re amazing</span><span class="code-operator">")</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Escape the \, where we want to print the actual \n characters, prints brooklyn\nets</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">brooklyn</span><span class="code-operator">\\n</span><span class="code-string">ets</span><span class="code-operator">')</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Using raw string to avoid tab (\t)</span></div>
+											<div class="code-line"><span class="code-comment"># Using raw string to avoid tab (\t), prints oklahoma city\thunder</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(r'</span><span class="code-string">oklahoma city</span><span class="code-operator">\t</span><span class="code-string">hunder</span><span class="code-operator">')</span></div>
 										</code>
 									</pre>
@@ -108,13 +111,13 @@
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Length of string, count of total number of characters</span></div>
+											<div class="code-line"><span class="code-comment"># Length of string, prints 35</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('</span><span class="code-string">This string contains 35 characters!</span><span class="code-operator">'))</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Length of empty string is 0</span></div>
+											<div class="code-line"><span class="code-comment"># Length of empty string, prints 0</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">(''))</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Length of special escape characters \n or \t is 1</span></div>
+											<div class="code-line"><span class="code-comment"># Length of special escape characters \n or \t, prints 1</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('\n'))</span></div>
 										</code>
 									</pre>
@@ -206,6 +209,7 @@
 										</div>
 									</div>
 								</div>
+								<p>We can specify a range denoted as <code>[start, end]</code>, where the <code>start</code> index is <strong>inclusive</strong> and the <code>end</code> index is <strong>exclusive</strong>. In other words, <code>[3:8]</code> will access the characters from index 3 to 7. It is also possible to use a combination of both positive and negative indices at the same time.</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
@@ -217,7 +221,7 @@
 											<div class="code-line"><span class="code-comment"># Get character at index -1 (last character), prints s</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-1</span><span class="code-operator">])</span></div>
 											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from first to 8th index, prints New York</span></div>
+											<div class="code-line"><span class="code-comment"># Get characters from first to 8th index (exclusive), prints New York</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">:8</span><span class="code-operator">])</span></div>
 											<br>
 											<div class="code-line"><span class="code-comment"># Get characters from 9th to last index, prints Knicks</span></div>
