@@ -238,6 +238,14 @@
 								<!-- SUBSTRING COUNTS -->
 								<h2>Substring Counts</h2>
 								<p>It is possible to count the number of occurrences of a given sub-string within a string with the <code>count()</code> function. One thing to remember is that it's case sensitive, meaning that uppercase <code>L</code> and lowercase <code>l</code> are not equivalent and will not be considered as being the same character. Additionally, we can also specify a range in which we want to conduct the counting.</p>
+								<h3>Parameters</h3>
+								<p>
+									<ul>
+										<li><code>sub</code>: substring pattern to locate in string</li>
+										<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
+										<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
+									</ul>
+								</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
@@ -260,6 +268,14 @@
 								<!-- FIND SUBSTRING INDEX -->
 								<h2>Find Substring Index</h2>
 								<p>To find the first occurrence (lowest index) of a specific substring in a given string, we can use the functions <code>find()</code> / <code>index()</code>. To find the last occurrence (highest index), we can use <code>rfind()</code> / <code>rindex()</code>. The main difference between these two functions is that when a substring is not found, <code>find()</code> returns <code>-1</code> while <code>index()</code> raises an exception.</p>
+								<h3>Parameters</h3>
+								<p>
+									<ul>
+										<li><code>sub</code>: substring pattern to locate in string</li>
+										<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
+										<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
+									</ul>
+								</p>
 								<div class="code-snippet">
 									<pre class="code-lang-python">
 										<code class="code-lang-python">
@@ -285,6 +301,30 @@
 											<br>
 											<div class="code-line"><span class="code-comment"># Find character not found using index(), raises exception</span></div>
 											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">index</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
+										</code>
+									</pre>
+								</div>
+								<!-- REPLACE SPECIFIC SUBSTRING -->
+								<h2>Replace Specific Substring</h2>
+								<p>String variables also have an inbuilt <code>replace()</code> function that allows us to replace a specific pattern in a given string with something else. We can also specify the maximum number of replacements we want to make, starting from the smallest index.</p>
+								<h3>Parameters</h3>
+								<p>
+									<ul>
+										<li><code>old</code>: substring pattern to be replaced</li>
+										<li><code>new</code>: new substring replacing old</li>
+										<li><code>count</code>: number of replacements starting from lowest index <strong>[optional]</strong></li>
+									</ul>
+								</p>
+								<div class="code-snippet">
+									<pre class="code-lang-python">
+										<code class="code-lang-python">
+											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Jordan won many rings. Jordan is the GOAT. Jordan played for the Bulls.</span><span class="code-operator">'</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Replace all occurrences of Jordan with Kobe</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">'))</span></div>
+											<br>
+											<div class="code-line"><span class="code-comment"># Since Kobe never played for the Bulls, replace on first 2 occurrences of Jordan with Kobe</span></div>
+											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">',</span><span class="code-parameter"> 2</span><span class="code-operator">))</span></div>
 										</code>
 									</pre>
 								</div>
