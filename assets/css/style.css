@@ -554,6 +554,33 @@ footer {
     padding-left: 0px;
 }
 /* BLOG: CRYPTOGRAPHY - CLASSICAL CIPHERS */
+#crypt-shift-demo-1 {
+    max-width: 880px;
+    margin: 0 auto;
+    border: solid 2px #242424;
+}
+.cryp-shift-row {
+    font-size: 81%;
+    white-space: nowrap; /* makes all your inner divs stay on the same line */
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.cryp-shift-row-title {
+    text-align: center;
+    display: inline-block;
+    width: 150px;
+    height: 25px;
+}
+.cryp-shift-row-letter {
+    text-align: center;
+    display: inline-block;
+    width: 28px;
+    height: 25px;
+}
+.cryp-shift-demo-1-plain, .cryp-shift-demo-1-encrypt {
+    outline: solid 1px #242424;
+}
+/* BLOG: PYTHON CHEAT SHEET STRINGS */
 #python-string-slicing {
     max-width: 880px;
     margin: 1.5em 0px;
@@ -580,4 +607,3 @@ footer {
 .python-string-slicing-string, .python-string-slicing-positive, .python-string-slicing-negative {
     outline: solid 1px #242424;
 }
-/* BLOG: PYTHON CHEAT SHEET STRINGS */
