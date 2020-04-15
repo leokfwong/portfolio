@@ -425,9 +425,11 @@ ul {
 }
 .blog-keyword {
     border-radius: 5px;
-    padding: 0px 10px 0px 10px;
+    padding: 1px 10px 1px 10px;
     font-size: 75%;
     margin-right: 5px;
+    font-weight: bold;
+    border: solid 1px #242424;
 }
 .blog-keyword-python {
     background: #3773A5;
@@ -443,6 +445,10 @@ ul {
 }
 .blog-keyword-msaccess {
     background: #A33639;
+    color: #FFFFFF;
+}
+.blog-keyword-bitcoin {
+    background: #EF9327;
     color: #FFFFFF;
 }
 .blog-reading-time {
