@@ -237,3 +237,19 @@ function displayBlog() {
 function back2Top() {
 	window.scrollTo(0, 0);
 }
+
+// Function to offset anchor
+function offsetAnchor() {
+	if (location.hash.length !== 0) {
+		window.scrollTo(window.scrollX, window.scrollY - 60);
+	}
+}
+
+// Indentify clicks that jump to another location on page
+document.addEventListener("click", function(event) {
+	if (event.target.matches("a[href^='#']")) {
+		window.setTimeout(function() {
+			offsetAnchor();
+		}, 0);
+	}
+}, false);
