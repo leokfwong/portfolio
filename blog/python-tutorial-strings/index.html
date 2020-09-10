@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title> Leo Wong | Blog | Python Tutorial - Strings </title>
+	<title> Leo Wong | Blog | Python - Strings </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<meta name="description" content="Compilation of useful python commands when working with string variables. We explore the concepts of print, escape special characters, slicing, substring count, find, index, replace, format, join, f-strings and more.">
@@ -69,359 +69,388 @@
 								13 February 2020
 							</div>
 							<div id="blog-content" class="blog-content">
-								<p>We will learn the basics of strings in Python and explore the various built-in functionality available to us. Each section comes with a brief description and some sample code for us to follow along. This also serves as a reminder for myself if I ever forgot how to use a certain function and need to refresh my memory.</p>
+								<p>In this post, we will go over the basics of <strong>strings</strong> in Python and explore the various built-in functionalities available to us. Each section comes with a brief description and some sample code.</p>
+								<div id="blog-table-of-content">
+									<h2>Table of Contents</h2>
+									<ul>
+										<li><a href="#blog-section-1">Print New Line</a></li>
+										<li><a href="#blog-section-2">Escape Special Characters</a></li>
+										<li><a href="#blog-section-3">String Length</a></li>
+										<li><a href="#blog-section-4">String Slicing</a></li>
+										<li><a href="#blog-section-5">Substring Counts</a></li>
+										<li><a href="#blog-section-6">Find Substring Index</a></li>
+										<li><a href="#blog-section-7">Replace Specific Substring</a></li>
+										<li><a href="#blog-section-8">Strings Formatting</a></li>
+									</ul>
+								</div>
 								<!-- PRINT NEW LINE -->
-								<h2>Print New Line</h2>
-								<p>Printing output to the console is definitely quite easy, we simply need to use the <code>print()</code> function. Sometimes, we might want to print the output on multiple lines. We can either use the <code>\n</code> special escape character or the <code>''' '''</code> multi-line strings method.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># New line using \n</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">This is the first line.</span><span class="code-operator">\n</span><span class="code-string">This is the second line</span><span class="code-operator">')</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># New line using '''</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('''</span><span class="code-string">This is the first line.</span></div>
-											<div class="code-line"><span class="code-string">This is the second line.</span><span class="code-operator">''')</span></div>
-										</code>
-									</pre>
-								</div>
-								<!-- ESCAPE SPECIAL CHARACTERS https://python-reference.readthedocs.io/en/latest/docs/str/escapes.html -->
-								<h2>Escape Special Characters</h2>
-								<p>There exists a list of special characters that need to be <em>escaped</em> when included in strings. For instance, if we use single quotes to denote our string, we need to escape any single quote used inside. In other scenarios, we might also need to watch out for special instances such as <code>\n</code> for new lines, as previously mentioned. A neat alternative to avoid having to escape special characters is to use raw strings where characters including <code>\</code> are treated as a literal characters.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Escape single quote, prints You're amazing</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">You</span><span class="code-operator">\'</span><span class="code-string">re amazing</span><span class="code-operator">')</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Use double quotes on the outside, no need to escape, prints You're amazing</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">("</span><span class="code-string">You</span><span class="code-operator">'</span><span class="code-string">re amazing</span><span class="code-operator">")</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Escape the \, where we want to print the actual \n characters, prints brooklyn\nets</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">brooklyn</span><span class="code-operator">\\n</span><span class="code-string">ets</span><span class="code-operator">')</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Using raw string to avoid tab (\t), prints oklahoma city\thunder</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(r'</span><span class="code-string">oklahoma city</span><span class="code-operator">\t</span><span class="code-string">hunder</span><span class="code-operator">')</span></div>
-										</code>
-									</pre>
-								</div>
-								<!-- String Length -->
-								<h2>String Length</h2>
-								<p>This built-in function is pretty straight-forward when using it with strings: it returns the length, or in other words the number of characters (alpha-numerical, symbols, spaces, any character) in the string.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Length of string, prints 35</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('</span><span class="code-string">This string contains 35 characters!</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Length of empty string, prints 0</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">(''))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Length of special escape characters \n or \t, prints 1</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('\n'))</span></div>
-										</code>
-									</pre>
-								</div>
-								<!-- String Slicing -->
-								<h2>String Slicing</h2>
-								<p>Just like lists in python, strings can also be sliced using the square brackets <code>[]</code> notation. Taking the string <code>'New York Knicks'</code> as an example, each character in the string can be accessed through a corresponding index. The first character <code>N</code> can be retrieved at index 0 and the last character <code>s</code> at index 14. Note that we can also access each character at negative indices, as shown in the following table: </p>
-								<div id="python-string-slicing">
-									<div id="python-string-slicing-row" class="python-string-slicing-row">
-										<div id="python-string-slicing-row-title" class="python-string-slicing-row-title">
-											<div id="python-string-slicing-string-title" class="python-string-slicing-plain">String</div>
-											<div id="python-string-slicing-positive-title" class="python-string-slicing-positive">Positive Indices</div>
-											<div id="python-string-slicing-negative-title" class="python-string-slicing-negative">Negative Indices</div>
-										</div><!--
-										--><div id="python-string-slicing-row-0" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-0" class="python-string-slicing-string">N</div>
-											<div id="python-string-slicing-positive-0" class="python-string-slicing-positive">0</div>
-											<div id="python-string-slicing-negative-0" class="python-string-slicing-negative">-15</div>
-										</div><!--
-										--><div id="python-string-slicing-row-1" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-1" class="python-string-slicing-string">e</div>
-											<div id="python-string-slicing-positive-1" class="python-string-slicing-positive">1</div>
-											<div id="python-string-slicing-negative-1" class="python-string-slicing-negative">-14</div>
-										</div><!--
-										--><div id="python-string-slicing-row-2" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-2" class="python-string-slicing-string">w</div>
-											<div id="python-string-slicing-positive-2" class="python-string-slicing-positive">2</div>
-											<div id="python-string-slicing-negative-2" class="python-string-slicing-negative">-13</div>
-										</div><!--
-										--><div id="python-string-slicing-row-3" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-3" class="python-string-slicing-string"> </div>
-											<div id="python-string-slicing-positive-3" class="python-string-slicing-positive">3</div>
-											<div id="python-string-slicing-negative-3" class="python-string-slicing-negative">-12</div>
-										</div><!--
-										--><div id="python-string-slicing-row-4" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-4" class="python-string-slicing-string">Y</div>
-											<div id="python-string-slicing-positive-4" class="python-string-slicing-positive">4</div>
-											<div id="python-string-slicing-negative-4" class="python-string-slicing-negative">-11</div>
-										</div><!--
-										--><div id="python-string-slicing-row-5" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-5" class="python-string-slicing-string">o</div>
-											<div id="python-string-slicing-positive-5" class="python-string-slicing-positive">5</div>
-											<div id="python-string-slicing-negative-5" class="python-string-slicing-negative">-10</div>
-										</div><!--
-										--><div id="python-string-slicing-row-6" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-6" class="python-string-slicing-string">r</div>
-											<div id="python-string-slicing-positive-6" class="python-string-slicing-positive">6</div>
-											<div id="python-string-slicing-negative-6" class="python-string-slicing-negative">-9</div>
-										</div><!--
-										--><div id="python-string-slicing-row-7" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-7" class="python-string-slicing-string">k</div>
-											<div id="python-string-slicing-positive-7" class="python-string-slicing-positive">7</div>
-											<div id="python-string-slicing-negative-7" class="python-string-slicing-negative">-8</div>
-										</div><!--
-										--><div id="python-string-slicing-row-8" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-8" class="python-string-slicing-string"> </div>
-											<div id="python-string-slicing-positive-8" class="python-string-slicing-positive">8</div>
-											<div id="python-string-slicing-negative-8" class="python-string-slicing-negative">-7</div>
-										</div><!--
-										--><div id="python-string-slicing-row-9" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-9" class="python-string-slicing-string">K</div>
-											<div id="python-string-slicing-positive-9" class="python-string-slicing-positive">9</div>
-											<div id="python-string-slicing-negative-9" class="python-string-slicing-negative">-6</div>
-										</div><!--
-										--><div id="python-string-slicing-row-10" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-10" class="python-string-slicing-string">n</div>
-											<div id="python-string-slicing-positive-10" class="python-string-slicing-positive">10</div>
-											<div id="python-string-slicing-negative-10" class="python-string-slicing-negative">-5</div>
-										</div><!--
-										--><div id="python-string-slicing-row-11" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-11" class="python-string-slicing-string">i</div>
-											<div id="python-string-slicing-positive-11" class="python-string-slicing-positive">11</div>
-											<div id="python-string-slicing-negative-11" class="python-string-slicing-negative">-4</div>
-										</div><!--
-										--><div id="python-string-slicing-row-12" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-12" class="python-string-slicing-string">c</div>
-											<div id="python-string-slicing-positive-12" class="python-string-slicing-positive">12</div>
-											<div id="python-string-slicing-negative-12" class="python-string-slicing-negative">-3</div>
-										</div><!--
-										--><div id="python-string-slicing-row-13" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-13" class="python-string-slicing-string">k</div>
-											<div id="python-string-slicing-positive-13" class="python-string-slicing-positive">13</div>
-											<div id="python-string-slicing-negative-13" class="python-string-slicing-negative">-2</div>
-										</div><!--
-										--><div id="python-string-slicing-row-14" class="python-string-slicing-row-index">
-											<div id="python-string-slicing-string-14" class="python-string-slicing-string">s</div>
-											<div id="python-string-slicing-positive-14" class="python-string-slicing-positive">14</div>
-											<div id="python-string-slicing-negative-14" class="python-string-slicing-negative">-1</div>
-										</div>
+								<div id="blog-section-1" class="blog-section">
+									<h2>Print New Line</h2>
+									<p>Printing output to the console is definitely quite easy, we simply need to use the <code>print()</code> function. Sometimes, we might want to print the output on multiple lines. We can either use the <code>\n</code> special escape character or the <code>''' '''</code> multi-line strings method.</p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												<div class="code-line"><span class="code-comment"># New line using \n</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">This is the first line.</span><span class="code-operator">\n</span><span class="code-string">This is the second line</span><span class="code-operator">')</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># New line using '''</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('''</span><span class="code-string">This is the first line.</span></div>
+												<div class="code-line"><span class="code-string">This is the second line.</span><span class="code-operator">''')</span></div>
+											</code>
+										</pre>
 									</div>
 								</div>
-								<p>We can specify a range denoted as <code>[start, end]</code>, where the <code>start</code> index is <strong>inclusive</strong> and the <code>end</code> index is <strong>exclusive</strong>. In other words, <code>[3:8]</code> will access the characters from index 3 to 7. It is also possible to use a combination of both positive and negative indices at the same time.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">New York Knicks</span><span class="code-operator">'</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get character at index 0, prints N</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">0</span><span class="code-operator">])</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get character at index -1 (last character), prints s</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-1</span><span class="code-operator">])</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from first to 8th index (exclusive), prints New York</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">:8</span><span class="code-operator">])</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from 9th to last index, prints Knicks</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">9:</span><span class="code-operator">])</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from 4th to 7th index, prints York</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">4:8</span><span class="code-operator">])</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Get characters from -11th to 7th index, also prints York</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-11:8</span><span class="code-operator">])</span></div>
-										</code>
-									</pre>
+								<!-- ESCAPE SPECIAL CHARACTERS https://python-reference.readthedocs.io/en/latest/docs/str/escapes.html -->
+								<div id="blog-section-2" class="blog-section">
+									<h2>Escape Special Characters</h2>
+									<p>There exists a list of special characters that need to be <em>escaped</em> when included in strings. For instance, if we use single quotes to denote our string, we need to escape any single quote used inside. In other scenarios, we might also need to watch out for special instances such as <code>\n</code> for new lines, as previously mentioned. A neat alternative to avoid having to escape special characters is to use raw strings where characters including <code>\</code> are treated as a literal characters.</p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												<div class="code-line"><span class="code-comment"># Escape single quote, prints You're amazing</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">You</span><span class="code-operator">\'</span><span class="code-string">re amazing</span><span class="code-operator">')</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Use double quotes on the outside, no need to escape, prints You're amazing</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">("</span><span class="code-string">You</span><span class="code-operator">'</span><span class="code-string">re amazing</span><span class="code-operator">")</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Escape the \, where we want to print the actual \n characters, prints brooklyn\nets</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">brooklyn</span><span class="code-operator">\\n</span><span class="code-string">ets</span><span class="code-operator">')</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Using raw string to avoid tab (\t), prints oklahoma city\thunder</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(r'</span><span class="code-string">oklahoma city</span><span class="code-operator">\t</span><span class="code-string">hunder</span><span class="code-operator">')</span></div>
+											</code>
+										</pre>
+									</div>
 								</div>
-								<!-- SUBSTRING COUNTS -->
-								<h2>Substring Counts</h2>
-								<p>It is possible to count the number of occurrences of a given sub-string within a string with the <code>count()</code> function. One thing to remember is that it's case sensitive, meaning that uppercase <code>L</code> and lowercase <code>l</code> are not equivalent and will not be considered as being the same character. Additionally, we can also specify a range in which we want to conduct the counting.</p>
-								<h3>Parameters</h3>
-								<p>
-									<ul>
-										<li><code>sub</code>: substring pattern to locate in string</li>
-										<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
-										<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
-									</ul>
-								</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Los Angeles Lakers</span><span class="code-operator">'</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Count number of occurrences of L, prints 2</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">L</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Count number of occurrences of Los, prints 1</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Los</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Count number of occurrences of Z, prints 0</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Z</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Count number of occurrences of e between indices 4 and 11 (Angeles), prints 2</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">e</span><span class="code-operator">',</span><span class="code-parameter"> 4</span><span class="code-operator">,</span><span class="code-parameter"> 11</span><span class="code-operator">))</span></div>
-										</code>
-									</pre>
+								<!-- String Length -->
+								<div id="blog-section-3" class="blog-section">
+									<h2>String Length</h2>
+									<p>This built-in function is pretty straight-forward when using it with strings: it returns the length, or in other words the number of characters (alpha-numerical, symbols, spaces, any character) in the string.</p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												<div class="code-line"><span class="code-comment"># Length of string, prints 35</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('</span><span class="code-string">This string contains 35 characters!</span><span class="code-operator">'))</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Length of empty string, prints 0</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">(''))</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Length of special escape characters \n or \t, prints 1</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">len</span><span class="code-operator">('\n'))</span></div>
+											</code>
+										</pre>
+									</div>
 								</div>
-								<!-- FIND SUBSTRING INDEX -->
-								<h2>Find Substring Index</h2>
-								<p>To find the first occurrence (lowest index) of a specific substring in a given string, we can use the functions <code>find()</code> / <code>index()</code>. To find the last occurrence (highest index), we can use <code>rfind()</code> / <code>rindex()</code>. The main difference between these two functions is that when a substring is not found, <code>find()</code> returns <code>-1</code> while <code>index()</code> raises an exception.</p>
-								<h3>Parameters</h3>
-								<p>
-									<ul>
-										<li><code>sub</code>: substring pattern to locate in string</li>
-										<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
-										<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
-									</ul>
-								</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">The Toronto Raptors won the Championship last year</span><span class="code-operator">'</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find lowest index of character o, prints 5</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find highest index of character o, prints 34</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find lowest index of character o between index 12 and 23 (Raptors won), prints 16</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find highest index of character o between index 12 and 23 (Raptors won), prints 21</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find lowest index of first character of substring Champion, returns 28</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">Champion</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find character not found using find(), returns -1</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Find character not found using index(), raises exception</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">index</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
-										</code>
-									</pre>
+								<!-- String Slicing -->
+								<div id="blog-section-4" class="blog-section">
+									<h2>String Slicing</h2>
+									<p>Just like lists in python, strings can also be sliced using the square brackets <code>[]</code> notation. Taking the string <code>'New York Knicks'</code> as an example, each character in the string can be accessed through a corresponding index. The first character <code>N</code> can be retrieved at index 0 and the last character <code>s</code> at index 14. Note that we can also access each character at negative indices, as shown in the following table: </p>
+									<div id="python-string-slicing">
+										<div id="python-string-slicing-row" class="python-string-slicing-row">
+											<div id="python-string-slicing-row-title" class="python-string-slicing-row-title">
+												<div id="python-string-slicing-string-title" class="python-string-slicing-plain">String</div>
+												<div id="python-string-slicing-positive-title" class="python-string-slicing-positive">Positive Indices</div>
+												<div id="python-string-slicing-negative-title" class="python-string-slicing-negative">Negative Indices</div>
+										</div><!--
+									--><div id="python-string-slicing-row-0" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-0" class="python-string-slicing-string">N</div>
+										<div id="python-string-slicing-positive-0" class="python-string-slicing-positive">0</div>
+										<div id="python-string-slicing-negative-0" class="python-string-slicing-negative">-15</div>
+										</div><!--
+									--><div id="python-string-slicing-row-1" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-1" class="python-string-slicing-string">e</div>
+										<div id="python-string-slicing-positive-1" class="python-string-slicing-positive">1</div>
+										<div id="python-string-slicing-negative-1" class="python-string-slicing-negative">-14</div>
+										</div><!--
+									--><div id="python-string-slicing-row-2" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-2" class="python-string-slicing-string">w</div>
+										<div id="python-string-slicing-positive-2" class="python-string-slicing-positive">2</div>
+										<div id="python-string-slicing-negative-2" class="python-string-slicing-negative">-13</div>
+										</div><!--
+									--><div id="python-string-slicing-row-3" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-3" class="python-string-slicing-string"> </div>
+										<div id="python-string-slicing-positive-3" class="python-string-slicing-positive">3</div>
+										<div id="python-string-slicing-negative-3" class="python-string-slicing-negative">-12</div>
+										</div><!--
+									--><div id="python-string-slicing-row-4" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-4" class="python-string-slicing-string">Y</div>
+										<div id="python-string-slicing-positive-4" class="python-string-slicing-positive">4</div>
+										<div id="python-string-slicing-negative-4" class="python-string-slicing-negative">-11</div>
+										</div><!--
+									--><div id="python-string-slicing-row-5" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-5" class="python-string-slicing-string">o</div>
+										<div id="python-string-slicing-positive-5" class="python-string-slicing-positive">5</div>
+										<div id="python-string-slicing-negative-5" class="python-string-slicing-negative">-10</div>
+										</div><!--
+									--><div id="python-string-slicing-row-6" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-6" class="python-string-slicing-string">r</div>
+										<div id="python-string-slicing-positive-6" class="python-string-slicing-positive">6</div>
+										<div id="python-string-slicing-negative-6" class="python-string-slicing-negative">-9</div>
+										</div><!--
+									--><div id="python-string-slicing-row-7" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-7" class="python-string-slicing-string">k</div>
+										<div id="python-string-slicing-positive-7" class="python-string-slicing-positive">7</div>
+										<div id="python-string-slicing-negative-7" class="python-string-slicing-negative">-8</div>
+										</div><!--
+									--><div id="python-string-slicing-row-8" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-8" class="python-string-slicing-string"> </div>
+										<div id="python-string-slicing-positive-8" class="python-string-slicing-positive">8</div>
+										<div id="python-string-slicing-negative-8" class="python-string-slicing-negative">-7</div>
+										</div><!--
+									--><div id="python-string-slicing-row-9" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-9" class="python-string-slicing-string">K</div>
+										<div id="python-string-slicing-positive-9" class="python-string-slicing-positive">9</div>
+										<div id="python-string-slicing-negative-9" class="python-string-slicing-negative">-6</div>
+										</div><!--
+									--><div id="python-string-slicing-row-10" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-10" class="python-string-slicing-string">n</div>
+										<div id="python-string-slicing-positive-10" class="python-string-slicing-positive">10</div>
+										<div id="python-string-slicing-negative-10" class="python-string-slicing-negative">-5</div>
+										</div><!--
+									--><div id="python-string-slicing-row-11" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-11" class="python-string-slicing-string">i</div>
+										<div id="python-string-slicing-positive-11" class="python-string-slicing-positive">11</div>
+										<div id="python-string-slicing-negative-11" class="python-string-slicing-negative">-4</div>
+										</div><!--
+									--><div id="python-string-slicing-row-12" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-12" class="python-string-slicing-string">c</div>
+										<div id="python-string-slicing-positive-12" class="python-string-slicing-positive">12</div>
+										<div id="python-string-slicing-negative-12" class="python-string-slicing-negative">-3</div>
+										</div><!--
+									--><div id="python-string-slicing-row-13" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-13" class="python-string-slicing-string">k</div>
+										<div id="python-string-slicing-positive-13" class="python-string-slicing-positive">13</div>
+										<div id="python-string-slicing-negative-13" class="python-string-slicing-negative">-2</div>
+										</div><!--
+									--><div id="python-string-slicing-row-14" class="python-string-slicing-row-index">
+										<div id="python-string-slicing-string-14" class="python-string-slicing-string">s</div>
+										<div id="python-string-slicing-positive-14" class="python-string-slicing-positive">14</div>
+										<div id="python-string-slicing-negative-14" class="python-string-slicing-negative">-1</div>
+									</div>
 								</div>
-								<!-- REPLACE SPECIFIC SUBSTRING -->
-								<h2>Replace Specific Substring</h2>
-								<p>String variables also have an inbuilt <code>replace()</code> function that allows us to replace a specific pattern in a given string with something else. We can also specify the maximum number of replacements we want to make, starting from the smallest index.</p>
-								<h3>Parameters</h3>
-								<p>
-									<ul>
-										<li><code>old</code>: substring pattern to be replaced</li>
-										<li><code>new</code>: new substring replacing old</li>
-										<li><code>count</code>: number of replacements starting from lowest index <strong>[optional]</strong></li>
-									</ul>
-								</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Jordan won many rings. Jordan is the GOAT. Jordan played for the Bulls.</span><span class="code-operator">'</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Replace all occurrences of Jordan with Kobe</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">'))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Since Kobe never played for the Bulls, replace on first 2 occurrences of Jordan with Kobe</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">',</span><span class="code-parameter"> 2</span><span class="code-operator">))</span></div>
-										</code>
-									</pre>
-								</div>
-								<!-- STRINGS FORMATTING -->
-								<h2>Strings Formatting</h2>
-								<p>There are several ways to concatenate multiple strings into a single one. If we want to join multiple string literals, it suffices to write them one next to another, with or without spaces. Python parses the string literals and joins them together. However, if we want to concatenate string variables, this will not work. Instead, we can use the <code>+</code> operator between two variables or strings to concatenate them. Also, if we want to repeat and concatenate a specific string multiple times, we can use the <code>*</code> operator.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Concatenante string literals, prints LeBron James is King</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">LeBron</span><span class="code-operator">' '</span><span class="code-string">James</span><span class="code-operator">' '</span><span class="code-string">is</span><span class="code-operator">' '</span><span class="code-string">King</span><span class="code-operator">')</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Store string in variables</span></div>
-											<div class="code-line"><span>first</span><span class="code-operator"> = '</span><span class="code-string">Kevin</span><span class="code-operator">'; </span><span>last</span><span class="code-operator"> = '</span><span class="code-string"> Durant</span><span class="code-operator">'; </span><span>team</span><span class="code-operator"> = '</span><span class="code-string">Brooklyn Nets</span><span class="code-operator">'; </span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Concatenate using + operator, prints Kevin Durant plays on the Brooklyn Nets</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">first</span><span class="code-operator"> + </span><span class="code-function">last</span><span class="code-operator"> + '</span><span class="code-string"> plays on the </span><span class="code-operator">' + </span><span class="code-function">team</span><span class="code-operator">)</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Concatenate repeated string using * operator, prints Go Durant! Go Durant! Go Durant!</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(('</span><span class="code-string">Go</span><span class="code-operator">' + </span><span class="code-function">last</span><span class="code-operator"> + '</span><span class="code-string">! </span><span class="code-operator">') * </span><span class="code-parameter"> 3</span><span class="code-operator">)</span></div>
-										</code>
-									</pre>
-								</div>
-								<p>We can also concatenate strings by using the <code>join()</code> function, where we can specify a separator between them. Given an iterable (ie. list, tuple) as input, the function returns all the elements combined into one string.</p>
-								<h3>Parameters</h3>
-								<p>
-									<ul>
-										<li><code>iterable</code>: list, tuple, string, dictionary, etc.</li>
-									</ul>
-								</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Concatenate strings using the join() function, prints Kevin Durant signed with the Brooklyn Nets</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(''.</span><span class="code-function">join</span><span class="code-operator">([</span><span class="code-function">first</span><span class="code-operator">, </span><span class="code-function">last</span><span class="code-operator">, '</span><span class="code-string"> signed with the </span><span class="code-operator">', </span><span class="code-function">team</span><span class="code-operator">]))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Concatenate strings with dash separator, prints boston-celtics-2017-2018</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('-'.</span><span class="code-function">join</span><span class="code-operator">(['</span><span class="code-string">boston</span><span class="code-operator">', '</span><span class="code-string">celtics</span><span class="code-operator">', '</span><span class="code-string">2007</span><span class="code-operator">', '</span><span class="code-string">2008</span><span class="code-operator">']))</span></div>
-										</code>
-									</pre>
-								</div>
-								<p>The most common way of concatenating strings is to use the <code>format()</code> function, which takes as input variables to be included in the string. Using curly braces <code>{}</code> as replacement fields, we can determine the position of each input argument. The first argument goes to the first pair of braces, the second goes to the next and so on. We can also specify which argument goes in place of each pair of braces by adding the index or name of the keyword argument.</p>
-								<h3>Parameters</h3>
-								<p>
-									<ul>
-										<li><code>*args, **kwargs</code>: any number of input parameters.</li>
-									</ul>
-								</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Store string in variables</span></div>
-											<div class="code-line"><span>first</span><span class="code-operator"> = '</span><span class="code-string">Steph</span><span class="code-operator">'; </span><span>last</span><span class="code-operator"> = '</span><span class="code-string">Curry</span><span class="code-operator">'; </span><span>team</span><span class="code-operator"> = '</span><span class="code-string">Golden State Warriors</span><span class="code-operator">'; </span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Concatenate string variables using format()</span></div>
-											<div class="code-line"><span class="code-comment"># Prints Steph Curry from downtown, BANG! Golden State Warriors with the lead!</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{} {} </span><span class="code-string"> from downtown, BANG! </span><span class="code-operator">{}</span><span class="code-string"> with the lead!</span><span class="code-operator">'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-function">first</span><span class="code-operator">, </span><span class="code-function">last</span><span class="code-operator">, </span><span class="code-function">team</span><span class="code-operator">))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Specify index of replacement fields, prints one, two, three</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{</span><span>1</span><span class="code-operator">}, {</span><span>2</span><span class="code-operator">}, {</span><span>0</span><span class="code-operator">}'.</span><span class="code-function">format</span><span class="code-operator">(*('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Do arithmetic in the arguments, prints Dirk Nowitzki wore number 41</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">Dirk Nowitzki wore number </span><span class="code-operator">{}'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-parameter">36</span><span class="code-operator"> + </span><span class="code-parameter">5</span><span class="code-operator">))</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Using keyword</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{</span><span>lastname</span><span class="code-operator">}</span><span class="code-string"> has a beard</span><span class="code-operator">'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-parameter">lastname</span><span class="code-operator"> = </span><span class="code-operator">'</span><span class="code-string">Harden</span><span class="code-operator">'))</span></div>
-										</code>
-									</pre>
-								</div>
-								<p>There is also a new way of formatting strings, and that is with the <code>f-Strings</code>, which all beging with an <code>f</code> in front of the string literal. This new syntax has been available since Python version 3.6, and it allows us to embed replacement variables within the string itself. Touted as an improved and more elegant method compared to <code>format()</code>, this new syntax can make code cleaner and easier to understand. We can still call functions directly, use objects created from classes and so on.</p>
-								<p>Although this new way of formatting is fancy and can make code cleaner, we need to remind ourselves that it is an addition, and not a replacement. We can still use <code>format()</code>, and it some instances it makes more sense to do so. For instance, in the second example where we want to print out <code>One, Two, Three</code>, the old technique is more suitable. Since the data is in a tuple, we can unpack it within the function and assign the replacement positions in the string. With <code>f-Strings</code>, we cannot leverage the unpacking functionality, and would have to access each item of the tuple individually.</p>
-								<div class="code-snippet">
-									<pre class="code-lang-python">
-										<code class="code-lang-python">
-											<div class="code-line"><span class="code-comment"># Concatenate string variables using f-String</span></div>
-											<div class="code-line"><span class="code-comment"># Prints Steph Curry from downtown, BANG! Golden State Warriors with the lead!</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(<span class="code-keyword">f</span>'{</span><span class="code-function">first</span><span class="code-operator">} {</span><span class="code-function">last</span><span class="code-operator">} </span><span class="code-string"> from downtown, BANG! </span><span class="code-operator">{</span><span class="code-function">team</span><span class="code-operator">}</span><span class="code-string"> with the lead!</span><span class="code-operator">')</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Need to access each item in tuple</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-keyword">f</span><span class="code-operator">"{('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">1</span><span class="code-operator">]</span><span class="code-string">, </span><span class="code-operator">('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">2</span><span class="code-operator">]</span><span class="code-string">, </span><span class="code-operator">('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">0</span><span class="code-operator">]}")</span></div>
-											<br>
-											<div class="code-line"><span class="code-comment"># Do arithmetic inside string, prints Dirk Nowitzki wore number 41</span></div>
-											<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-keyword">f</span><span class="code-operator">'</span><span class="code-string">Dirk Nowitzki wore number </span><span class="code-operator">{</span><span class="code-parameter">36</span><span class="code-operator"> + </span><span class="code-parameter">5</span><span class="code-operator">}')</span></div>
-										</code>
-									</pre>
-								</div>
+							</div>
+							<p>We can specify a range denoted as <code>[start, end]</code>, where the <code>start</code> index is <strong>inclusive</strong> and the <code>end</code> index is <strong>exclusive</strong>. In other words, <code>[3:8]</code> will access the characters from index 3 to 7. It is also possible to use a combination of both positive and negative indices at the same time.</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">New York Knicks</span><span class="code-operator">'</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get character at index 0, prints N</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">0</span><span class="code-operator">])</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get character at index -1 (last character), prints s</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-1</span><span class="code-operator">])</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get characters from first to 8th index (exclusive), prints New York</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">:8</span><span class="code-operator">])</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get characters from 9th to last index, prints Knicks</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">9:</span><span class="code-operator">])</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get characters from 4th to 7th index, prints York</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">4:8</span><span class="code-operator">])</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Get characters from -11th to 7th index, also prints York</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">[</span><span class="code-parameter">-11:8</span><span class="code-operator">])</span></div>
+									</code>
+								</pre>
+							</div>
+						</div>
+						<!-- SUBSTRING COUNTS -->
+						<div id="blog-section-5" class="blog-section">
+							<h2>Substring Counts</h2>
+							<p>It is possible to count the number of occurrences of a given sub-string within a string with the <code>count()</code> function. One thing to remember is that it's <strong>case sensitive</strong>, meaning that uppercase <code>L</code> and lowercase <code>l</code> are not equivalent and will not be considered as being the same character. Additionally, we can also specify a range in which we want to conduct the counting.</p>
+							<h3>Parameters</h3>
+							<p>
+								<ul>
+									<li><code>sub</code>: substring pattern to locate in string</li>
+									<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
+									<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
+								</ul>
+							</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Los Angeles Lakers</span><span class="code-operator">'</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Count number of occurrences of L, prints 2</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">L</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Count number of occurrences of Los, prints 1</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Los</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Count number of occurrences of Z, prints 0</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">Z</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Count number of occurrences of e between indices 4 and 11 (Angeles), prints 2</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">count</span><span class="code-operator">('</span><span class="code-string">e</span><span class="code-operator">',</span><span class="code-parameter"> 4</span><span class="code-operator">,</span><span class="code-parameter"> 11</span><span class="code-operator">))</span></div>
+									</code>
+								</pre>
+							</div>
+						</div>
+						<!-- FIND SUBSTRING INDEX -->
+						<div id="blog-section-6" class="blog-section">
+							<h2>Find Substring Index</h2>
+							<p>To find the first occurrence (lowest index) of a specific substring in a given string, we can use the functions <code>find()</code> / <code>index()</code>. To find the last occurrence (highest index), we can use <code>rfind()</code> / <code>rindex()</code>. The main difference between these two functions is that when a substring is not found, <code>find()</code> returns <code>-1</code> while <code>index()</code> raises an exception.</p>
+							<h3>Parameters</h3>
+							<p>
+								<ul>
+									<li><code>sub</code>: substring pattern to locate in string</li>
+									<li><code>start</code>: start index for slicing <strong>[optional]</strong></li>
+									<li><code>end</code>: end index for slicing <strong>[optional]</strong></li>
+								</ul>
+							</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">The Toronto Raptors won the Championship last year</span><span class="code-operator">'</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find lowest index of character o, prints 5</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find highest index of character o, prints 34</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find lowest index of character o between index 12 and 23 (Raptors won), prints 16</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find highest index of character o between index 12 and 23 (Raptors won), prints 21</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">rfind</span><span class="code-operator">('</span><span class="code-string">o</span><span class="code-operator">',</span><span class="code-parameter"> 13</span><span class="code-operator">,</span><span class="code-parameter"> 23</span><span class="code-operator">))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find lowest index of first character of substring Champion, returns 28</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">Champion</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find character not found using find(), returns -1</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">find</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Find character not found using index(), raises exception</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">index</span><span class="code-operator">('</span><span class="code-string">$</span><span class="code-operator">'))</span></div>
+									</code>
+								</pre>
+							</div>
+						</div>
+						<!-- REPLACE SPECIFIC SUBSTRING -->
+						<div id="blog-section-7" class="blog-section">
+							<h2>Replace Specific Substring</h2>
+							<p>String variables also have an inbuilt <code>replace()</code> function that allows us to replace a specific pattern in a given string with something else. We can also specify the maximum number of replacements we want to make, starting from the smallest index.</p>
+							<h3>Parameters</h3>
+							<p>
+								<ul>
+									<li><code>old</code>: substring pattern to be replaced</li>
+									<li><code>new</code>: new substring replacing old</li>
+									<li><code>count</code>: number of replacements starting from lowest index <strong>[optional]</strong></li>
+								</ul>
+							</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span>text</span><span class="code-operator"> = '</span><span class="code-string">Jordan won many rings. Jordan is the GOAT. Jordan played for the Bulls.</span><span class="code-operator">'</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Replace all occurrences of Jordan with Kobe</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">'))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Since Kobe never played for the Bulls, replace on first 2 occurrences of Jordan with Kobe</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">text</span><span class="code-operator">.</span><span class="code-function">replace</span><span class="code-operator">('</span><span class="code-string">Jordan</span><span class="code-operator">', '</span><span class="code-string">Kobe</span><span class="code-operator">',</span><span class="code-parameter"> 2</span><span class="code-operator">))</span></div>
+									</code>
+								</pre>
+							</div>
+						</div>
+						<!-- STRINGS FORMATTING -->
+						<div id="blog-section-8" class="blog-section">
+							<h2>Strings Formatting</h2>
+							<p>There are several ways to concatenate multiple strings into a single one. If we want to join multiple string literals, it suffices to write them one next to another, with or without spaces. Python parses the string literals and joins them together. However, if we want to concatenate string variables, this will not work. Instead, we can use the <code>+</code> operator between two variables or strings to concatenate them. Also, if we want to repeat and concatenate a specific string multiple times, we can use the <code>*</code> operator.</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span class="code-comment"># Concatenante string literals, prints LeBron James is King</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">LeBron</span><span class="code-operator">' '</span><span class="code-string">James</span><span class="code-operator">' '</span><span class="code-string">is</span><span class="code-operator">' '</span><span class="code-string">King</span><span class="code-operator">')</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Store string in variables</span></div>
+										<div class="code-line"><span>first</span><span class="code-operator"> = '</span><span class="code-string">Kevin</span><span class="code-operator">'; </span><span>last</span><span class="code-operator"> = '</span><span class="code-string"> Durant</span><span class="code-operator">'; </span><span>team</span><span class="code-operator"> = '</span><span class="code-string">Brooklyn Nets</span><span class="code-operator">'; </span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Concatenate using + operator, prints Kevin Durant plays on the Brooklyn Nets</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-function">first</span><span class="code-operator"> + </span><span class="code-function">last</span><span class="code-operator"> + '</span><span class="code-string"> plays on the </span><span class="code-operator">' + </span><span class="code-function">team</span><span class="code-operator">)</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Concatenate repeated string using * operator, prints Go Durant! Go Durant! Go Durant!</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(('</span><span class="code-string">Go</span><span class="code-operator">' + </span><span class="code-function">last</span><span class="code-operator"> + '</span><span class="code-string">! </span><span class="code-operator">') * </span><span class="code-parameter"> 3</span><span class="code-operator">)</span></div>
+									</code>
+								</pre>
+							</div>
+							<p>We can also concatenate strings by using the <code>join()</code> function, where we can specify a separator between them. Given an iterable (ie. list, tuple) as input, the function returns all the elements combined into one string.</p>
+							<h3>Parameters</h3>
+							<p>
+								<ul>
+									<li><code>iterable</code>: list, tuple, string, dictionary, etc.</li>
+								</ul>
+							</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span class="code-comment"># Concatenate strings using the join() function, prints Kevin Durant signed with the Brooklyn Nets</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(''.</span><span class="code-function">join</span><span class="code-operator">([</span><span class="code-function">first</span><span class="code-operator">, </span><span class="code-function">last</span><span class="code-operator">, '</span><span class="code-string"> signed with the </span><span class="code-operator">', </span><span class="code-function">team</span><span class="code-operator">]))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Concatenate strings with dash separator, prints boston-celtics-2017-2018</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('-'.</span><span class="code-function">join</span><span class="code-operator">(['</span><span class="code-string">boston</span><span class="code-operator">', '</span><span class="code-string">celtics</span><span class="code-operator">', '</span><span class="code-string">2007</span><span class="code-operator">', '</span><span class="code-string">2008</span><span class="code-operator">']))</span></div>
+									</code>
+								</pre>
+							</div>
+							<p>The most common way of concatenating strings is to use the <code>format()</code> function, which takes as input variables to be included in the string. Using curly braces <code>{}</code> as replacement fields, we can determine the position of each input argument. The first argument goes to the first pair of braces, the second goes to the next and so on. We can also specify which argument goes in place of each pair of braces by adding the index or name of the keyword argument.</p>
+							<h3>Parameters</h3>
+							<p>
+								<ul>
+									<li><code>*args, **kwargs</code>: any number of input parameters.</li>
+								</ul>
+							</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span class="code-comment"># Store string in variables</span></div>
+										<div class="code-line"><span>first</span><span class="code-operator"> = '</span><span class="code-string">Steph</span><span class="code-operator">'; </span><span>last</span><span class="code-operator"> = '</span><span class="code-string">Curry</span><span class="code-operator">'; </span><span>team</span><span class="code-operator"> = '</span><span class="code-string">Golden State Warriors</span><span class="code-operator">'; </span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Concatenate string variables using format()</span></div>
+										<div class="code-line"><span class="code-comment"># Prints Steph Curry from downtown, BANG! Golden State Warriors with the lead!</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{} {} </span><span class="code-string"> from downtown, BANG! </span><span class="code-operator">{}</span><span class="code-string"> with the lead!</span><span class="code-operator">'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-function">first</span><span class="code-operator">, </span><span class="code-function">last</span><span class="code-operator">, </span><span class="code-function">team</span><span class="code-operator">))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Specify index of replacement fields, prints one, two, three</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{</span><span>1</span><span class="code-operator">}, {</span><span>2</span><span class="code-operator">}, {</span><span>0</span><span class="code-operator">}'.</span><span class="code-function">format</span><span class="code-operator">(*('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Do arithmetic in the arguments, prints Dirk Nowitzki wore number 41</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">Dirk Nowitzki wore number </span><span class="code-operator">{}'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-parameter">36</span><span class="code-operator"> + </span><span class="code-parameter">5</span><span class="code-operator">))</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Using keyword</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">('{</span><span>lastname</span><span class="code-operator">}</span><span class="code-string"> has a beard</span><span class="code-operator">'.</span><span class="code-function">format</span><span class="code-operator">(</span><span class="code-parameter">lastname</span><span class="code-operator"> = </span><span class="code-operator">'</span><span class="code-string">Harden</span><span class="code-operator">'))</span></div>
+									</code>
+								</pre>
+							</div>
+							<p>There is also a new way of formatting strings, and that is with the <code>f-Strings</code>, which all beging with an <code>f</code> in front of the string literal. This new syntax has been available since Python version 3.6, and it allows us to embed replacement variables within the string itself. Touted as an improved and more elegant method compared to <code>format()</code>, this new syntax can make code cleaner and easier to understand. We can still call functions directly, use objects created from classes and so on.</p>
+							<p>Although this new way of formatting is fancy and can make code cleaner, we need to remind ourselves that it is an addition, and not a replacement. We can still use <code>format()</code>, and in some instances it makes more sense to do so. For instance, in the second example where we want to print out <code>One, Two, Three</code>, the old technique is more suitable. Since the data is in a tuple, we can unpack it within the function and assign the replacement positions in the string. With <code>f-Strings</code>, we cannot leverage the unpacking functionality, and would have to access each item of the tuple individually.</p>
+							<div class="code-snippet">
+								<pre class="code-lang-python">
+									<code class="code-lang-python">
+										<div class="code-line"><span class="code-comment"># Concatenate string variables using f-String</span></div>
+										<div class="code-line"><span class="code-comment"># Prints Steph Curry from downtown, BANG! Golden State Warriors with the lead!</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(<span class="code-keyword">f</span>'{</span><span class="code-function">first</span><span class="code-operator">} {</span><span class="code-function">last</span><span class="code-operator">} </span><span class="code-string"> from downtown, BANG! </span><span class="code-operator">{</span><span class="code-function">team</span><span class="code-operator">}</span><span class="code-string"> with the lead!</span><span class="code-operator">')</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Need to access each item in tuple</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-keyword">f</span><span class="code-operator">"{('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">1</span><span class="code-operator">]</span><span class="code-string">, </span><span class="code-operator">('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">2</span><span class="code-operator">]</span><span class="code-string">, </span><span class="code-operator">('</span><span class="code-string">three</span><span class="code-operator">', '</span><span class="code-string">one</span><span class="code-operator">', '</span><span class="code-string">two</span><span class="code-operator">')[</span><span class="code-parameter">0</span><span class="code-operator">]}")</span></div>
+										<br>
+										<div class="code-line"><span class="code-comment"># Do arithmetic inside string, prints Dirk Nowitzki wore number 41</span></div>
+										<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span class="code-keyword">f</span><span class="code-operator">'</span><span class="code-string">Dirk Nowitzki wore number </span><span class="code-operator">{</span><span class="code-parameter">36</span><span class="code-operator"> + </span><span class="code-parameter">5</span><span class="code-operator">}')</span></div>
+									</code>
+								</pre>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- END BLOG -->
 			</div>
 		</div>
+		<!-- END BLOG -->
 	</div>
-	<!-- BEGIN SCRIPTS -->
-	<script src="../../assets/js/functions.js"></script>
-	<!-- END SCRIPTS -->
+</div>
+</div>
+<!-- BEGIN SCRIPTS -->
+<script src="../../assets/js/functions.js"></script>
+<!-- END SCRIPTS -->
 </body>
 <footer>
 	<div id="footer-main-container">

@@ -138,7 +138,7 @@ ul {
     max-width: 980px;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
-    line-height: 150%;
+    line-height: 160%;
     color: #2e3131;
     cursor: default;
 }
@@ -452,6 +452,7 @@ ul {
     color: #FFFFFF;
 }
 .blog-reading-time {
+    display: none;
     font-style: italic;
 }
 .blog-date {
@@ -468,6 +469,18 @@ ul {
     border-radius: 5px;
     font-size: 81%;
     font-weight: normal;
+}
+#blog-table-of-content > ul {
+    background: lightgrey;
+    border-radius: 5px;
+    padding: 15px;
+}
+#blog-table-of-content li {
+    margin-left: 20px;
+    list-style-type: disc;
+}
+.blog-section {
+    margin-bottom: 50px;
 }
 /* CODE SNIPPET */
 pre {
