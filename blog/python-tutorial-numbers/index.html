@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Leo Wong | Blog | Python - Numbers </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="description" content="Compilation of useful python commands when working with numbers. We explore the order of operations, casting, built-in functions and math package.">
+	<meta name="keywords" content="Leo, Wong, python, numbers, tutorial, code, commands, compilation, operations, order, round, cast, float, int, math, package, increment, absolute">
+	<meta name="author" content="Leo Wong">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156348914-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-156348914-1');
+	</script>
+	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/media-queries.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="../../assets/img/flavicon.png"/>
+	<script src="https://kit.fontawesome.com/a93733e62b.js" crossorigin="anonymous"></script>
+	<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+	<div id="nav-bar" class="bottom-shadow">
+		<div id="nav-bar-wrapper">
+			<div id="nav-bar-name">
+				Leo Wong
+			</div>
+			<div id="nav-bar-menu" class="nav-bar-menu-desktop">
+				<div id="nav-bar-about" class="nav-bar-item">
+					About
+				</div>
+				<div id="nav-bar-projects" class="nav-bar-item">
+					Projects
+				</div>
+				<div id="nav-bar-blog" class="nav-bar-item nav-bar-active">
+					Blog
+				</div>
+				<div id="nav-bar-cv" class="nav-bar-item">
+					<a href="../../assets/cv/leo_wong_resume.pdf">CV</a>
+				</div>
+			</div>
+			<div id="nav-bar-hamburger" class="nav-bar-item">
+				<i class="fas fa-bars"></i>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper" class="padding-top-75px">
+		<div id="content-blog">
+			<div id="side-page-blog">
+				<!-- BEGIN BLOG -->
+				<div id="blog-section" class="section-container">
+					<div id="blog-content">
+						<!--BLOG POST -->
+						<div id="blog-post" class="blog-post">
+							<div id="blog-title" class="blog-title">
+								<h1>Python - Numbers</h1>
+							</div>
+							<div id="blog-reading-time" class="blog-reading-time">
+								5 min read
+							</div>
+							<div id="blog-date" class="blog-date">
+								10 September 2020
+							</div>
+							<div id="blog-content" class="blog-content">
+								<p>In this post, we will go over the basics of <strong>numbers</strong> in Python and explore the various built-in functionalities available to us. Each section comes with a brief description and some sample code.</p>
+								<div id="blog-table-of-content">
+									<h2>Table of Contents</h2>
+									<ul>
+										<li><a href="#blog-section-1">Order of Operations</a></li>
+										<li><a href="#blog-section-2">Incrementing Values</a></li>
+										<li><a href="#blog-section-3">Built-in Functions</a></li>
+										<li><a href="#blog-section-4">Casting</a></li>
+										<li><a href="#blog-section-5"><code>math</code> Module</a></li>
+									</ul>
+								</div>
+								<!-- ORDER OF OPERATIONS -->
+								<div id="blog-section-1" class="blog-section">
+									<h2>Order of Operations</h2>
+									<p>Whenever there are multiple operators, Python follows the same order of procedure as usual mathematical expressions. More precisely, the operator precedence is defined as follows:</p>
+									<ol>
+										<li>Parentheses: </li>
+										<li>Exponents:</li>
+										<li>Multiplication/Division:</li>
+										<li>Addition/Substration:</li>
+									</ol>
+									<p>Operators with equivalent precedence are evaluated from left to right, with the exception of exponents.</p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												<div class="code-line"><span class="code-comment"># New line using \n</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">This is the first line.</span><span class="code-operator">\n</span><span class="code-string">This is the second line</span><span class="code-operator">')</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># New line using '''</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('''</span><span class="code-string">This is the first line.</span></div>
+												<div class="code-line"><span class="code-string">This is the second line.</span><span class="code-operator">''')</span></div>
+											</code>
+										</pre>
+									</div>
+								</div>
+								<!-- INCREMENTING VALUES -->
+								<div id="blog-section-2" class="blog-section">
+									<h2>Incrementing Values</h2>
+									<p></p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												
+											</code>
+										</pre>
+									</div>
+								</div>
+								<!-- BUILT-IN FUNCTIONS -->
+								<div id="blog-section-3" class="blog-section">
+									<h2>Built-in Functions</h2>
+									<p></p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												
+											</code>
+										</pre>
+									</div>
+								</div>
+								<!-- CASTING -->
+								<div id="blog-section-4" class="blog-section">
+									<h2>Casting</h2>
+									<p></p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												
+											</code>
+										</pre>
+									</div>
+								</div>
+								<!-- MATH MODULE -->
+								<div id="blog-section-5" class="blog-section">
+									<h2>math Module</h2>
+									<p></p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+
+											</code>
+										</pre>
+									</div>
+								</div>					
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END BLOG -->
+			</div>
+		</div>
+	</div>
+	<!-- BEGIN SCRIPTS -->
+	<script src="../../assets/js/functions.js"></script>
+	<!-- END SCRIPTS -->
+</body>
+<footer>
+	<div id="footer-main-container">
+		<div id="footer-social">
+			<a href="mailto: leo.wong@umontreal.ca">
+				<div id="footer-social-email-icon" class="footer-social-icon">
+					<i class="fas fa-envelope-square"></i>
+				</div>
+			</a>
+			<a href="https://www.linkedin.com/in/leo-wong-486343120" target="_blank">
+				<div id="footer-social-linkedin-icon" class="footer-social-icon">
+					<i class="fab fa-linkedin"></i>
+				</div>
+			</a>
+			<a href="https://github.com/leokfwong" target="_blank">
+				<div id="footer-social-github-icon" class="footer-social-icon">
+					<i class="fab fa-github-square"></i>
+				</div>
+			</a>
+			<a href="https://www.researchgate.net/profile/Leo_Wong19" target="_blank">
+				<div id="footer-social-researchgate-icon" class="footer-social-icon">
+					<i class="fab fa-researchgate"></i>
+				</div>
+			</a>
+		</div>
+		<div id="footer-copyright">
+			<small>&copy; Copyright 2020 Leo Wong</small>
+		</div>
+		<div id="back-to-top">
+			<div id="back-to-top-button">
+				Back to Top
+			</div>
+		</div>
+	</div>
+</footer>
+</html>

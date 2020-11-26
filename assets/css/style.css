@@ -578,9 +578,16 @@ footer {
     text-align: center;
 }
 #back-to-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     position: absolute;
     right: 50px;
+}
+#back-to-top img {
+    padding-left: 10px;
+    height: 25px;
 }
 /* EXTERNAL BLOG */
 #content-blog {
