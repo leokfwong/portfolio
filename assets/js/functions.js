@@ -1,5 +1,7 @@
 window.onload = function() {
+
 	console.log("Javascript working, website loaded.");
+
 	// Initialize or fetch current view
 	let view = sessionStorage.getItem("view");
 	if (view == null) {
@@ -10,19 +12,24 @@ window.onload = function() {
 	if (viewmode == null) {
 		localStorage.setItem("viewmode", "light");
 	}
-
+	// Function to take care of alternating between light and dark mode
 	function applyLightswitch(param_dict) {
+		// Body background color
 		document.getElementsByTagName("body")[0].style.background = param_dict.bodyBackground;
+		// Wrapper text color
 		document.getElementById("wrapper").style.color = param_dict.color;
+		// Publication section text color
 		let publications_content = document.getElementById("publications-content");
 		if (publications_content != undefined) {
 			publications_content.style.color = param_dict.color;
 		}
+		// Social icon and text color
 		for (social_item of document.getElementsByClassName("social-item")) {
 			if (social_item != undefined) {
 				social_item.style.color = param_dict.color;
 			}
 		}
+		// Blog post title text color
 		for (blog of document.getElementsByClassName("blog-title")) {
 			let h2 = blog.getElementsByTagName("h2")[0];
 			if (h2 != undefined) {
@@ -31,6 +38,7 @@ window.onload = function() {
 				}
 			}
 		}
+		// Code highlight color
 		for (code of document.getElementsByTagName("code")) {
 			if (code != undefined) {
 				if (code.className == "") {
@@ -39,14 +47,20 @@ window.onload = function() {
 				}
 			}
 		}
+		// Blog table of contents item text color
 		for (item of document.getElementsByClassName("blog-section-item")) {
 			item.style.color = param_dict.color;
 		}
+		// Blog references text color
 		for (item of document.getElementsByClassName("reference_item")) {
 			item.style.color = param_dict.color;	
 		}
+		// Selection text and background color
+		let dynamic_style = document.getElementById("dynamic-style");
+		dynamic_style.innerHTML = "::selection { background-color: " + param_dict.color + "; color: " + param_dict.bodyBackground + ";}"
 	}
 
+	// Check if viewmode is set, if not set to light by default and display theme accordingly
 	let lightswitch_image = document.getElementById("nav-bar-lightswitch-image");
 	viewmode = localStorage.getItem("viewmode");
 	if (viewmode == "light") {
@@ -63,7 +77,7 @@ window.onload = function() {
 		on_homepage = false
 	};
 
-	// Toggle dark mode
+	// Toggle between light and dark mode
 	let lightswitch = document.getElementById("nav-bar-lightswitch");
 	lightswitch.addEventListener("click", function() {
 		let viewmode = localStorage.getItem("viewmode");
