@@ -2,12 +2,12 @@ window.onload = function() {
 	console.log("Javascript working, website loaded.");
 	// Initialize or fetch current view
 	let view = sessionStorage.getItem("view");
-	if (view == undefined) {
+	if (view == null) {
 		sessionStorage.setItem("view", "about");
 	}
 	// Initialize or fetch current view mode (ie. dark mode)
 	let viewmode = localStorage.getItem("viewmode");
-	if (viewmode == undefined) {
+	if (viewmode == null) {
 		localStorage.setItem("viewmode", "light");
 	}
 
