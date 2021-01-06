@@ -48,6 +48,7 @@ window.onload = function() {
 	}
 
 	let lightswitch_image = document.getElementById("nav-bar-lightswitch-image");
+	viewmode = localStorage.getItem("viewmode");
 	if (viewmode == "light") {
 		lightswitch_image.src = "/assets/img/lightmode_icon.png";
 		applyLightswitch({"bodyBackground":"white", "color":"#242424", "codeBackground":"rgba(0,0,0,.1)"})
