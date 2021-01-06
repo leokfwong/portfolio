@@ -40,10 +40,14 @@ a:link {
     font-style: normal;
     word-wrap: break-word;
 }
+.link-2-website {
+    color: #82aaff;
+    font-weight: bold;
+}
 a:visited {
     /*color: #551A8B;*/
-    color: #242424;
-    font-weight: bold;
+    /*color: #242424;*/
+    /*font-weight: bold;*/
     word-wrap: break-word;
 }
 h2 a:link,
