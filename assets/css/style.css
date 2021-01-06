@@ -99,6 +99,10 @@ ul {
     cursor: default;
     color: white;
 }
+#nav-bar-lightswitch img {
+    border: solid 3px white;
+    border-radius: 20px;
+}
 #nav-bar-menu {
     justify-content: flex-end;
     align-items: center;

@@ -5,12 +5,36 @@ window.onload = function() {
 	if (view == undefined) {
 		sessionStorage.setItem("view", "about");
 	}
+	// Initialize or fetch current view mode (ie. dark mode)
+	let viewmode = localStorage.getItem("viewmode");
+	if (viewmode == undefined) {
+		localStorage.setItem("viewmode", "light");
+	}
+	let lightswitch_image = document.getElementById("nav-bar-lightswitch-image");
+	if (viewmode == "light") {
+		lightswitch_image.src = "assets/img/lightmode_icon.png";
+	} else {
+		lightswitch_image.src = "assets/img/darkmode_icon.png";
+	}
 
 	let url = window.location.href;
 	let on_homepage = true;
 	if ((url.search("/blog/") > -1) | (url.search("/projects/") > -1)) {
 		on_homepage = false
 	};
+
+	// Toggle dark mode
+	let lightswitch = document.getElementById("nav-bar-lightswitch");
+	lightswitch.addEventListener("click", function() {
+		let viewmode = localStorage.getItem("viewmode");
+		if (viewmode == "light") {
+			localStorage.setItem("viewmode", "dark");
+			lightswitch_image.src = "assets/img/darkmode_icon.png";
+		} else {
+			localStorage.setItem("viewmode", "light");
+			lightswitch_image.src = "assets/img/lightmode_icon.png";
+		}
+	});
 
 	// Hamburger on mobile
 	let hamburger_button = document.getElementById("nav-bar-hamburger");
