@@ -10,11 +10,50 @@ window.onload = function() {
 	if (viewmode == undefined) {
 		localStorage.setItem("viewmode", "light");
 	}
+
+	function applyLightswitch(param_dict) {
+		document.getElementsByTagName("body")[0].style.background = param_dict.bodyBackground;
+		document.getElementById("wrapper").style.color = param_dict.color;
+		let publications_content = document.getElementById("publications-content");
+		if (publications_content != undefined) {
+			publications_content.style.color = param_dict.color;
+		}
+		for (social_item of document.getElementsByClassName("social-item")) {
+			if (social_item != undefined) {
+				social_item.style.color = param_dict.color;
+			}
+		}
+		for (blog of document.getElementsByClassName("blog-title")) {
+			let h2 = blog.getElementsByTagName("h2")[0];
+			if (h2 != undefined) {
+				if (h2.childNodes[0].href != undefined) {
+					h2.childNodes[0].style.color = param_dict.color;	
+				}
+			}
+		}
+		for (code of document.getElementsByTagName("code")) {
+			if (code != undefined) {
+				if (code.className == "") {
+					code.style.color = param_dict.color;
+					code.style.background = param_dict.codeBackground;
+				}
+			}
+		}
+		for (item of document.getElementsByClassName("blog-section-item")) {
+			item.style.color = param_dict.color;
+		}
+		for (item of document.getElementsByClassName("reference_item")) {
+			item.style.color = param_dict.color;	
+		}
+	}
+
 	let lightswitch_image = document.getElementById("nav-bar-lightswitch-image");
 	if (viewmode == "light") {
-		lightswitch_image.src = "assets/img/lightmode_icon.png";
+		lightswitch_image.src = "/assets/img/lightmode_icon.png";
+		applyLightswitch({"bodyBackground":"white", "color":"#242424", "codeBackground":"rgba(0,0,0,.1)"})
 	} else {
-		lightswitch_image.src = "assets/img/darkmode_icon.png";
+		lightswitch_image.src = "/assets/img/darkmode_icon.png";
+		applyLightswitch({"bodyBackground":"#101010", "color":"lightgrey", "codeBackground":"rgba(255,255,255,.21)"})
 	}
 
 	let url = window.location.href;
@@ -29,10 +68,12 @@ window.onload = function() {
 		let viewmode = localStorage.getItem("viewmode");
 		if (viewmode == "light") {
 			localStorage.setItem("viewmode", "dark");
-			lightswitch_image.src = "assets/img/darkmode_icon.png";
+			lightswitch_image.src = "/assets/img/darkmode_icon.png";
+			applyLightswitch({"bodyBackground":"#101010", "color":"lightgrey", "codeBackground":"rgba(255,255,255,.15)"})
 		} else {
 			localStorage.setItem("viewmode", "light");
-			lightswitch_image.src = "assets/img/lightmode_icon.png";
+			lightswitch_image.src = "/assets/img/lightmode_icon.png";
+			applyLightswitch({"bodyBackground":"white", "color":"#242424", "codeBackground":"rgba(0,0,0,.1)"})
 		}
 	});
 
