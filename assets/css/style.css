@@ -604,6 +604,10 @@ footer {
     padding-left: 11px;
     height: 25px;
 }
+/* EQUATIONS */
+mjx-container[jax="CHTML"] {
+    z-index: -1;
+}
 /* EXTERNAL BLOG */
 #content-blog {
     width: 90%;
