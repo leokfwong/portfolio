@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title> Leo Wong | Blog | Python - Numbers </title>
+	<title> Leo Wong | Blog | Intro to Python - Numbers </title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	<meta name="description" content="Compilation of useful python commands when working with numbers. We explore the order of operations, casting, built-in functions and math package.">
@@ -64,24 +64,24 @@
 						<!--BLOG POST -->
 						<div id="blog-post" class="blog-post">
 							<div id="blog-title" class="blog-title">
-								<h1>Python - Numbers</h1>
+								<h1>Intro to Python - Numbers</h1>
 							</div>
 							<div id="blog-reading-time" class="blog-reading-time">
 								5 min read
 							</div>
 							<div id="blog-date" class="blog-date">
-								10 September 2020
+								06 February 2021
 							</div>
 							<div id="blog-content" class="blog-content">
 								<p>In this post, we will go over the basics of <strong>numbers</strong> in Python and explore the various built-in functionalities available to us. Each section comes with a brief description and some sample code.</p>
 								<div id="blog-table-of-content">
 									<h2>Table of Contents</h2>
 									<ul>
-										<li><a href="#blog-section-1">Order of Operations</a></li>
-										<li><a href="#blog-section-2">Incrementing Values</a></li>
-										<li><a href="#blog-section-3">Built-in Functions</a></li>
-										<li><a href="#blog-section-4">Casting</a></li>
-										<li><a href="#blog-section-5"><code>math</code> Module</a></li>
+										<li><a class="blog-section-item" href="#blog-section-1">Order of Operations</a></li>
+										<li><a class="blog-section-item" href="#blog-section-2">Incrementing Values</a></li>
+										<li><a class="blog-section-item" href="#blog-section-3">Built-in Functions</a></li>
+										<li><a class="blog-section-item" href="#blog-section-5"><code>math</code> Module</a></li>
+										<li><a class="blog-section-item" href="#blog-section-4">Casting</a></li>
 									</ul>
 								</div>
 								<!-- ORDER OF OPERATIONS -->
@@ -89,21 +89,29 @@
 									<h2>Order of Operations</h2>
 									<p>Whenever there are multiple operators, Python follows the same order of procedure as usual mathematical expressions. More precisely, the operator precedence is defined as follows:</p>
 									<ol>
-										<li>Parentheses: </li>
-										<li>Exponents:</li>
-										<li>Multiplication/Division:</li>
-										<li>Addition/Substration:</li>
+										<li>Parentheses <code>()</code></li>
+										<li>Exponents <code>**</code></li>
+										<li>Multiplication <code>*</code>, Division <code>/</code>, Floor <code>//</code>, Modulo <code>%</code></li>
+										<li>Addition <code>+</code>, Substration <code>-</code></li>
 									</ol>
-									<p>Operators with equivalent precedence are evaluated from left to right, with the exception of exponents.</p>
+									<p>Operators with equivalent precedence are evaluated from left to right, with the exception of exponents. Given the properties of right-associativity, exponents are evaluated from right to left instead. For instance, given the equation \(x^{y^{z}}\), \(y^{z}\) would be computed first and not \(x^{y}\).</p>
 									<div class="code-snippet">
 										<pre class="code-lang-python">
 											<code class="code-lang-python">
-												<div class="code-line"><span class="code-comment"># New line using \n</span></div>
-												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('</span><span class="code-string">This is the first line.</span><span class="code-operator">\n</span><span class="code-string">This is the second line</span><span class="code-operator">')</span></div>
+												<div class="code-line"><span class="code-comment"># Order of operations left to right</span></div>
+												<div class="code-line"><span class="code-parameter">2</span><span class="code-operator"> * </span><span class="code-parameter">3</span><span class="code-operator"> + </span><span class="code-parameter">1</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>7</span></div>
 												<br>
-												<div class="code-line"><span class="code-comment"># New line using '''</span></div>
-												<div class="code-line"><span class="code-function">print</span><span class="code-operator">('''</span><span class="code-string">This is the first line.</span></div>
-												<div class="code-line"><span class="code-string">This is the second line.</span><span class="code-operator">''')</span></div>
+												<div class="code-line"><span class="code-comment"># Using parentheses</span></div>
+												<div class="code-line"><span class="code-parameter">2</span><span class="code-operator"> * (</span><span class="code-parameter">3</span><span class="code-operator"> + </span><span class="code-parameter">1</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>8</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Right-associtivity for exponents</span></div>
+												<div class="code-line"><span class="code-operator">(</span><span class="code-parameter">2</span><span class="code-operator"> **  </span><span class="code-parameter">3</span><span class="code-operator"> ** </span><span class="code-parameter">4</span><span class="code-operator">) == (</span><span class="code-parameter">2</span><span class="code-operator"> **  (</span><span class="code-parameter">3</span><span class="code-operator"> ** </span><span class="code-parameter">4</span><span class="code-operator">))</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>True</span></div>
+												<br>
+												<div class="code-line"><span class="code-operator">(</span><span class="code-parameter">2</span><span class="code-operator"> **  </span><span class="code-parameter">3</span><span class="code-operator"> ** </span><span class="code-parameter">4</span><span class="code-operator">) == ((</span><span class="code-parameter">2</span><span class="code-operator"> **  </span><span class="code-parameter">3</span><span class="code-operator">) ** </span><span class="code-parameter">4</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>False</span></div>
 											</code>
 										</pre>
 									</div>
@@ -111,11 +119,21 @@
 								<!-- INCREMENTING VALUES -->
 								<div id="blog-section-2" class="blog-section">
 									<h2>Incrementing Values</h2>
-									<p></p>
+									<p>Updating the value of a variable is a very common action in many programming languages, and it's no different in Python. There are two main ways of incrementing a numeric variable: the first consists of applying an operation (ie. <code>+</code>, <code>-</code>, <code>*</code>, etc.) on a given variable and reassigning it to itself, whereas the second technique involves a special command (ie. <code>+=</code>, <code>-=</code>, <code>*=</code>, etc.) which accomplishes the same thing. </p>
 									<div class="code-snippet">
 										<pre class="code-lang-python">
 											<code class="code-lang-python">
-												
+												<div class="code-line"><span>count</span><span class="code-operator"> = </span><span class="code-parameter">0</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Option 1, apply operation on variable and reassign to variable</span></div>
+												<div class="code-line"><span>count</span><span class="code-operator"> = </span><span>count</span><span class="code-operator"> + </span><span class="code-parameter">1</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span>count</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>1</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Option 2, use special syntax to achieve the same thing</span></div>
+												<div class="code-line"><span>count</span><span class="code-operator"> += </span><span class="code-parameter">1</span></div>
+												<div class="code-line"><span class="code-function">print</span><span class="code-operator">(</span><span>count</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>2</span></div>
 											</code>
 										</pre>
 									</div>
@@ -123,11 +141,47 @@
 								<!-- BUILT-IN FUNCTIONS -->
 								<div id="blog-section-3" class="blog-section">
 									<h2>Built-in Functions</h2>
-									<p></p>
+									<p>Although the majority of math related function are found in the <code>math</code> module, there are still a few built-in math functions that are quite commonly used. The following math functions does not required the import of any additional modules.</p>
 									<div class="code-snippet">
 										<pre class="code-lang-python">
 											<code class="code-lang-python">
-												
+												<div class="code-line"><span class="code-comment"># Absolute value</span></div>
+												<div class="code-line"><span class="code-function">abs</span><span class="code-operator">(</span><span class="code-parameter">-9</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>9</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Exponent 2 to the power 5</span></div>
+												<div class="code-line"><span class="code-function">pow</span><span class="code-operator">(</span><span class="code-parameter">2</span><span class="code-operator">, </span><span class="code-parameter">5</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>32</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Rounding to 2 decimal places</span></div>
+												<div class="code-line"><span class="code-function">round</span><span class="code-operator">(</span><span class="code-parameter">3.14159</span><span class="code-operator">, </span><span class="code-parameter">2</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>3.14</span></div>
+											</code>
+										</pre>
+									</div>
+								</div>
+								<!-- MATH MODULE -->
+								<div id="blog-section-5" class="blog-section">
+									<h2><code>math</code> Module</h2>
+									<p>The <code>math</code> module contains the bulk of math related functions. Only a few of them are presented below, but there is documentation covering the extensive list of functions from this module<sup>1</sup>.</p>
+									<div class="code-snippet">
+										<pre class="code-lang-python">
+											<code class="code-lang-python">
+												<div class="code-line"><span class="code-comment"># Import math module</span></div>
+												<div class="code-line"><span>import </span><span class="code-keyword">math</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Ceiling</span></div>
+												<div class="code-line"><span class="code-keyword">math</span><span class="code-operator">.</span><span class="code-function">ceil</span><span class="code-operator">(</span><span class="code-parameter">2.43</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>3</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Greatest Common Divisor</span></div>
+												<div class="code-line"><span class="code-keyword">math</span><span class="code-operator">.</span><span class="code-function">gcd</span><span class="code-operator">(</span><span class="code-parameter">24</span><span class="code-operator">, </span><span class="code-parameter">42</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>6</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Logarithm</span></div>
+												<div class="code-line"><span class="code-keyword">math</span><span class="code-operator">.</span><span class="code-function">log2</span><span class="code-operator">(</span><span class="code-parameter">8</span><span class="code-operator">)</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>3.0</span></div>
+												<br>
 											</code>
 										</pre>
 									</div>
@@ -135,27 +189,31 @@
 								<!-- CASTING -->
 								<div id="blog-section-4" class="blog-section">
 									<h2>Casting</h2>
-									<p></p>
+									<p>Casting allows us to convert a variable from one data type to another. For instance, in order to use math related functions, we would first need to convert any variable involved into the approriate data type.</p>
 									<div class="code-snippet">
 										<pre class="code-lang-python">
 											<code class="code-lang-python">
-												
+												<div class="code-line"><span class="code-comment"># Multiplying a string</span></div>
+												<div class="code-line"><span class="code-operator">'</span><span class="code-string">10</span><span class="code-operator">' * </span><span class="code-parameter">2</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>'1010'</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Casting string to integer, then multiplying integer</span></div>
+												<div class="code-line"><span class="code-attribute">int</span><span class="code-operator">('</span><span class="code-string">10</span><span class="code-operator">') * </span><span class="code-parameter">2</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>20</span></div>
+												<br>
+												<div class="code-line"><span class="code-comment"># Casting string to float to preserve decimals</span></div>
+												<div class="code-line"><span class="code-attribute">float</span><span class="code-operator">('</span><span class="code-string">5.5</span><span class="code-operator">') / </span><span class="code-parameter">2</span></div>
+												<div class="code-line"><span class="code-output">> </span><span>2.75</span></div>
 											</code>
 										</pre>
 									</div>
 								</div>
-								<!-- MATH MODULE -->
-								<div id="blog-section-5" class="blog-section">
-									<h2>math Module</h2>
-									<p></p>
-									<div class="code-snippet">
-										<pre class="code-lang-python">
-											<code class="code-lang-python">
-
-											</code>
-										</pre>
-									</div>
-								</div>					
+								<div class="blog-resource">
+									<h3>Resources</h3>
+									<ol>
+										<li><a class="reference_item" href=https://docs.python.org/3/library/math.html target="_blank">https://docs.python.org/3/library/math.html</a></li>
+									</ol>
+								</div>			
 							</div>
 						</div>
 					</div>

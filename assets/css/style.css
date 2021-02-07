@@ -536,6 +536,9 @@ pre code {
 .code-keyword {
     color: #c792ea;
 }
+.code-output {
+    color: #3fc380;
+}
 .code-tag {
     color: #f07178;
 }
@@ -611,6 +614,9 @@ footer {
 /* EQUATIONS */
 mjx-container[jax="CHTML"] {
     z-index: -1;
+}
+mjx-container.MathJax.CtxtMenu_Attached_0 {
+    position: inherit !important;
 }
 /* EXTERNAL BLOG */
 #content-blog {
