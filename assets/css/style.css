@@ -96,9 +96,19 @@ ul {
 }
 .udem-color {
     color: #0062b2;
+    font-weight: bold;
 }
 .mcgill-color {
     color: #cd202c;
+    font-weight: bold;
+}
+.nba2k21-color {
+    color: #eb242b;
+    font-weight: bold;
+}
+.python-color {
+    color: #3773A5;
+    font-weight: bold;
 }
 /* NAV BAR */
 #nav-bar {
