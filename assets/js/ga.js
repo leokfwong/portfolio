@@ -4,5 +4,4 @@ document.getElementById("nav-bar-lightswitch-image").addEventListener("click", f
         'event_category': 'navigation',
         'event_label': 'ga_navbar_lightswitch_toggle'
     });
-    console.log("Check")
 });
