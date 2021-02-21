@@ -22,6 +22,40 @@ body {
     from { opacity:0; }
     to { opacity: 1; }
 }
+/* MISC */
+.flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.width-30 {
+    width: 30%;
+}
+.width-35 {
+    width: 35%;
+}
+.width-40 {
+    width: 40%;
+}
+.width-50 {
+    width: 50%;
+}
+.width-60 {
+    width: 60%;
+}
+.width-65 {
+    width: 65%;
+}
+.width-70 {
+    width: 70%;
+}
 /* SHADOWS */
 .bottom-shadow {
   -moz-box-shadow: 1px 2px 15px rgba(0,0,0,.42);
@@ -487,6 +521,24 @@ ul {
 }
 .blog-section {
     margin-bottom: 50px;
+}
+.blog-section-container {
+    margin: 25px 0px 25px 0px;
+}
+.blog-section-container-image-caption {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.blog-section-container-image {
+    max-width: 100%;
+}
+.blog-section-container-caption {
+    margin-top: 10px;
+    font-size: 90%;
+    width: 100%;
+    text-align: center;
 }
 /* CODE SNIPPET */
 pre {
