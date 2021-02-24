@@ -128,6 +128,10 @@ img[data-src] {
     font-family: Nicollia;
     src: url(../font/Nicollia/Nicollia-Italic.otf);
 }
+@font-face {
+    font-family: Museum;
+    src: url(../font/Museum/MuseumBible.otf);
+}
 #wrapper {
     width: 100%;
     height: 100%;
@@ -138,7 +142,7 @@ img[data-src] {
     position: fixed;
     font-family: "Stellar";
     letter-spacing: .5vmin;
-    font-size: 3.1vmin;
+    font-size: 200%;
     left: 0px;
     bottom: 0px;
     color: white;
@@ -227,7 +231,7 @@ img[data-src] {
     left: 0px;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .72);
+    background: rgba(0, 0, 0, .75);
 }
 .exhibit-content {
     position: absolute;
@@ -256,9 +260,10 @@ img[data-src] {
     min-height: 1px;
 }
 .exhibit-painting-enlarge {
+    display: none;
     padding: 15px;
     color: grey;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Raleway', sans-serif;
 }
 .exhibit-description {
     color: white;
@@ -268,7 +273,7 @@ img[data-src] {
     justify-content: center;
     align-items: flex-start;
     height: 100%;
-    font-family: 'Tajawal', sans-serif;
+    margin-top: 25px;
 }
 .description-odd {
     order: -1;
@@ -284,14 +289,15 @@ img[data-src] {
     justify-content: center;
     /*align-items: center;*/
     width: 70%;
+    font-family: 'Museum';
 }
 .exhibit-title {
-    font-family: 'Raleway', sans-serif;
     font-size: 250%;
     margin-bottom: 20px;
 }
 .exhibit-type, .exhibit-year, .exhibit-size {
-    font-size: 115%;
+    font-size: 125%;
+    margin-bottom: 5px;
 }
 .exhibit-palette {
     margin-top: 20px;
