@@ -22,6 +22,22 @@ body {
     from { opacity:0; }
     to { opacity: 1; }
 }
+.pulsate {
+    -webkit-animation: pulsate 3s ease-out;
+    -webkit-animation-iteration-count: infinite; 
+    opacity: 0.5;
+}
+@-webkit-keyframes pulsate {
+    0% { 
+        opacity: 0.5;
+    }
+    50% { 
+        opacity: 1.0;
+    }
+    100% { 
+        opacity: 0.5;
+    }
+}
 /* MISC */
 .flex-row {
     display: flex;
@@ -109,6 +125,9 @@ ul {
 .python-color {
     color: #3773A5;
     font-weight: bold;
+}
+.coffee-color {
+    color: #FFDD00;
 }
 /* NAV BAR */
 #nav-bar {
@@ -578,7 +597,7 @@ pre code {
     border-radius: 10px;
 }
 .code-line {
-    width: 850px;
+    width: 800px;
 }
 .code-tab-x1 {
     padding-left: 20px;
