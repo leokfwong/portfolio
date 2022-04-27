@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Leo Wong | Blog | Bulk Rename Files with the Rename Command </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="description" content="Blog post describing how to bulk rename files via the terminal using the rename command.">
+	<meta name="keywords" content="Leo,Wong,rename,bulk,filename,files,regex,tutorial">
+	<meta name="author" content="Leo Wong">
+	<style id="dynamic-style"></style>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156348914-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-156348914-1');
+	</script>
+	<link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/media-queries.css">
+	<link rel="stylesheet" type="text/css" href="../../assets/css/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="../../assets/img/flavicon.png"/>
+	<script src="https://kit.fontawesome.com/a93733e62b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div id="nav-bar" class="bottom-shadow">
+		<div id="nav-bar-wrapper">
+			<div id="nav-bar-name">
+				Leo Wong
+			</div>
+			<div id="nav-bar-menu" class="nav-bar-menu-desktop">
+				<div id="nav-bar-about" class="nav-bar-item">
+					About
+				</div>
+				<div id="nav-bar-projects" class="nav-bar-item">
+					Projects
+				</div>
+				<div id="nav-bar-blog" class="nav-bar-item nav-bar-active">
+					Blog
+				</div>
+				<div id="nav-bar-cv" class="nav-bar-item">
+					CV
+				</div>
+				<div id="nav-bar-lightswitch" class="nav-bar-item">
+					<img id="nav-bar-lightswitch-image" src="/assets/img/lightmode_icon.png" alt="Icon">
+				</div>
+				<div id="nav-bar-coffee" class="nav-bar-item">
+					<a class="coffee-color pulsate" href="https://www.buymeacoffee.com/leowong442G" target="_blank"> Buy me a coffee <3 </a>
+				</div>
+			</div>
+			<div id="nav-bar-hamburger" class="nav-bar-item">
+				<i class="fas fa-bars"></i>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper" class="padding-top-75px">
+		<div id="content-blog">
+			<div id="side-page-blog">
+				<!-- BEGIN BLOG -->
+				<div id="blog-section" class="section-container">
+					<div id="blog-content">
+						<!--BLOG POST -->
+						<div id="blog-post" class="blog-post">
+							<div id="blog-title" class="blog-title">
+								<h1>Bulk Rename Files with the Rename Command via the Terminal</h1>
+							</div>
+							<div id="blog-reading-time" class="blog-reading-time">
+								5 min read
+							</div>
+							<div id="blog-date" class="blog-date">
+								08 April 2022
+							</div>
+							<div id="blog-content" class="blog-content">
+								<p>Renaming a file, that's simple. It is perhaps one of the first things we learned when we started using a computer. Simply left-click on the name of a file, wait for it to enter edit mode, and type away. Easy. But what if we want to rename thousands or millions of files all at once? It would be an excruciating or even impossible task to complete manually.</p>
+								<p>Well, fear not! Leveraging the power of the command line, we can easily rename many files all at once. Specifically, we can use the <code>rename</code> command to help us achieve this goal. </p>
+
+								<h2>Pre-requisites</h2>
+								<p>First things first, here are a few requirements:</p>
+								<ol>
+									<li>Access to the Linux terminal.</li>
+									<li>Have the <code>rename</code> package installed.</li>
+								</ol>
+								<p>If we are using a Linux or MacOS operating system, we can skip step 1. If we are on Windows and would like to have access to the Linux terminal, setting up the <a class="link-2-website" href="https://www.youtube.com/watch?v=Cvrqmq9A3tA&t=715s" target="_blank"> Windows Subsytem for Linux </a> is an alternative option. Although it is possible to bulk-rename with commands in the Windows terminal as well, we will focus on the Linux-based approach in this post.</p>
+								<p>Once we have access to the Linux command-line, we need to ensure we have the <code>rename</code> package installed. The installation process is quite straight-forward, simply enter the following in the terminal:</p>
+
+								<div class="code-snippet">
+									<pre class="code-lang-sh">
+										<code class="code-lang-sh">
+											<div class="code-line"><span class="code-function">sudo apt update</span></div>
+											<div class="code-line"><span class="code-function">sudo apt install rename</span></div>
+										</code>
+									</pre>
+								</div>
+
+								<h2>Bulk Renaming</h2>
+								<p>Let's suppose we have thousands of files to reorganize with the naming convention shown below:</p>
+
+								<div class="code-snippet">
+									<pre class="code-lang-txt">
+										<code class="code-lang-txt">
+											<div class="code-line">[DNA] - COL-14(XX51).txt</div>
+											<div class="code-line">[DNA] - MYP-21(XX23).txt</div>
+											<div class="code-line">[DNA] - SIR-65(XX76).txt</div>
+											<div class="code-line">...</div>
+											<div class="code-line">[DNA] - BAM-04(XX77).txt</div>
+											<div class="code-line">[DNA] - COL-06(XX89).txt</div>
+											<div class="code-line">[DNA] - GEN-51(XX09).txt</div>
+										</code>
+									</pre>
+								</div>
+
+								<h3>Example 1: Replacing Substring with Today's Date</h3>
+
+								<p>Assuming that all of these files contain information on DNA samples, there would be no need to keep the prefix of <code>[DNA]</code> in the file name. Instead, it would perhaps be better if we can add today's date at the beginning with the following command:</p>
+
+								<div class="code-snippet">
+									<pre class="code-lang-txt">
+										<code class="code-lang-txt">
+											<div class="code-line"><span class="code-function">rename </span> <span class="code-operator">-</span><span class="code-parameter">n </span><span class="code-operator">"</span><span class="code-string">s/\[DNA\]/</span><span class="code-operator">$(</span><span class="code-function">date</span> <span class="code-operator">+%</span>F<span class="code-operator">)</span><span class="code-string">/</span><span class="code-operator">" *</span><span class="code-function">.txt</span></div>
+										</code>
+									</pre>
+								</div>
+
+								<p class="code-note"><strong>NOTE:</strong> Ensure to use double quotes to allow the shell to parse the date value properly. Single quotes will not work as expected. </p>
+
+								<p>Let's dissect the above. The <code>rename</code> command is accompanied by several arguments. We can use the <code>-n</code> option to simply output the potential file name changes without making any actual modifications, which comes in handy for testing purposes. We define the expression, which in this case consists of finding an exact match for the substring <code>[DNA]</code> (notice that the square brackets are escaped). We then specify to replace the first matched occurrence with today's formatted date <code>$(date +%F)</code>. Lastly, we instruct the command to be applied to all <code>.txt</code> files in the directory.<p>
+
+								<p>Output:</p>
+								<div class="code-snippet">
+									<pre class="code-lang-txt">
+										<code class="code-lang-txt">
+											<div class="code-line">2022-04-08 - COL-14(XX51).txt</div>
+											<div class="code-line">2022-04-08 - MYP-21(XX23).txt</div>
+											<div class="code-line">2022-04-08 - SIR-65(XX76).txt</div>
+											<div class="code-line">...</div>
+											<div class="code-line">2022-04-08 - BAM-04(XX77).txt</div>
+											<div class="code-line">2022-04-08 - COL-06(XX89).txt</div>
+											<div class="code-line">2022-04-08 - GEN-51(XX09).txt</div>
+										</code>
+									</pre>
+								</div>
+
+								<h3>Example 2: Removing Substring Based on Pattern</h3>
+
+								Great! Now let's say the information within the parentheses at the end of the file names should be removed. The same command can be used by simply adjusting the expression and replacement arguments:
+
+								<div class="code-snippet">
+									<pre class="code-lang-txt">
+										<code class="code-lang-txt">
+											<div class="code-line"><span class="code-function">rename </span> <span class="code-operator">-</span><span class="code-parameter">n </span><span class="code-operator">"</span><span class="code-string">s/\(.*/.txt/</span><span class="code-operator">" *</span><span class="code-function">.txt</span></div>
+										</code>
+									</pre>
+								</div>
+
+								Here, we match the first parenthesis and every character that follows by using the expression <code>\(.*</code>, replacing all of it with <code>.txt</code> (the extension of the file, which should not be omitted). Essentially, this command would remove the parentheses and the content found inside.
+
+								<p>Output:</p>
+								<div class="code-snippet">
+									<pre class="code-lang-txt">
+										<code class="code-lang-txt">
+											<div class="code-line">2022-04-08 - COL-14.txt</div>
+											<div class="code-line">2022-04-08 - MYP-21.txt</div>
+											<div class="code-line">2022-04-08 - SIR-65.txt</div>
+											<div class="code-line">...</div>
+											<div class="code-line">2022-04-08 - BAM-04.txt</div>
+											<div class="code-line">2022-04-08 - COL-06.txt</div>
+											<div class="code-line">2022-04-08 - GEN-51.txt</div>
+										</code>
+									</pre>
+								</div>
+
+								<h2>Conclusion</h2>
+
+								The purpose of this post was to provide a quick step by step guide to using the <code>rename</code> command to modify file names in batches. However, we barely scratched the surface in terms of the incredible things we can automate with regular expression. Whether we need to rename a large volume of files for work or we simply want to reorganize the pictures we took on our vacation, this method would definitely be an efficient and time-saving solution.
+								
+								<div class="blog-resource">
+									<h3>Resources</h3>
+									<ol>
+										<li><a class="reference_item" href=https://man7.org/linux/man-pages/man1/rename.1.html target="_blank">https://man7.org/linux/man-pages/man1/rename.1.html</a></li>
+										<li><a class="reference_item" href=https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/ target="_blank">https://www.cyberciti.biz/faq/linux-unix-formatting-dates-for-display/</a></li>
+										<li><a class="reference_item" href=https://www.gnu.org/software/sed/manual/sed.html target="_blank">https://www.gnu.org/software/sed/manual/sed.html</a></li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END BLOG -->
+			</div>
+		</div>
+	</div>
+	<!-- BEGIN SCRIPTS -->
+	<script src="../../assets/js/functions.js"></script>
+	<script src="../../assets/js/ga.js"></script>
+	<!-- END SCRIPTS -->
+</body>
+<footer>
+	<div id="footer-main-container">
+		<div id="footer-social">
+			<a href="mailto: leo.wong@umontreal.ca">
+				<div id="footer-social-email-icon" class="footer-social-icon">
+					<i class="fas fa-envelope-square"></i>
+				</div>
+			</a>
+			<a href="https://www.linkedin.com/in/leo-wong-486343120" target="_blank">
+				<div id="footer-social-linkedin-icon" class="footer-social-icon">
+					<i class="fab fa-linkedin"></i>
+				</div>
+			</a>
+			<a href="https://github.com/leokfwong" target="_blank">
+				<div id="footer-social-github-icon" class="footer-social-icon">
+					<i class="fab fa-github-square"></i>
+				</div>
+			</a>
+			<a href="https://www.researchgate.net/profile/Leo_Wong19" target="_blank">
+				<div id="footer-social-researchgate-icon" class="footer-social-icon">
+					<i class="fab fa-researchgate"></i>
+				</div>
+			</a>
+		</div>
+		<div id="footer-copyright">
+			<small>&copy; Copyright 2021 Leo Wong</small>
+		</div>
+		<div id="back-to-top">
+			<div id="back-to-top-button">
+				Back to Top
+			</div>
+		</div>
+	</div>
+</footer>
+</html>
