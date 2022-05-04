@@ -9,42 +9,47 @@
 
 <url>
   <loc>https://leowong.ca/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://leowong.ca/blog/politifact-fake-news-analysis/</loc>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://leowong.ca/gallerytimeless/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/bulk-rename-files-sed-command/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/nba2k21-how-to-set-up-mods/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/python-tutorial-numbers/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/python-tutorial-strings/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/cryptography-classical-ciphers/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://leowong.ca/blog/connect-to-microsoft-access-database-via-r/</loc>
-  <lastmod>2022-04-27T02:58:34+00:00</lastmod>
+  <lastmod>2022-05-04T03:45:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
