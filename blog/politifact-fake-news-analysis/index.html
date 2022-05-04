@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Leo Wong | Blog | Politifact: Fake News Detection </title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+	<meta name="description" content="With the birth of the Internet and the rise of social media, information is readily accessible across the globe nowadays. However, despite all the positive impact technology has on our society, misuse of its power can potentially result in negative repercussions. In this analysis, we explored the classification of quotes from the Politifact fact-checking website.">
+	<meta name="keywords" content="Leo,Wong,politifact,fake,news,fakenews,information,internet,media,lies,misinformation,disinformation,machinelearning,ml,algorithms,detection,classification,lstm,svc,cnn,randomforest,naivebayes,logisticregression">
+	<meta name="author" content="Leo Wong">
+	<style id="dynamic-style"></style>
+	<script type=module src="/assets/js/templates.js"></script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!--
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156348914-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-156348914-1');
+	</script> 
+	-->
+	<!-- End Global site tag (gtag.js) - Google Analytics -->
+	<!-- Google Tag Manager -->
+	<!--
+	<script>
+		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KVFM672');
+	</script>
+	-->
+	<!-- End Google Tag Manager -->
+	<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/media-queries.css">
+	<link rel="stylesheet" type="text/css" href="/assets/css/normalize.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+	<link rel="shortcut icon" type="image/png" href="/assets/img/flavicon.png"/>
+	<script src="https://kit.fontawesome.com/a93733e62b.js" crossorigin="anonymous"></script>
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+	<!-- Google Tag Manager (noscript) -->
+	<!--
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KVFM672"
+	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+	-->
+	<!-- End Google Tag Manager (noscript) -->
+	<my-header></my-header>
+	<div id="wrapper" class="padding-top-75px">
+		<div id="content-blog">
+			<div id="side-page-blog">
+				<!-- BEGIN BLOG -->
+				<div id="blog-section" class="section-container">
+					<div id="blog-content">
+						<!--BLOG POST -->
+						<div id="blog-post" class="blog-post">
+							<div id="blog-title" class="blog-title">
+								<h1>Politifact: Fake News Detection</h1>
+							</div>
+							<div id="blog-reading-time" class="blog-reading-time">
+								15 min read
+							</div>
+							<div id="blog-date" class="blog-date">
+								19 December 2020
+							</div>
+							<div id="blog-content" class="blog-content">
+
+								<h2>Summary</h2>
+
+								<p>With the rise of the Internet and social media, information has become readily accessible across the globe nowadays in a matter of seconds. However, despite all the positive impact technology has on our society, misuse of its power can potentially result in negative repercussions. The increase in accessibility to information has allowed misleading content to propagate all over the web at unprecedented rates.</p> 
+								<p>In this analysis, we study the potential power of artificial intelligence in the fight against the dissemination of fake news by exploring various machine learning algorithms. Given the imbalance in the number of fake news compared to real ones, we analyzed the effect of tuning the class weights during training. According to our experiments, by comparing the performances of different models, we found that LSTM yielded the best result at classifying binary true and false quotes with an accuracy of \(0.72\). Likewise, LSTM also generated the best accuracy of \(0.31\) for multi-class predictions. For weighted classes, SVC produced the highest recall for true quotes at \(0.59\). The results show that adjusting the weights can help improve the prediction of the underrepresented classes, at the cost of a slightly lower overall performance.</p>
+
+								<div id="blog-table-of-content">
+									<h2>Table of Contents</h2>
+									<ul>
+										<li><a class="blog-section-item" href="#blog-section-1">Introduction</a></li>
+										<li>
+											<a class="blog-section-item" href="#blog-section-2">Related Work</a>
+											<ul>
+												<li><a class="blog-section-item" href="#blog-section-2.1">Liar, Liar Pants on Fire</a></li>
+												<li><a class="blog-section-item" href="#blog-section-2.2">FakeNewsNet</a></li>
+												<li><a class="blog-section-item" href="#blog-section-2.3">FAKEDETECTOR</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="blog-section-item" href="#blog-section-3">Methodology</a>
+											<ul>
+												<li><a class="blog-section-item" href="#blog-section-3.1">Dataset</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.2">Data Exploration</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.3">Preprocessing</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.4">Feature Engineering</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.5">Models</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.6">Feature Selection</a></li>
+												<li><a class="blog-section-item" href="#blog-section-3.7">Web Application</a></li>
+
+											</ul>
+										</li>
+										<li>
+											<a class="blog-section-item" href="#blog-section-4">Results</a>
+											<ul>
+												<li><a class="blog-section-item" href="#blog-section-4.1">Mult-class Classification</a></li>
+												<li><a class="blog-section-item" href="#blog-section-4.2">Binary Classification</a></li>
+											</ul>
+										</li>
+										<li>
+											<a class="blog-section-item" href="#blog-section-5">Discussion</a>
+											<ul>
+												<li><a class="blog-section-item" href="#blog-section-5.1">Limitations</a></li>
+												<li><a class="blog-section-item" href="#blog-section-5.2">Future Works</a></li>
+											</ul>
+										</li>
+										<li><a class="blog-section-item" href="#blog-section-6">Conclusion</a></li>
+										<li><a class="blog-section-item" href="#blog-section-7">References</a></li>
+									</ul>
+								</div>
+
+								<!-- INTRODUCTION -->
+								<div id="blog-section-1">
+									<h2>Introduction</h2>
+
+									<p>In today’s digital era, information circulates very quickly. Through a combination of technological advancements, the creation of the Internet and the birth of social media, the world has become more connected than ever. The accessibility of information online allows us to remain up-to-date with global news and to communicate with others across the world. However, this new-found convenience and accessibility to information also introduces unprecedented challenges. Dissimulated in the abundance of different news outlets and media platforms, fake news is becoming increasingly pervasive on the Internet. A moment of negligence can result in falling prey to the trickery of dishonest parties. Therefore, critical thinking and media literacy are essential components to the fight against fake news. With that being said, relying solely on our ability to detect false information might not be enough.</p> 
+									<p>If technology can be used in the dissemination of fake news, it can also be utilized in the fight against it. Albeit an imperfect solution, the use of artificial intelligence can help mitigate the risks of falling victim to fake news through the detection of potentially false information circulating online. Reputed fact-checking organizations can also be a valuable source of information which could assist in the prediction of fake news, given that statements are manually verified and backed with credible sources. Hence, we will explore Politifact, a fact-checking website that reviews statements and provides a spectrum of labels (<em>True</em>, <em>Mostly True</em>, <em>Half True</em>, <em>Barely True</em>, <em>False</em> and <em>Pants on Fire</em>) describing the truthfulness of a given political quote<sup>3</sup>.</p>
+								</div>
+
+								<!-- RELATED WORK -->
+								<div id="blog-section-2">
+									<h2>Related Work</h2>
+
+									<p>The rise in propagation of fake news online is considered a potential threat to our society. Many fake news detection research projects have been conducted in recent years in order to slow down the spread of false information. According to the literature, machine learning algorithms are suitable for this type of problem given their classification and prediction functionalities<sup>17</sup>. Several different datasets from reputed fact-checkers such as Snopes are available with manually categorized labels, whereas raw data can also be obtained through the API’s of major social media platform like Twitter. For instance, researchers have investigated fake news from Facebook, employing machine learning algorithms such as the Naive Bayes classification model to predict the legitimacy of a news<sup>8</sup>. In this post, we explored other experiments that specifically analyzed data from Politifact and referred to their results as benchmark.</p>
+
+									<div id="blog-section-2.1">
+										<h3>Liar, Liar Pants on Fire</h3>
+										<p>In this study, a dataset collected from Politifact known as the LIAR dataset was used in the experiments. At the time, the dataset consisted of 12,836 quotes along with information related to the subject, the context or venue, the speaker, the party, etc.<sup>18</sup> Several classifiers were selected as candidates in the experiments including SVM, Logistic Regression, Bi-LSTM, CNN and others. Hybrid-CNNs were also tested with different combinations of features, such as the quote with the subject, the state, or with all features. The results showed that Hybrid-CNN with the feature speaker yielded the best accuracy at 0.277 in the prediction of the multi-class labels. The results from this experiment can be used as benchmark for our own tests, since it provides an expected range of values in which the performance of our models should fall within.</p>
+									</div>
+
+									<div id="blog-section-2.2">
+										<h3>FakeNewsNet</h3>
+										<p>Another analysis collected data from Politifact and GossipCop, including social context and spatialtemporal information<sup>15</sup>. User profiles, posts, responses and networks were some of the elements explored under the hypothesis that there exists a correlation between social context and fake news detection. In this study, Politifact statement labels were used as ground truth while collecting the news content from different sources. The results showed that the usage of Social Article Fusion (SAF)<sup>14</sup> which utilizes autoencoders to learn the features generated the best accuracy at 0.691. For our experiments, we can further explore the concept of contextual features and integrate additional external information pertaining to the author or context of each quote.</p>
+									</div>
+
+									<div id="blog-section-2.3">
+										<h3>FAKEDETECTOR</h3>
+										<p>The following research study introduces a novel automatic credibility inference model for fake news called FakeDetector which uses a variety of classical machine learning and deep learning algorithms<sup>19</sup>. In addition to the multi-class classification of the quotes from Politifact, a binary label was derived from the original classes by grouping (<em>True</em>, <em>Mostly True</em> and <em>Half True</em>) as <em>True</em> and (<em>Barely True</em>, <em>False</em>, <em>Pants on Fire</em>) as <em>False</em>. The performance obtained from FakeDetector was around 0.63 and 0.28 for the binary and multiclass classification respectively.</p>
+									</div>
+								</div>
+
+								<!-- METHODOLOGY -->
+								<div id="blog-section-3">
+									<h2>Methodology</h2>
+
+									<div id="blog-section-3.1">
+										<h3>Dataset</h3>
+										<p>The data collection process involved crawling the Politifact website for the quotes, along with the labels, author, context, date and affiliation. The raw dataset was comprised of 18,053 rows with 8 columns which included label, quote, context, author_id, author_name, date, categories and staff. Exact duplicates of the statements were discarded while other page link issues were identified and resolved. Additional data was also retrieved regarding the authors such as their name, affiliation and description for a total of 4,610 unique entries.</p>
+									</div>
+
+									<div id="blog-section-3.2">
+										<h3>Data Exploration</h3>
+
+										<p>Firstly, we explored the historical data collected from Politifact in order to better understand the nature of the data and its distributions. For instance, we noticed that only post-2007 quotes were classified into all 6 categories, as there were only <em>False</em> and <em>Barely True</em> quotes prior to that year as shown in Figure 1. Another observation pertains to the significant rise in the number of <em>False</em> news in recent years.</p>
+
+										<div id="blog-section-container-fig1" class="flex-column">
+											<img id="blog-section-container-fig1-image" class="blog-section-container-image" src="assets/img/fig1.png" alt="Fig. 1. The number of quotes in each category between 2000 and 2020.">
+											<div id="blog-section-container-fig1-caption" class="blog-section-container-caption">
+												Fig. 1. The number of quotes in each category between 2000 and 2020.
+											</div>
+										</div>
+
+										<p>Next, we analyzed the number of statements for each label to better understand the distribution of the target variable in this classification problem. The <em>False</em> statements were the most frequent whereas <em>Pants on Fire</em> the least. We also visualized the most frequent authors of quotes from the Politifact data and the breakdown by classes, as illustrated in Figure 2.</p>
+
+										<div id="blog-section-container-fig2" class="flex-column">
+											<img id="blog-section-container-fig2-image" class="blog-section-container-image" src="assets/img/fig2.png" alt="Fig. 2. Top 5 authors with most quotes by label.">
+											<div id="blog-section-container-fig2-caption" class="blog-section-container-caption">
+												Fig. 2. Top 5 authors with most quotes by label.
+											</div>
+										</div>
+									</div>
+
+									<div id="blog-section-3.3">
+										<h3>Preprocessing</h3>
+										<p>Before training the models, we preprocessed the data by cleaning and standardizing it. For instance, we simplified the context variable by grouping entries from the same class such as "tv commercial", "tv ad" and "an ad on tv". It helped reduce the number of unique contexts from 5,986 to 279. We further decreased the dimensionality of this feature by assigning contexts with fewer than 10 occurrences to the category other, which ultimately reduced the number of unique contexts to 76.</p>
+										<p>Regarding the textual data of the quotes, we applied preprocessing steps to standardize the text with the help of the nltk library. Stopwords were removed from the statements, the text was set to lowercase and all punctuation was discarded. Moreoever, we included the lemmatization process in the preprocessing of the quotes to group words together by their lemma. Finally, we vectorized the textual information using 2 methods. The first method was to transform the data into vectors of numbers by using the TF-IDF vectorizer, which captures the importance of each word relative to the entirety of the corpus. The second one involved the usage of <a class="link-2-website" href="https://www.tensorflow.org/tutorials/text/word2vec" target="_blank">Word2Vec</a><sup>9</sup> , a popular word embedding technique, to transform each word into a vector of numbers. The main functionality of word embedding is that the output vectors of 2 words that can be used in similar contexts will have close values.</p>
+									</div>
+
+									<div id="blog-section-3.4">
+										<h3>Feature Engineering</h3>
+										<p>In terms of feature engineering, we first derived text related features including the number of words in the quote, the number of characters in the quote, the average word length, and the number of stopwords in the quotes. The numerical values are further normalized with <code>MinMaxScaler</code> from <em>sklearn</em> such that the range is between 0 and 1.</p>
+										<p>Furthermore, we used the <a class="link-2-website" href="https://pypi.org/project/gender-guesser/" target="_blank">gender-guesser</a> library to infer the gender of each author<sup>1</sup>. The default 5 categories are male, female, mostly male, mostly female and androgynous. An additional category unknown was created for organizations or entities which cannot be assigned a single gender. However, given the imperfection of the tool, we also leveraged each author’s short personal description to correct mis-classified genders. For example, if the description only contained male pronouns, there was enough evidence to assign the gender male. At the end, our dataset was comprised of 2387 males, 1312 unknowns, 750 females, 90 mostly males, 52 most females and 17 androgynous.</p>
+										<p>In addition to the multi-class outcome variable, we also explored the binary version of the fake news classifications by Politifact. The labels (<em>True</em>, <em>Mostly True</em>) were grouped together as <em>True</em>, while (<em>Half True</em>, <em>Barely True</em>, <em>False</em>, <em>Pants on Fire</em>) made up the class <em>False</em>.</p>
+
+										<div id="blog-section-container-fig3" class="flex-column">
+											<img id="blog-section-container-fig3-image" class="blog-section-container-image" src="assets/img/fig3.png" alt="Fig. 3. Number of quotes in each of the original categories between.">
+											<div id="blog-section-container-fig3-caption" class="blog-section-container-caption">
+												Fig. 3. Number of quotes in each of the original categories between.
+											</div>
+										</div>
+
+										<p>As shown in Figure 3, the Politifact dataset is imbalanced, as there were a lot more <em>False</em> than any other category, which resulted in an underrepresentation of the <em>True</em> and <em>Pants on Fire</em> categories, which can potentially be problematic as observed further in our results. Likewise, this imbalance can also be seen in Figure 4 with the binary categories. The disparity between <em>False</em> and <em>True</em> was even further emphasized in the binary classes, illustrated by the noticeable difference in frequencies between both categories of quotes.</p>
+
+										<div id="blog-section-container-fig4" class="flex-column">
+											<img id="blog-section-container-fig4-image" class="blog-section-container-image" src="assets/img/fig4.png" alt="Fig. 4. Number of quotes in each of the binary categories.">
+											<div id="blog-section-container-fig4-caption" class="blog-section-container-caption">
+												Fig. 4. Number of quotes in each of the binary categories.
+											</div>
+										</div>
+									</div>
+
+									<div id="blog-section-3.5">
+										<h3>Models</h3>
+										<p>For our baseline model, we decided to use the Multinomial Naive Bayes classifier as a benchmark given its ease of implementation and quickness to train. It also works well with high dimensionality spaces such as text classification problems.</p>
+										<p>Logistic regression was another algorithm included in our test, as it is a probabilistic classification model widely used across different fields<sup>7</sup>. It is easy to implement, does not rely on extensive assumptions and can be extended for multi-class classification purposes.</p>
+										<p>Random Forest was also a candidate model, a popular machine learning algorithm which has seen a lot of success in various domains in recent years<sup>13</sup>. It is easy to interpret, functions with large datasets and less sensitive to outliers.</p>
+										<p>Support Vector Machine (SVM) was another machine learning classifier we included in our experiments. It handles high-dimensional spaces and functions well when clear boundaries are defined<sup>4</sup>.</p>
+										<p>In addition to the classical machine learning models mentioned above, we implemented 2 Deep Learning algorithms: Convolutional Neural Network (CNN) and Long Short-Term Memory Neural Network (LSTM) which is a derivative of Recurrent Neural Network (RNN). CNN is one of the most popular deep learning architecture and its main advantage would be the ability to automatically detect the important features without any human supervision<sup>5</sup>. The strength of LSTM is that it is capable of analysing sequences of data which can be very powerful if mixed with word embedding<sup>16</sup>. In essence, the algorithm maintains a memory state capturing the history of the sequences of words, preserving important information throughout the parsing of the sentences.</p>
+									</div>
+
+									<div id="blog-section-3.6">
+										<h3>Feature Selection</h3>
+										<p>Our approach consisted of measuring the performance of the models by only including the vector representation of the quotes as the input features. For the TF-IDF transformations, since the vocabulary size of the corpus was fairly large, the text was represented as sparse matrices to handle the high dimensionality of the feature space. We also tried to transform our input using Word2Vec, but it gave us better results only when used alongside LSTM or CNN<sup>10, 11</sup>.</p>
+										<p>Then, we added additional features and evaluated the impact of each feature on our results. Variables including the author, the affiliation, the context and others were one-hot encoded and included as input to the models. The features were selected based on their level of importance and correlation with the target variable, information obtained through <em>sklearn’s</em> <code>SelectKBest</code> function along with a chi-square scoring scheme.</p>
+									</div>
+
+									<div id="blog-section-3.7">
+										<h3>Web Application</h3>
+										<p>Once the models were trained and performance results were obtained, we implemented a web application built with the Flask framework. We designed a user interface allowing users to enter a quote as well as other contextual information such as the author, the context and so on. The information is then used as features to predict the veracity of the statement. The models from our experiments were trained and exported through Python’s object serialization library pickle to avoid repeatedly having to re-train the model during application usage<sup>2</sup>. Essentially, the application offers a user-friendly interface for users to fact-check political quotes. It is important to note that the web application is simply a prototype and proof-of-concept, and that performance is only guaranteed for quotes from Politifact.</p>
+									</div>
+								</div>
+
+								<!-- RESULTS -->
+								<div id="blog-section-4">
+									<h2>Results</h2>
+
+									<div id="blog-section-4.1">
+										<h3>Multi-class Classification</h3>
+										<p>For the classification between the 6 different categories of quotes, we measured and compared the accuracy of each model as shown in Table 1. The Multinomial Naive Bayes model used as baseline performed the worst with an accuracy of 0.28, whereas LSTM was the best at 0.31.</p>
+
+										<table>
+											<tr>
+												<th>Models</th>
+												<th>Accuracy</th>
+											</tr>
+											<tr>
+										  		<td>Naive Bayes</td>
+										  		<td>0.283</td>
+											</tr>
+											<tr>
+										  		<td>Logistic Regression</td>
+										  		<td>0.294</td>
+											</tr>
+											<tr>
+										  		<td>Random Forest</td>
+										  		<td>0.286</td>
+											</tr>
+											<tr>
+										  		<td>SVC</td>
+										  		<td>0.295</td>
+											</tr>
+											<tr>
+										  		<td>CNN</td>
+										  		<td>0.293</td>
+											</tr>
+											<tr>
+										  		<td>LSTM</td>
+										  		<td>0.310</td>
+											</tr>
+										</table>
+										<div id="blog-section-container-table1-caption" class="blog-section-container-caption">
+											Table 1. Model performances with multi-class labels.
+										</div>
+
+										<p>Exploring the impact of weighted classes, we repeated the experiments by adjusting the <code>class_weight</code> parameters in most algorithms. We only presented the results from the LSTM model given it was the one with the highest performance, but the other algorithms showed similar behavior when balancing the classes.</p>
+										<p>The confusion matrix in Figure 5 shows the percentage of correctly predicted quotes in each of the categories. The majority of data was predicted as either <em>False</em>, <em>Half True</em> or <em>Mostly True</em>, which corresponds to the most frequent types of quotes. The rest of the categories with lower frequencies were rarely predicted correctly, with percentages as low as 3.2% for <em>True</em> and 3.0% for <em>Barely True</em>. Despite being the most underrepresented class, <em>Pants on Fire</em> fared better at 31.4% than the previous two categories.</p>
+
+										<div id="blog-section-container-fig5" class="flex-column">
+											<img id="blog-section-container-fig5-image" class="blog-section-container-image" src="assets/img/fig5.png" alt="Fig. 5. LSTM with multi-class labels.">
+											<div id="blog-section-container-fig5-caption" class="blog-section-container-caption">
+												Fig. 5. LSTM with multi-class labels.
+											</div>
+										</div>
+
+										<p>In comparison, the confusion matrix in Figure 6 illustrates a more balanced distribution of correctly classified quotes. We can observe that the percentage of correctly predicted <em>True</em> and <em>Barely True</em> quotes increased to 40% and 12% respectively. As for <em>Pants on Fire</em>, the model’s ability to correctly predict quotes from this class remained relatively constant. The spread of the coloration in the graph demonstrates a positive effect of balancing the class weights, as it allows to increase the recall of categories with fewer data points.</p>
+
+										<div id="blog-section-container-fig6" class="flex-column">
+											<img id="blog-section-container-fig6-image" class="blog-section-container-image" src="assets/img/fig6.png" alt="Fig. 6. LSTM with multi-class labels and weighted class.">
+											<div id="blog-section-container-fig6-caption" class="blog-section-container-caption">
+												Fig. 6. LSTM with multi-class labels and weighted class.
+											</div>
+										</div>
+									</div>
+
+									<div id="blog-section-4.2">
+										<h3>Binary Classification</h3>
+										<p>The same experiment was conducted on the binary labels which showed similar results. The adjustments to class weights had a significant impact on the classification of <em>True</em> quotes. For instance, as shown by the confusion matrices in Figure 7 and Figure 8, just by adjusting the weight of <em>True</em> labels and balancing the classes, the recall value for the <em>True</em> category increased by almost 30% while the recall for the <em>False</em> labels decreased by a less significant percentage at around 13%. Similar to the multi-class results, the same impact was observed for every classifier included in our experiments. An overview of the performance for each algorithm using binary labels is summarized in Table 2.</p>
+
+										<table>
+											<tr>
+												<th></th>
+												<th colspan="3">Imbalanced</th>
+												<th colspan="3">Weighted Labels</th>
+											</tr>
+											<tr>
+												<th>Models</th>
+												<th>Accuracy</th>
+												<th>False Recall</th>
+												<th>True Recall</th>
+												<th>Accuracy</th>
+												<th>False Recall</th>
+												<th>True Recall</th>
+											</tr>
+											<tr>
+										  		<td>Naive Bayes</td>
+										  		<td>0.689</td>
+										  		<td>0.816</td>
+										  		<td>0.378</td>
+										  		<td>0.665</td>
+										  		<td>0.726</td>
+										  		<td>0.521</td>
+											</tr>
+											<tr>
+										  		<td>Logistic Regression</td>
+										  		<td>0.710</td>
+										  		<td>0.915</td>
+										  		<td>0.229</td>
+										  		<td>0.671</td>
+										  		<td>0.719</td>
+										  		<td>0.557</td>
+											</tr>
+											<tr>
+										  		<td>Random Forest</td>
+										  		<td>0.709</td>
+										  		<td>0.990</td>
+										  		<td>0.050</td>
+										  		<td>0.682</td>
+										  		<td>0.754</td>
+										  		<td>0.514</td>
+											</tr>
+											<tr>
+										  		<td>SVC</td>
+										  		<td>0.708</td>
+										  		<td>0.972</td>
+										  		<td>0.089</td>
+										  		<td>0.679</td>
+										  		<td>0.719</td>
+										  		<td>0.586</td>
+											</tr>
+											<tr>
+										  		<td>CNN</td>
+										  		<td>0.714</td>
+										  		<td>1.000</td>
+										  		<td>0.000</td>
+										  		<td>0.686</td>
+										  		<td>0.730</td>
+										  		<td>0.500</td>
+											</tr>
+											<tr>
+										  		<td>LSTM</td>
+										  		<td>0.716</td>
+										  		<td>0.960</td>
+										  		<td>0.140</td>
+										  		<td>0.705</td>
+										  		<td>0.820</td>
+										  		<td>0.430</td>
+											</tr>
+										</table>
+										<div id="blog-section-container-table2-caption" class="blog-section-container-caption">
+											Table 2. Model performances with binary labels.
+										</div>
+
+										<p>We observe that LSTM generated the highest accuracy in both the original imbalanced classes and the adjusted weights approach, with accuracy values of 0.716 and 0.705 respectively. The Naive Bayes algorithm yielded the highest recall for <em>True</em> quotes, while sacrificing overall performance with the lowest accuracy at 0.689. On the contrary, CNN resulted in the highest recall for <em>False</em> quotes in the imbalanced approach, but achieved a <em>True</em> recall of 0.00, essentially classifying all quotes as being <em>False</em>, which is very poor performance. We observe that the percentage of correctly classified <em>True</em> labels did not exceed Naive Bayes’ result at 0.378 in the imbalanced approach. By adjusting the weights and balancing the two classes, the percentage of correctly classified <em>True</em> quotes increased to a maximum of 0.586 with SVC, but once again sacrificing overall prediction accuracy.</p>
+
+										<div id="blog-section-container-fig7" class="flex-column">
+											<img id="blog-section-container-fig7-image" class="blog-section-container-image" src="assets/img/fig7.png" alt="Fig. 7. LSTM with binary labels.">
+											<div id="blog-section-container-fig7-caption" class="blog-section-container-caption">
+												Fig. 7. LSTM with binary labels.
+											</div>
+										</div>
+
+										<div id="blog-section-container-fig8" class="flex-column">
+											<img id="blog-section-container-fig8-image" class="blog-section-container-image" src="assets/img/fig8.png" alt="Fig. 8. LSTM with binary labels and weighted class.">
+											<div id="blog-section-container-fig8-caption" class="blog-section-container-caption">
+												Fig. 8. LSTM with binary labels and weighted class.
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- DISCUSSION -->
+								<div id="blog-section-5">
+									<h2>Discussion</h2>
+									<p>For each algorithms, we tuned the hyper-parameters to get the best possible results from each of the classifiers. Over-fitting was a recurrent issue, as the models were often perfectly classifying the training set while having poor accuracy on unseen data. For Deep Learning models, the structure of the network was vital, as we tried to find the structure that would fit our data in an optimal way. However, as seen in Table 2, the models were basically classifying the majority of our data as <em>False</em>. Therefore, our approach was to try to balance the results, and overcome the inherent problem of imbalanced data. We tried multiple solutions, such as over-sampling the true labels by duplicating quotes, but it encouraged overfitting and our classifiers ended up being biased. We also tried to remove the excess samples labeled as <em>False</em>, but getting rid of over 5000 data samples was counterproductive and our classifiers had less data to work with, which ended up giving poor results. The solution that showed the best trade-off in accuracy and recall was to add class priors which emphasized some labels by using weights. Every classifier reacted differently, so we tried to tune each prior according to each classifier. We ended up getting much less false negative results, producing classifiers with a slightly lower accuracy that were not only classifying the majority of quotes to <em>False</em>. In Table 2, the summary of the results shows that our best model obtained a better accuracy than the various accuracy scores provided in the related work studies. Since the number of quotes in Politifact increases everyday, we had the advantage of having more data, which undoubtedly contributed in the increase in performance of our models.</p>
+
+									<div id="blog-section-5.1">
+										<h3>Limitations</h3>
+										<p>As demonstrated by the results from our experimentation, the imbalance in our data set was a major issue and was hurting the performance of the models. We often ended up with either a classifier that predicts nearly everything as <em>False</em> or some balanced classification with pretty average results due to very few <em>True</em> samples in comparison to the number of <em>False</em> statements. The results showed that by adjusting the class weight for imbalanced datasets, the recall of each class can be balanced accordingly. By nudging the penalties of the underrepresented classes, it helps the models provide more insightful predictions despite a slight decrease in overall performance. However, the imbalanced nature of the data cannot fully be resolved through this method, as performance seems to suffer from this trade-off.</p>
+									</div>
+
+									<div id="blog-section-5.2">	
+										<h3>Future Works</h3>
+										<p>One of the simplest solution to the problem of imbalanced classes would be to obtain more quotes from the underrepresented category. However, given that Politifact is a fact-checking, there is an inherent bias leading to more <em>False</em> quotes being verified as compared to <em>True</em>. A potential remedy to this limitation would be to extract more information from additional external fact-checkers such as Snopes or Google Fact Check and to consolidate all the data together. Collecting data from a variety of different sources could also improve the versatility of the models, such that different types of quotes from various categories, other than political, could be correctly classified.</p>
+										<p>In terms of model training, the implementation of more sophisticated algorithms could be explored. For instance, using the pre-trained GloVe models from Google could potential result in higher accuracy, as the unsupervised algorithm trains on a large corpus of textual data<sup>12</sup>. Likewise, we can also experiment with transformer-based algorithms such as Bidirectional Encoder Representations from Transformers (BERT)<sup>6</sup>.</p>
+									</div>
+								</div>
+
+								<!-- CONCLUSION -->
+								<div id="blog-section-6">
+									<h2>Conclusion</h2>
+									<p>In this post, we explored the classification of quotes from the Politifact fact-checking website. The results obtained from our experiments were quite similar to other studies, with LSTM yielding the highest accuracy values for both multi-class and binary approaches, with scores of 0.705 and 0.716 respectively. By tuning the weights for imbalanced classes, we obtained significantly higher prediction results for the underrepresented groups, at the expense of a slight decrease in overall performance.</p>
+								</div>
+
+								<!-- REFERENCES -->
+								<div id="blog-section-7">
+									<h2>References</h2>
+									<ol>
+										<li><a class="reference_item" href=https://pypi.org/project/gender-guesser/ target="_blank">Gender-guesser</a></li>
+										<li><a class="reference_item" href=https://docs.python.org/3/library/pickle.html target="_blank">Pickle - Python object serialization.</a></li>
+										<li><a class="reference_item" href=https://www.politifact.com/ target="_blank">Politifact</a></li>
+										<li><a class="reference_item" href=https://doi.org/10.1007/978-1-4302-5990-9_3 target="_blank">Mariette Awad and Rahul Khanna. 2015. Support Vector Machines for Classification. 39–66.</a></li>
+										<li><a class="reference_item" href=https://towardsdatascience.com/applied-deep-learningpart-4-convolutional-neural-networks-584bc134c1e2 target="_blank">Arden Dertat. 2017. Applied Deep Learning - Part 4: Convolutional Neural Networks.</a></li>
+										<li><a class="reference_item" href=https://arxiv.org/pdf/1810.04805.pdf target="_blank">Jacob Devlin, Ming-Wei Chang, Kenton Lee, and Kristina Toutanova. 2018. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.</a></li>
+										<li><a class="reference_item" href=https://papers.nips.cc/paper/2014/file/6cdd60ea0045eb7a6ec44c54d29ed402-Paper.pdf target="_blank">J. Feng, H. Xu, S. Mannor, and S. Yan. 2014. Robust logistic regression and classification. Advances in Neural Information Processing Systems 1 (01 2014), 253–261.</a></li>
+										<li><a class="reference_item" href=https://doi.org/10.1109/SCEECS.2018.8546944 target="_blank">A. Jain and A. Kasbe. 2018. Fake News Detection. In 2018 IEEE International Students’ Conference on Electrical, Electronics and Computer Science (SCEECS). 1–5.</a></li>
+										<li><a class="reference_item" href=https://towardsdatascience.com/introduction-to-wordembedding-and-word2vec-652d0c2060fa target="_blank">Dhruvil Kasani. 2018. Introduction to Word Embedding and Word2Vec</a></li>
+										<li><a class="reference_item" href=https://www.kaggle.com/marijakekic/cnn-in-keras-withpretrained-word2vec-weights target="_blank">Marija Kekic. 2017. CNN in keras with pretrained word2vec weights</a></li>
+										<li><a class="reference_item" href=https://www.kaggle.com/reiinakano/basic-nlp-bag-of-words-tf-idf-word2vec-lstm target="_blank">Rei Nakano. 2017. Basic NLP: Bag of Words, TF-IDF, Word2Vec,LSTM.</a></li>
+										<li><a class="reference_item" href= https://nlp.stanford.edu/projects/glove/ target="_blank">GloVe: Global Vectors for Word Representation</a></li>
+										<li><a class="reference_item" href=https://doi.org/10.1109/RoboMech.2016.7813171 target="_blank">Arnu Pretorius, Surette Bierman, and Sarel Steel. 2016. A metaanalysis of research in random forests for classification. 1–6</a></li>
+										<li><a class="reference_item" href=https://doi.org/10.1007/s10588-018-09280-3 target="_blank">Kai Shu, Deepak Mahudeswaran, and Huan Liu. 2018. FakeNewsTracker: a tool for fake news collection, detection, and visualization. Computational and Mathematical Organization Theory 25, 1 (Oct. 2018), 60–71.</a></li>
+										<li><a class="reference_item" href=https://arxiv.org/pdf/1809.01286.pdf target="_blank">Kai Shu, Deepak Mahudeswaran, Suhang Wang, Dongwon Lee, and Huan Liu. 2018. FakeNewsNet: A Data Repository with News Content, Social Context and Spatialtemporal Information for Studying Fake News on Social Media.</a></li>
+										<li><a class="reference_item" href=https://arxiv.org/pdf/1909.09586.pdf target="_blank">Ralf C. Staudemeyer and Eric Rothstein Morris. 2019. Understanding LSTM – a tutorial into Long Short-Term Memory Recurrent Neural Networks. </a></li>
+										<li><a class="reference_item" href=http://www.testmagzine.biz/index.php/testmagzine/article/view/5959/4723 target="_blank">Steni T S and SREEJA P S. 2020. Fake News Detection on Social Media-A Review. Test Engineering and Management 83 (04 2020), 12997–13003.</a></li>
+										<li><a class="reference_item" href=https://arxiv.org/pdf/1705.00648.pdf target="_blank">William Yang Wang. 2017. "Liar, Liar <em>Pants on Fire</em>": A New Benchmark Dataset for Fake News Detection</a></li>
+										<li><a class="reference_item" href=https://arxiv.org/pdf/1805.08751.pdf target="_blank"> Jiawei Zhang, Bowen Dong, and Philip S. Yu. 2018. FAKEDETECTOR: Effective Fake News Detection with Deep Diffusive Neural Network</a></li>
+									</ol>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END BLOG -->
+			</div>
+		</div>
+	</div>
+	<!-- BEGIN SCRIPTS -->
+	<script src="../../assets/js/functions.js"></script>
+	<!-- END SCRIPTS -->
+</body>
+<my-footer></my-footer>
+</html>

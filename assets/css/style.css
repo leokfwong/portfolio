@@ -6,6 +6,10 @@ body {
     -o-animation: fadein 2s; /* Opera < 12.1 */
     animation: fadein 2s;
 }
+p {
+    margin-block-start: 1.5em;
+    margin-block-end: 1.5em;
+}
 @keyframes fadein {
     from { opacity:0; }
     to { opacity:1;}
@@ -210,7 +214,7 @@ ul {
     max-width: 980px;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
-    line-height: 160%;
+    line-height: 170%;
     color: #242424;
     cursor: default;
 }
@@ -758,4 +762,19 @@ mjx-container.MathJax.CtxtMenu_Attached_0 {
 }
 .python-string-slicing-string, .python-string-slicing-positive, .python-string-slicing-negative {
     outline: solid 1px #242424;
+}
+table {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 80%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+th, td {
+    border: solid 1px black;
+    padding: 5px 15px;
+    text-align: center;
 }
